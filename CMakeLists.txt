@@ -12,7 +12,7 @@ target_compile_features(branchtalk_core PUBLIC cxx_std_20)
 
 target_include_directories(branchtalk_core
     PUBLIC
-        "${CMAKE_CRRENT_SOURCE_DIR}/libs/core/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/libs/core/include"
 )
 
 set_target_properties(branchtalk_core PROPERTIES

@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/branchtalk_server.dir/apps/server/main.cpp.o -o branchtalk_server  libbranchtalk_core.a
