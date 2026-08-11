@@ -1,33 +1,33 @@
-Start testing: Aug 09 17:44 KST
+Start testing: Aug 11 10:31 KST
 ----------------------------------------------------------
 1/2 Testing: branchtalk_client.smoke
 1/2 Test: branchtalk_client.smoke
-Command: "/Users/kyungmin/BrankTalk/build/branchtalk_client"
-Directory: /Users/kyungmin/BrankTalk/build
-"branchtalk_client.smoke" start time: Aug 09 17:44 KST
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_client"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_client.smoke" start time: Aug 11 10:31 KST
 Output:
 ----------------------------------------------------------
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"branchtalk_client.smoke" end time: Aug 09 17:44 KST
+"branchtalk_client.smoke" end time: Aug 11 10:31 KST
 "branchtalk_client.smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 2/2 Testing: branchtalk_server.smoke
 2/2 Test: branchtalk_server.smoke
-Command: "/Users/kyungmin/BrankTalk/build/branchtalk_server"
-Directory: /Users/kyungmin/BrankTalk/build
-"branchtalk_server.smoke" start time: Aug 09 17:44 KST
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_server"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_server.smoke" start time: Aug 11 10:31 KST
 Output:
 ----------------------------------------------------------
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"branchtalk_server.smoke" end time: Aug 09 17:44 KST
+"branchtalk_server.smoke" end time: Aug 11 10:31 KST
 "branchtalk_server.smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Aug 09 17:44 KST
+End testing: Aug 11 10:31 KST

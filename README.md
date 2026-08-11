@@ -9,6 +9,7 @@ BrachTalk Forge는 Windows와 macOS를 대상으로 하는 C++20 협업 프로�
 ```text
 project/
 ├─ CMakeLists.txt
+├─ CMakePresets.json
 ├─ app/
 │  ├─ client/
 │  │  └─ main.cpp
@@ -55,13 +56,34 @@ apps/server ─┘
 
 `BranchTalk::core`는 `branchtalk_core`의 별칭이다. 클라이언트와 서버는 공개 include 경로와 C++20 사용 요구사항을 이 target을 통해 전달받는다.
 
-## 로컬 빌드와 테스트
+## CMake Preset
+
+Windows와 macOS에서 같은 preset 이름과 명령 흐름을 사용한다. CMake가 각 운영체제의 기본 
+생성기를 선택하며, configure 결과는 구성별 디렉터리에 분리된다.
+
+| preset | 구성 | 빌드 출력 폴더 |
+|---|---|---|
+| `debug` | Debug | `build/debug` |
+| `release` | Release | `build/release` |
+
+사용 가능한 configure preset은 다음 명령으로 확인한다.
 
 ```sh
-cmake -S . -B build
-cmake --build build --config Debug --target branchtalk_client branchtalk_server
-ctest --test-dir build -C Debug --output-on-failure
+cmake --list-presets
 ```
- 
--최상위 CMake 프로젝트와 실제 target 구성은 다음 개발 단계에서 추가한다.
-테스트는 두 실행 파일을 각각 실행해 `core`의 버전 계약에 접근하고 정상 종료하는지 확인한다.
+
+debug 구성의 공통 configure·build·test 흐름은 다음과 같다.
+
+```sh
+cmake --preset debug
+cmake --build --preset debug
+ctest --preset debug
+```
+
+release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한다.
+
+## 컴파일러 경고
+
+경고 옵션은 `CMAKE_CXX_FLAGS` 같은 전역 변수에 추가하지 않고 각 target에만 적용한다. preset 
+계약 테스트는 debug·release configure preset이 노출되는지와 경고 설정이 target 범위에 
+머무르는지를 확인한다.
