@@ -11,4 +11,3 @@ namespace branchtalk::client
 int main(){
     return branchtalk::client::run();
 }
-

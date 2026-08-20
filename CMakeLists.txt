@@ -15,6 +15,7 @@ endfunction()
 
 add_library(branchtalk_core STATIC
     libs/core/src/dependency_versions.cpp
+    libs/core/src/logging.cpp
     libs/core/src/version.cpp
 )
 
@@ -76,12 +77,39 @@ if(BUILD_TESTING)
     add_test(NAME branchtalk_client.smoke COMMAND branchtalk_client)
     add_test(NAME branchtalk_server.smoke COMMAND branchtalk_server)
 
+    set_tests_properties(branchtalk_client.smoke PROPERITES
+        PASS_REGULAR_EXPRESSION "\\[client\\] application started"
+    )
+
+    set_tests_properties(branchtalk_server.smoke PROPERITES
+        PASS_REGULAR_EXPRESSION "\\[server\\] application started"
+    )
+
     add_test(
         NAME branchtalk_cmake_presets.contract
         CMAKE_COMMAND 
             "${CMAKE_COMMAND}"
             "-DBRANCHTALK_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
             -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_presets.cmake"
+    )
+
+    add_executable(branchtalk_core_logging_smoke
+        tests/core/logging_smoke.cpp
+    )
+
+    target_link_libraries(branchtalk_core_logging_smoke
+        PRIVATE
+            BranchTalk::core
+    )
+
+    set_target_properties(branchtalk_core_logging_smoke)
+
+    add_test(
+        NAME branchtalk_core.logging
+        CMAKE_COMMAND
+            "${CMAKE_COMMAND}"
+            "-DBRANCHTALK_LOGGING_SMOKE=$<TARGET_FILE:branchtalk_core_logging_smoke>"
+            -P"${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_logging.cmake"
     )
 
     add executable(branchtalk_core_dependencies_smoke
@@ -102,5 +130,40 @@ if(BUILD_TESTING)
     add_test(
         NAME branchtalk_core.dependencies
         COMMAND branchtalk_core_dependencies_smoke
+    )
+
+    add_executable(branchtalk_core_result_smoke
+        tests/core/result_smoke.cpp
+    )
+
+    target_link_libraries(branchtalk_core_result_smoke
+        PRIVATE 
+            Branchtalk::core
+    )
+
+    set_target_properties(branchtalk_core_result_smoke PROPERTIES
+        CXX_EXTENSIONS
+    )
+    add_test(
+        NAME branchtalk.core.result
+        COMMAND branchtalk_core_result_smoke
+    )
+    add_executable(branchtalk_core_logging_smoke
+        tests/core/logging_smoke.cpp
+    )
+
+    target_link_libraries(branchtalk_core_logging_smoke
+        PRIVATE
+            BranchTalk::core
+    )
+
+    set_target_properties(branchtalk_core_logging_smoke)
+
+    add_test(
+        NAME branchtalk_core.logging
+        CMAKE_COMMAND
+            "${CMAKE_COMMAND}"
+            "-DBRANCHTALK_LOGGING_SMOKE=$<TARGET_FILE:branchtalk_core_logging_smoke>"
+            -P"${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_logging.cmake"
     )
 endif()

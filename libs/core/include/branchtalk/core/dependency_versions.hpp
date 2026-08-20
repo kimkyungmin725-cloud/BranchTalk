@@ -2,6 +2,6 @@
 
 #include <string>
 
-namesapce branchtalk::core{
+namespace branchtalk::core{
 [[nodiscard]] std::string dependency_versions_json();
 } //namespace branchtalk::core
