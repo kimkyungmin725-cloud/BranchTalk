@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/kyungmin/BrankTalk/libs/core/src/dependency_versions.cpp" "CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o" "gcc" "CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o.d"
+  "/Users/kyungmin/BrankTalk/libs/core/src/logging.cpp" "CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o" "gcc" "CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o.d"
   "/Users/kyungmin/BrankTalk/libs/core/src/version.cpp" "CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o" "gcc" "CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o.d"
   )
 

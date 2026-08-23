@@ -96,6 +96,8 @@ branchtalk_server_EXTERNAL_OBJECTS =
 branchtalk_server: CMakeFiles/branchtalk_server.dir/apps/server/main.cpp.o
 branchtalk_server: CMakeFiles/branchtalk_server.dir/build.make
 branchtalk_server: libbranchtalk_core.a
+branchtalk_server: vcpkg_installed/arm64-osx/debug/lib/libspdlogd.a
+branchtalk_server: vcpkg_installed/arm64-osx/debug/lib/libfmtd.a
 branchtalk_server: CMakeFiles/branchtalk_server.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable branchtalk_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/branchtalk_server.dir/link.txt --verbose=$(VERBOSE)

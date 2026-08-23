@@ -1,33 +1,97 @@
-Start testing: Aug 15 09:12 KST
+Start testing: Aug 23 18:38 KST
 ----------------------------------------------------------
-1/2 Testing: branchtalk_client.smoke
-1/2 Test: branchtalk_client.smoke
+1/6 Testing: branchtalk_client.smoke
+1/6 Test: branchtalk_client.smoke
 Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_client"
 Directory: /Users/kyungmin/BrankTalk/build/debug
-"branchtalk_client.smoke" start time: Aug 15 09:12 KST
+"branchtalk_client.smoke" start time: Aug 23 18:38 KST
 Output:
 ----------------------------------------------------------
+[info] [client] application started
 <end of output>
-Test time =   0.34 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
-Test Passed.
-"branchtalk_client.smoke" end time: Aug 15 09:12 KST
+Test Pass Reason:
+Required regular expression found. Regex=[\[client\] application started]
+"branchtalk_client.smoke" end time: Aug 23 18:38 KST
 "branchtalk_client.smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/2 Testing: branchtalk_server.smoke
-2/2 Test: branchtalk_server.smoke
+2/6 Testing: branchtalk_server.smoke
+2/6 Test: branchtalk_server.smoke
 Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_server"
 Directory: /Users/kyungmin/BrankTalk/build/debug
-"branchtalk_server.smoke" start time: Aug 15 09:12 KST
+"branchtalk_server.smoke" start time: Aug 23 18:38 KST
 Output:
 ----------------------------------------------------------
+[info] [server] application started
 <end of output>
-Test time =   0.23 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
-Test Passed.
-"branchtalk_server.smoke" end time: Aug 15 09:12 KST
+Test Pass Reason:
+Required regular expression found. Regex=[\[server\] application started]
+"branchtalk_server.smoke" end time: Aug 23 18:38 KST
 "branchtalk_server.smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Aug 15 09:12 KST
+3/6 Testing: branchtalk_cmake_presets.contract
+3/6 Test: branchtalk_cmake_presets.contract
+Command: "/opt/homebrew/bin/cmake" "-DBRANCHTALK_SOURCE_DIR=/Users/kyungmin/BrankTalk" "-P" "/Users/kyungmin/BrankTalk/tests/cmake/verify_presets.cmake"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_cmake_presets.contract" start time: Aug 23 18:38 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_cmake_presets.contract" end time: Aug 23 18:38 KST
+"branchtalk_cmake_presets.contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/6 Testing: branchtalk_core.dependencies
+4/6 Test: branchtalk_core.dependencies
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_dependencies_smoke"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_core.dependencies" start time: Aug 23 18:38 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_core.dependencies" end time: Aug 23 18:38 KST
+"branchtalk_core.dependencies" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/6 Testing: branchtalk_core.result
+5/6 Test: branchtalk_core.result
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_result_smoke"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_core.result" start time: Aug 23 18:38 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_core.result" end time: Aug 23 18:38 KST
+"branchtalk_core.result" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/6 Testing: branchtalk_core.logging
+6/6 Test: branchtalk_core.logging
+Command: "/opt/homebrew/bin/cmake" "-DBRANCHTALK_LOGGING_SMOKE=/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_logging_smoke" "-P" "/Users/kyungmin/BrankTalk/tests/cmake/verify_logging.cmake"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_core.logging" start time: Aug 23 18:38 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_core.logging" end time: Aug 23 18:38 KST
+"branchtalk_core.logging" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 23 18:38 KST

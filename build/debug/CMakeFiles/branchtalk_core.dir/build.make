@@ -72,10 +72,38 @@ include CMakeFiles/branchtalk_core.dir/flags.make
 CMakeFiles/branchtalk_core.dir/codegen:
 .PHONY : CMakeFiles/branchtalk_core.dir/codegen
 
+CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o: CMakeFiles/branchtalk_core.dir/flags.make
+CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o: /Users/kyungmin/BrankTalk/libs/core/src/dependency_versions.cpp
+CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o: CMakeFiles/branchtalk_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o -MF CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o.d -o CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o -c /Users/kyungmin/BrankTalk/libs/core/src/dependency_versions.cpp
+
+CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kyungmin/BrankTalk/libs/core/src/dependency_versions.cpp > CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.i
+
+CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kyungmin/BrankTalk/libs/core/src/dependency_versions.cpp -o CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.s
+
+CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o: CMakeFiles/branchtalk_core.dir/flags.make
+CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o: /Users/kyungmin/BrankTalk/libs/core/src/logging.cpp
+CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o: CMakeFiles/branchtalk_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o -MF CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o.d -o CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o -c /Users/kyungmin/BrankTalk/libs/core/src/logging.cpp
+
+CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kyungmin/BrankTalk/libs/core/src/logging.cpp > CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.i
+
+CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kyungmin/BrankTalk/libs/core/src/logging.cpp -o CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.s
+
 CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o: CMakeFiles/branchtalk_core.dir/flags.make
 CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o: /Users/kyungmin/BrankTalk/libs/core/src/version.cpp
 CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o: CMakeFiles/branchtalk_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o -MF CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o.d -o CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o -c /Users/kyungmin/BrankTalk/libs/core/src/version.cpp
 
 CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.i: cmake_force
@@ -88,15 +116,19 @@ CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.s: cmake_force
 
 # Object files for target branchtalk_core
 branchtalk_core_OBJECTS = \
+"CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o" \
+"CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o" \
 "CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o"
 
 # External object files for target branchtalk_core
 branchtalk_core_EXTERNAL_OBJECTS =
 
+libbranchtalk_core.a: CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o
+libbranchtalk_core.a: CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o
 libbranchtalk_core.a: CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o
 libbranchtalk_core.a: CMakeFiles/branchtalk_core.dir/build.make
 libbranchtalk_core.a: CMakeFiles/branchtalk_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libbranchtalk_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libbranchtalk_core.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/branchtalk_core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/branchtalk_core.dir/link.txt --verbose=$(VERBOSE)
 

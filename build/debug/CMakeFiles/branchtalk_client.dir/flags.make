@@ -6,7 +6,7 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/Users/kyungmin/BrankTalk/libs/core/include
 
-CXX_FLAGSarm64 = -g -std=c++20 -arch arm64
+CXX_FLAGSarm64 = -g -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic
 
-CXX_FLAGS = -g -std=c++20 -arch arm64
+CXX_FLAGS = -g -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic
 

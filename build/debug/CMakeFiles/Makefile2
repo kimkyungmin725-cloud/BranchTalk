@@ -66,12 +66,18 @@ CMAKE_BINARY_DIR = /Users/kyungmin/BrankTalk/build/debug
 all: CMakeFiles/branchtalk_core.dir/all
 all: CMakeFiles/branchtalk_client.dir/all
 all: CMakeFiles/branchtalk_server.dir/all
+all: CMakeFiles/branchtalk_core_dependencies_smoke.dir/all
+all: CMakeFiles/branchtalk_core_result_smoke.dir/all
+all: CMakeFiles/branchtalk_core_logging_smoke.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/branchtalk_core.dir/codegen
 codegen: CMakeFiles/branchtalk_client.dir/codegen
 codegen: CMakeFiles/branchtalk_server.dir/codegen
+codegen: CMakeFiles/branchtalk_core_dependencies_smoke.dir/codegen
+codegen: CMakeFiles/branchtalk_core_result_smoke.dir/codegen
+codegen: CMakeFiles/branchtalk_core_logging_smoke.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -110,6 +116,9 @@ clean: CMakeFiles/ContinuousTest.dir/clean
 clean: CMakeFiles/ContinuousCoverage.dir/clean
 clean: CMakeFiles/ContinuousMemCheck.dir/clean
 clean: CMakeFiles/ContinuousSubmit.dir/clean
+clean: CMakeFiles/branchtalk_core_dependencies_smoke.dir/clean
+clean: CMakeFiles/branchtalk_core_result_smoke.dir/clean
+clean: CMakeFiles/branchtalk_core_logging_smoke.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -119,12 +128,12 @@ clean: CMakeFiles/ContinuousSubmit.dir/clean
 CMakeFiles/branchtalk_core.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=3,4 "Built target branchtalk_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=3,4,5,6 "Built target branchtalk_core"
 .PHONY : CMakeFiles/branchtalk_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/branchtalk_core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/branchtalk_core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 0
 .PHONY : CMakeFiles/branchtalk_core.dir/rule
@@ -136,7 +145,7 @@ branchtalk_core: CMakeFiles/branchtalk_core.dir/rule
 # codegen rule for target.
 CMakeFiles/branchtalk_core.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=3,4 "Finished codegen for target branchtalk_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=3,4,5,6 "Finished codegen for target branchtalk_core"
 .PHONY : CMakeFiles/branchtalk_core.dir/codegen
 
 # clean rule for target.
@@ -156,7 +165,7 @@ CMakeFiles/branchtalk_client.dir/all: CMakeFiles/branchtalk_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/branchtalk_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/branchtalk_client.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 0
 .PHONY : CMakeFiles/branchtalk_client.dir/rule
@@ -183,12 +192,12 @@ CMakeFiles/branchtalk_client.dir/clean:
 CMakeFiles/branchtalk_server.dir/all: CMakeFiles/branchtalk_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server.dir/build.make CMakeFiles/branchtalk_server.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server.dir/build.make CMakeFiles/branchtalk_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=5,6 "Built target branchtalk_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=13,14 "Built target branchtalk_server"
 .PHONY : CMakeFiles/branchtalk_server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/branchtalk_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/branchtalk_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 0
 .PHONY : CMakeFiles/branchtalk_server.dir/rule
@@ -200,7 +209,7 @@ branchtalk_server: CMakeFiles/branchtalk_server.dir/rule
 # codegen rule for target.
 CMakeFiles/branchtalk_server.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server.dir/build.make CMakeFiles/branchtalk_server.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=5,6 "Finished codegen for target branchtalk_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=13,14 "Finished codegen for target branchtalk_server"
 .PHONY : CMakeFiles/branchtalk_server.dir/codegen
 
 # clean rule for target.
@@ -1103,6 +1112,102 @@ CMakeFiles/ContinuousSubmit.dir/codegen:
 CMakeFiles/ContinuousSubmit.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/clean
 .PHONY : CMakeFiles/ContinuousSubmit.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/branchtalk_core_dependencies_smoke.dir
+
+# All Build rule for target.
+CMakeFiles/branchtalk_core_dependencies_smoke.dir/all: CMakeFiles/branchtalk_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=7,8 "Built target branchtalk_core_dependencies_smoke"
+.PHONY : CMakeFiles/branchtalk_core_dependencies_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/branchtalk_core_dependencies_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/branchtalk_core_dependencies_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 0
+.PHONY : CMakeFiles/branchtalk_core_dependencies_smoke.dir/rule
+
+# Convenience name for target.
+branchtalk_core_dependencies_smoke: CMakeFiles/branchtalk_core_dependencies_smoke.dir/rule
+.PHONY : branchtalk_core_dependencies_smoke
+
+# codegen rule for target.
+CMakeFiles/branchtalk_core_dependencies_smoke.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=7,8 "Finished codegen for target branchtalk_core_dependencies_smoke"
+.PHONY : CMakeFiles/branchtalk_core_dependencies_smoke.dir/codegen
+
+# clean rule for target.
+CMakeFiles/branchtalk_core_dependencies_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/clean
+.PHONY : CMakeFiles/branchtalk_core_dependencies_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/branchtalk_core_result_smoke.dir
+
+# All Build rule for target.
+CMakeFiles/branchtalk_core_result_smoke.dir/all: CMakeFiles/branchtalk_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=11,12 "Built target branchtalk_core_result_smoke"
+.PHONY : CMakeFiles/branchtalk_core_result_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/branchtalk_core_result_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/branchtalk_core_result_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 0
+.PHONY : CMakeFiles/branchtalk_core_result_smoke.dir/rule
+
+# Convenience name for target.
+branchtalk_core_result_smoke: CMakeFiles/branchtalk_core_result_smoke.dir/rule
+.PHONY : branchtalk_core_result_smoke
+
+# codegen rule for target.
+CMakeFiles/branchtalk_core_result_smoke.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=11,12 "Finished codegen for target branchtalk_core_result_smoke"
+.PHONY : CMakeFiles/branchtalk_core_result_smoke.dir/codegen
+
+# clean rule for target.
+CMakeFiles/branchtalk_core_result_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/clean
+.PHONY : CMakeFiles/branchtalk_core_result_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/branchtalk_core_logging_smoke.dir
+
+# All Build rule for target.
+CMakeFiles/branchtalk_core_logging_smoke.dir/all: CMakeFiles/branchtalk_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=9,10 "Built target branchtalk_core_logging_smoke"
+.PHONY : CMakeFiles/branchtalk_core_logging_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/branchtalk_core_logging_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/branchtalk_core_logging_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kyungmin/BrankTalk/build/debug/CMakeFiles 0
+.PHONY : CMakeFiles/branchtalk_core_logging_smoke.dir/rule
+
+# Convenience name for target.
+branchtalk_core_logging_smoke: CMakeFiles/branchtalk_core_logging_smoke.dir/rule
+.PHONY : branchtalk_core_logging_smoke
+
+# codegen rule for target.
+CMakeFiles/branchtalk_core_logging_smoke.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles --progress-num=9,10 "Finished codegen for target branchtalk_core_logging_smoke"
+.PHONY : CMakeFiles/branchtalk_core_logging_smoke.dir/codegen
+
+# clean rule for target.
+CMakeFiles/branchtalk_core_logging_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/clean
+.PHONY : CMakeFiles/branchtalk_core_logging_smoke.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -1,31 +1,35 @@
-#include <branchtalk/core/dependency_versions.hpp>>
+#include <branchtalk/core/dependency_versions.hpp>
 
 #include <nlohmann/json.hpp>
-#include <spdlog/spdlog.h>
+#include <spdlog/version.h>
 
-namespace branchtalk::core {
-    namespace {
-        
-        nlohmann::json semantic_versoin(int major, int minor, int patch) {
+namespace branchtalk::core
+{
+    namespace
+    {
+
+        nlohmann::json semantic_version(int major, int minor, int patch)
+        {
             return {
                 {"major", major},
                 {"minor", minor},
                 {"patch", patch},
             };
         }
+
     } // namespace
 
-    std::string dependency_versions_json() {
-        const nlohmann::json verions{
+    std::string dependency_versions_json()
+    {
+        const nlohmann::json versions{
             {"nlohmann-json",
-             semantic_version(NLHOMANN_JSON_VERSION_MAJOR, 
-                              NLHOMANN_JSON_VERSION_MINOR,
-                              NLHOMANN_JSON_VERSION_PATCH)},
+             semantic_version(NLOHMANN_JSON_VERSION_MAJOR,
+                              NLOHMANN_JSON_VERSION_MINOR,
+                              NLOHMANN_JSON_VERSION_PATCH)},
             {"spdlog", semantic_version(SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH)},
         };
 
-        auto result = versions.dump();
-        spdlog::debug("Branchtalk core dependenct versions: {}", result);
-        return result;
+        return versions.dump();
     }
-} //namespace branchtalk::core
+
+} // namespace branchtalk::core

@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o"
+  "CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o.d"
+  "CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o"
+  "CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o.d"
   "CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o"
   "CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o.d"
   "libbranchtalk_core.a"

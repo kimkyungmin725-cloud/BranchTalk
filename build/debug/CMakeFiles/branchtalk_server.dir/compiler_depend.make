@@ -785,8 +785,11 @@ CMakeFiles/branchtalk_server.dir/apps/server/main.cpp.o: /Users/kyungmin/BrankTa
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/stdarg.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/stdint.h \
+  /Users/kyungmin/BrankTalk/libs/core/include/branchtalk/core/logging.hpp \
   /Users/kyungmin/BrankTalk/libs/core/include/branchtalk/core/version.hpp
 
+
+/Users/kyungmin/BrankTalk/libs/core/include/branchtalk/core/logging.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/stdarg.h:
 

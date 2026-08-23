@@ -529,6 +529,45 @@ ContinuousSubmit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/build
 .PHONY : ContinuousSubmit/fast
 
+#=============================================================================
+# Target rules for targets named branchtalk_core_dependencies_smoke
+
+# Build rule for target.
+branchtalk_core_dependencies_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 branchtalk_core_dependencies_smoke
+.PHONY : branchtalk_core_dependencies_smoke
+
+# fast build rule for target.
+branchtalk_core_dependencies_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/build
+.PHONY : branchtalk_core_dependencies_smoke/fast
+
+#=============================================================================
+# Target rules for targets named branchtalk_core_result_smoke
+
+# Build rule for target.
+branchtalk_core_result_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 branchtalk_core_result_smoke
+.PHONY : branchtalk_core_result_smoke
+
+# fast build rule for target.
+branchtalk_core_result_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/build
+.PHONY : branchtalk_core_result_smoke/fast
+
+#=============================================================================
+# Target rules for targets named branchtalk_core_logging_smoke
+
+# Build rule for target.
+branchtalk_core_logging_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 branchtalk_core_logging_smoke
+.PHONY : branchtalk_core_logging_smoke
+
+# fast build rule for target.
+branchtalk_core_logging_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/build
+.PHONY : branchtalk_core_logging_smoke/fast
+
 apps/client/main.o: apps/client/main.cpp.o
 .PHONY : apps/client/main.o
 
@@ -577,6 +616,54 @@ apps/server/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server.dir/build.make CMakeFiles/branchtalk_server.dir/apps/server/main.cpp.s
 .PHONY : apps/server/main.cpp.s
 
+libs/core/src/dependency_versions.o: libs/core/src/dependency_versions.cpp.o
+.PHONY : libs/core/src/dependency_versions.o
+
+# target to build an object file
+libs/core/src/dependency_versions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o
+.PHONY : libs/core/src/dependency_versions.cpp.o
+
+libs/core/src/dependency_versions.i: libs/core/src/dependency_versions.cpp.i
+.PHONY : libs/core/src/dependency_versions.i
+
+# target to preprocess a source file
+libs/core/src/dependency_versions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.i
+.PHONY : libs/core/src/dependency_versions.cpp.i
+
+libs/core/src/dependency_versions.s: libs/core/src/dependency_versions.cpp.s
+.PHONY : libs/core/src/dependency_versions.s
+
+# target to generate assembly for a file
+libs/core/src/dependency_versions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.s
+.PHONY : libs/core/src/dependency_versions.cpp.s
+
+libs/core/src/logging.o: libs/core/src/logging.cpp.o
+.PHONY : libs/core/src/logging.o
+
+# target to build an object file
+libs/core/src/logging.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o
+.PHONY : libs/core/src/logging.cpp.o
+
+libs/core/src/logging.i: libs/core/src/logging.cpp.i
+.PHONY : libs/core/src/logging.i
+
+# target to preprocess a source file
+libs/core/src/logging.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.i
+.PHONY : libs/core/src/logging.cpp.i
+
+libs/core/src/logging.s: libs/core/src/logging.cpp.s
+.PHONY : libs/core/src/logging.s
+
+# target to generate assembly for a file
+libs/core/src/logging.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.s
+.PHONY : libs/core/src/logging.cpp.s
+
 libs/core/src/version.o: libs/core/src/version.cpp.o
 .PHONY : libs/core/src/version.o
 
@@ -600,6 +687,78 @@ libs/core/src/version.s: libs/core/src/version.cpp.s
 libs/core/src/version.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.s
 .PHONY : libs/core/src/version.cpp.s
+
+tests/core/dependency_versions_smoke.o: tests/core/dependency_versions_smoke.cpp.o
+.PHONY : tests/core/dependency_versions_smoke.o
+
+# target to build an object file
+tests/core/dependency_versions_smoke.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/tests/core/dependency_versions_smoke.cpp.o
+.PHONY : tests/core/dependency_versions_smoke.cpp.o
+
+tests/core/dependency_versions_smoke.i: tests/core/dependency_versions_smoke.cpp.i
+.PHONY : tests/core/dependency_versions_smoke.i
+
+# target to preprocess a source file
+tests/core/dependency_versions_smoke.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/tests/core/dependency_versions_smoke.cpp.i
+.PHONY : tests/core/dependency_versions_smoke.cpp.i
+
+tests/core/dependency_versions_smoke.s: tests/core/dependency_versions_smoke.cpp.s
+.PHONY : tests/core/dependency_versions_smoke.s
+
+# target to generate assembly for a file
+tests/core/dependency_versions_smoke.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/tests/core/dependency_versions_smoke.cpp.s
+.PHONY : tests/core/dependency_versions_smoke.cpp.s
+
+tests/core/logging_smoke.o: tests/core/logging_smoke.cpp.o
+.PHONY : tests/core/logging_smoke.o
+
+# target to build an object file
+tests/core/logging_smoke.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/tests/core/logging_smoke.cpp.o
+.PHONY : tests/core/logging_smoke.cpp.o
+
+tests/core/logging_smoke.i: tests/core/logging_smoke.cpp.i
+.PHONY : tests/core/logging_smoke.i
+
+# target to preprocess a source file
+tests/core/logging_smoke.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/tests/core/logging_smoke.cpp.i
+.PHONY : tests/core/logging_smoke.cpp.i
+
+tests/core/logging_smoke.s: tests/core/logging_smoke.cpp.s
+.PHONY : tests/core/logging_smoke.s
+
+# target to generate assembly for a file
+tests/core/logging_smoke.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/tests/core/logging_smoke.cpp.s
+.PHONY : tests/core/logging_smoke.cpp.s
+
+tests/core/result_smoke.o: tests/core/result_smoke.cpp.o
+.PHONY : tests/core/result_smoke.o
+
+# target to build an object file
+tests/core/result_smoke.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/tests/core/result_smoke.cpp.o
+.PHONY : tests/core/result_smoke.cpp.o
+
+tests/core/result_smoke.i: tests/core/result_smoke.cpp.i
+.PHONY : tests/core/result_smoke.i
+
+# target to preprocess a source file
+tests/core/result_smoke.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/tests/core/result_smoke.cpp.i
+.PHONY : tests/core/result_smoke.cpp.i
+
+tests/core/result_smoke.s: tests/core/result_smoke.cpp.s
+.PHONY : tests/core/result_smoke.s
+
+# target to generate assembly for a file
+tests/core/result_smoke.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/tests/core/result_smoke.cpp.s
+.PHONY : tests/core/result_smoke.cpp.s
 
 # Help Target
 help:
@@ -640,6 +799,9 @@ help:
 	@echo "... NightlyUpdate"
 	@echo "... branchtalk_client"
 	@echo "... branchtalk_core"
+	@echo "... branchtalk_core_dependencies_smoke"
+	@echo "... branchtalk_core_logging_smoke"
+	@echo "... branchtalk_core_result_smoke"
 	@echo "... branchtalk_server"
 	@echo "... apps/client/main.o"
 	@echo "... apps/client/main.i"
@@ -647,9 +809,24 @@ help:
 	@echo "... apps/server/main.o"
 	@echo "... apps/server/main.i"
 	@echo "... apps/server/main.s"
+	@echo "... libs/core/src/dependency_versions.o"
+	@echo "... libs/core/src/dependency_versions.i"
+	@echo "... libs/core/src/dependency_versions.s"
+	@echo "... libs/core/src/logging.o"
+	@echo "... libs/core/src/logging.i"
+	@echo "... libs/core/src/logging.s"
 	@echo "... libs/core/src/version.o"
 	@echo "... libs/core/src/version.i"
 	@echo "... libs/core/src/version.s"
+	@echo "... tests/core/dependency_versions_smoke.o"
+	@echo "... tests/core/dependency_versions_smoke.i"
+	@echo "... tests/core/dependency_versions_smoke.s"
+	@echo "... tests/core/logging_smoke.o"
+	@echo "... tests/core/logging_smoke.i"
+	@echo "... tests/core/logging_smoke.s"
+	@echo "... tests/core/result_smoke.o"
+	@echo "... tests/core/result_smoke.i"
+	@echo "... tests/core/result_smoke.s"
 .PHONY : help
 
 

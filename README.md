@@ -156,4 +156,5 @@ release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한�
 경고 옵션은 `CMAKE_CXX_FLAGS` 같은 전역 변수에 추가하지 않고 각 target에만 적용한다. preset 
 계약 테스트는 debug·release configure preset이 노출되는지와 경고 설정이 target 범위에 
 머무르는지를 확인한다. core 의존성 테스트는 실제 링크된 JSON·로그 라이브러리의 API
-버전이 manifest의 고정값과 일치하는지 확인한다.
+버전이 manifest의 고정값과 일치하는지 확인한다. 로그 테스트는 네 범주의 출력, 설정에 따른
+로그 수준 변경, 민감값 redaction을 확인한다.

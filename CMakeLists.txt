@@ -7,11 +7,11 @@ find_package(spdlog CONFIG REQUIRED)
 
 function(branchtalk_enable_warnings target_name)
     if(MSVC)
-        target_complete_options(${target_name} PRIVATE /W4 /permissive-)
-    elsesif(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
-       target_complile_options(${target_name} PRIVATE -Wall -Wextra -Wpedantic)
+        target_compile_options(${target_name} PRIVATE /W4 /permissive-)
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+        target_compile_options(${target_name} PRIVATE -Wall -Wextra -Wpedantic)
     endif()
-endfunction() 
+endfunction()
 
 add_library(branchtalk_core STATIC
     libs/core/src/dependency_versions.cpp
@@ -28,11 +28,10 @@ target_include_directories(branchtalk_core
         "${CMAKE_CURRENT_SOURCE_DIR}/libs/core/include"
 )
 
-target_link_libraried(branchtalk_core
-    PRIVATE 
-        nlohmann_json::nlohamnn_json
+target_link_libraries(branchtalk_core
+    PRIVATE
+        nlohmann_json::nlohmann_json
         spdlog::spdlog
-
 )
 
 set_target_properties(branchtalk_core PROPERTIES
@@ -77,47 +76,28 @@ if(BUILD_TESTING)
     add_test(NAME branchtalk_client.smoke COMMAND branchtalk_client)
     add_test(NAME branchtalk_server.smoke COMMAND branchtalk_server)
 
-    set_tests_properties(branchtalk_client.smoke PROPERITES
+    set_tests_properties(branchtalk_client.smoke PROPERTIES
         PASS_REGULAR_EXPRESSION "\\[client\\] application started"
     )
 
-    set_tests_properties(branchtalk_server.smoke PROPERITES
+    set_tests_properties(branchtalk_server.smoke PROPERTIES
         PASS_REGULAR_EXPRESSION "\\[server\\] application started"
     )
 
     add_test(
         NAME branchtalk_cmake_presets.contract
-        CMAKE_COMMAND 
+        COMMAND
             "${CMAKE_COMMAND}"
             "-DBRANCHTALK_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
             -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_presets.cmake"
     )
 
-    add_executable(branchtalk_core_logging_smoke
-        tests/core/logging_smoke.cpp
-    )
-
-    target_link_libraries(branchtalk_core_logging_smoke
-        PRIVATE
-            BranchTalk::core
-    )
-
-    set_target_properties(branchtalk_core_logging_smoke)
-
-    add_test(
-        NAME branchtalk_core.logging
-        CMAKE_COMMAND
-            "${CMAKE_COMMAND}"
-            "-DBRANCHTALK_LOGGING_SMOKE=$<TARGET_FILE:branchtalk_core_logging_smoke>"
-            -P"${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_logging.cmake"
-    )
-
-    add executable(branchtalk_core_dependencies_smoke
+    add_executable(branchtalk_core_dependencies_smoke
         tests/core/dependency_versions_smoke.cpp
     )
 
-    target_linke_libraries(branchtalk_core_dependencies_smoke
-        PRIVATE 
+    target_link_libraries(branchtalk_core_dependencies_smoke
+        PRIVATE
             BranchTalk::core
     )
 
@@ -125,7 +105,7 @@ if(BUILD_TESTING)
         CXX_EXTENSIONS OFF
     )
 
-    branchtalk_enable_warnings(branchtlak_core_dependencies_smoke)
+    branchtalk_enable_warnings(branchtalk_core_dependencies_smoke)
 
     add_test(
         NAME branchtalk_core.dependencies
@@ -137,17 +117,21 @@ if(BUILD_TESTING)
     )
 
     target_link_libraries(branchtalk_core_result_smoke
-        PRIVATE 
-            Branchtalk::core
+        PRIVATE
+            BranchTalk::core
     )
 
     set_target_properties(branchtalk_core_result_smoke PROPERTIES
-        CXX_EXTENSIONS
+        CXX_EXTENSIONS OFF
     )
+
+    branchtalk_enable_warnings(branchtalk_core_result_smoke)
+
     add_test(
-        NAME branchtalk.core.result
+        NAME branchtalk_core.result
         COMMAND branchtalk_core_result_smoke
     )
+
     add_executable(branchtalk_core_logging_smoke
         tests/core/logging_smoke.cpp
     )
@@ -157,13 +141,17 @@ if(BUILD_TESTING)
             BranchTalk::core
     )
 
-    set_target_properties(branchtalk_core_logging_smoke)
+    set_target_properties(branchtalk_core_logging_smoke PROPERTIES
+        CXX_EXTENSIONS OFF
+    )
+
+    branchtalk_enable_warnings(branchtalk_core_logging_smoke)
 
     add_test(
         NAME branchtalk_core.logging
-        CMAKE_COMMAND
+        COMMAND
             "${CMAKE_COMMAND}"
             "-DBRANCHTALK_LOGGING_SMOKE=$<TARGET_FILE:branchtalk_core_logging_smoke>"
-            -P"${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_logging.cmake"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_logging.cmake"
     )
 endif()
