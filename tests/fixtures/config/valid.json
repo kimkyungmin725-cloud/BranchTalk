@@ -1,0 +1,5 @@
+{
+    "server_address": "chat.example.test:4242",
+    "log_level": "debug",
+    "data_path": "var/branchtalk"
+}

@@ -31,6 +31,7 @@
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/ContinuousSubmit.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_dependencies_smoke.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_result_smoke.dir
+/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_application_config_smoke.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_logging_smoke.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/test.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/edit_cache.dir

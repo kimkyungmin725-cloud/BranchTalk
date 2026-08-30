@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
 
-CXX_INCLUDES = -I/Users/kyungmin/BrankTalk/libs/core/include -isystem /Users/kyungmin/BrankTalk/build/debug/vcpkg_installed/arm64-osx/include
+CXX_INCLUDES = -I/Users/kyungmin/BrankTalk/libs/core/include -isystem /Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/include
 
 CXX_FLAGSarm64 = -g -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic
 

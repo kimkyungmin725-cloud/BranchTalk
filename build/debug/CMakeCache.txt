@@ -222,10 +222,8 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 //Path to a program.
 CMAKE_TAPI:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/tapi
 
-//Path to a CMake toolchain file, read early in the CMake run,
-// that specifies the compilers, toolchain utilities, and target-platform
-// information used when cross-compiling.
-CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=/Users/kyungmin/vcpkg/scripts/buildsystems/vcpkg.cmake
+//The CMake toolchain file
+CMAKE_TOOLCHAIN_FILE:FILEPATH=/Users/kyungmin/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -333,13 +331,13 @@ Z_VCPKG_CL:FILEPATH=Z_VCPKG_CL-NOTFOUND
 _VCPKG_INSTALLED_DIR:PATH=/Users/kyungmin/BrankTalk/build/vcpkg_installed
 
 //The directory containing a CMake configuration file for fmt.
-fmt_DIR:PATH=/Users/kyungmin/BrankTalk/build/debug/vcpkg_installed/arm64-osx/share/fmt
+fmt_DIR:PATH=/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/share/fmt
 
 //The directory containing a CMake configuration file for nlohmann_json.
-nlohmann_json_DIR:PATH=/Users/kyungmin/BrankTalk/build/debug/vcpkg_installed/arm64-osx/share/nlohmann_json
+nlohmann_json_DIR:PATH=/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/share/nlohmann_json
 
 //The directory containing a CMake configuration file for spdlog.
-spdlog_DIR:PATH=/Users/kyungmin/BrankTalk/build/debug/vcpkg_installed/arm64-osx/share/spdlog
+spdlog_DIR:PATH=/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/share/spdlog
 
 
 ########################
@@ -501,7 +499,7 @@ DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding nlohmann_json
-FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/Users/kyungmin/BrankTalk/build/debug/vcpkg_installed/arm64-osx/share/nlohmann_json/nlohmann_jsonConfig.cmake][v3.12.0()]
+FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/share/nlohmann_json/nlohmann_jsonConfig.cmake][v3.12.0()]
 //ADVANCED property for variable: GITCOMMAND
 GITCOMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MAKECOMMAND

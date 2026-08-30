@@ -14,6 +14,7 @@ function(branchtalk_enable_warnings target_name)
 endfunction()
 
 add_library(branchtalk_core STATIC
+    libs/core/src/application_config.cpp
     libs/core/src/dependency_versions.cpp
     libs/core/src/logging.cpp
     libs/core/src/version.cpp
@@ -130,6 +131,28 @@ if(BUILD_TESTING)
     add_test(
         NAME branchtalk_core.result
         COMMAND branchtalk_core_result_smoke
+    )
+
+    add_executable(branchtalk_core_application_config_smoke
+        tests/core/application_config_smoke.cpp
+    )
+
+    target_link_libraries(branchtalk_core_application_config_smoke
+        PRIVATE
+            BranchTalk::core
+    )
+
+    set_target_properties(branchtalk_core_application_config_smoke PROPERTIES
+        CXX_EXTENSIONS OFF
+    )
+
+    branchtalk_enable_warnings(branchtalk_core_application_config_smoke)
+
+    add_test(
+        NAME branchtalk_core.application_config
+        COMMAND
+            branchtalk_core_application_config_smoke
+            "${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures/config"
     )
 
     add_executable(branchtalk_core_logging_smoke

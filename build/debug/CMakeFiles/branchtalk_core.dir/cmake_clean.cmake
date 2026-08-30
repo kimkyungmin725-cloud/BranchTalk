@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/branchtalk_core.dir/libs/core/src/application_config.cpp.o"
+  "CMakeFiles/branchtalk_core.dir/libs/core/src/application_config.cpp.o.d"
   "CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o"
   "CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o.d"
   "CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o"

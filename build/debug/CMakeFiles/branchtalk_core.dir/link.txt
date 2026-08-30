@@ -1,2 +1,2 @@
-/usr/bin/ar qc libbranchtalk_core.a CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o
+/usr/bin/ar qc libbranchtalk_core.a CMakeFiles/branchtalk_core.dir/libs/core/src/application_config.cpp.o CMakeFiles/branchtalk_core.dir/libs/core/src/dependency_versions.cpp.o CMakeFiles/branchtalk_core.dir/libs/core/src/logging.cpp.o CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.o
 /usr/bin/ranlib libbranchtalk_core.a
