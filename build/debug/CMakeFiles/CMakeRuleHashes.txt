@@ -1,4 +1,5 @@
 # Hashes of file build rules.
+983770229f3024c376414a213b89fbe5 .qt/.qmlls.build.ini
 ecd01c233f4cf669f9e98a4e0f9f5147 CMakeFiles/Continuous
 d4dbd1e7bd5083ea524747ebf58584d5 CMakeFiles/ContinuousBuild
 77be88b97035f0392dc79b7c9b6b4392 CMakeFiles/ContinuousConfigure
@@ -27,3 +28,15 @@ a226d7398e9932b9be03433f1e2e682a CMakeFiles/NightlyConfigure
 77cee98fc1053358bbe17071f49dadab CMakeFiles/NightlySubmit
 54012b1f3617e59ba5bea44c99524f9d CMakeFiles/NightlyTest
 3114fa7d70dbf020f2598aa7f9db91c7 CMakeFiles/NightlyUpdate
+f571c8e1e63cecd8092789683d5deb41 apps/desktop/.qt/branchtalk_desktop_qml.txt
+4cedc73f9389d297eda806e34322c928 apps/desktop/.qt/branchtalk_desktop_res.txt
+240235fc299ee45e36e03ec3872159e7 apps/desktop/.qt/qml_imports/branchtalk_desktop_build.cmake
+b2ae57a179c8702e14791653e167e788 apps/desktop/.qt/rcc/qrc_branchtalk_desktop_raw_qml_0.cpp
+d9ba181897aa35818ba52061bb2ce2c5 apps/desktop/.qt/rcc/qrc_qmake_BranchTalk.cpp
+8dd8901472b7cdb34bf28fa3a2473830 apps/desktop/.rcc/qmlcache/branchtalk_desktop_Main_qml.cpp
+76afb0510a8e87eb1aca460041ff5e7b apps/desktop/.rcc/qmlcache/branchtalk_desktop_qmlcache_loader.cpp
+f8743a5310d63368709adbac3b25f222 apps/desktop/branchtalk_desktop_autogen/timestamp
+d7604901ae9de41c62a4388e6532b98e apps/desktop/branchtalk_desktop_qmltyperegistrations.cpp
+2c85a477c40b572afa7d6e8969e786cc apps/desktop/meta_types/branchtalk_desktop_json_file_list.txt
+9f1c1ebadf2232a4be8ca5e6d2fe584e apps/desktop/meta_types/qt6branchtalk_desktop_metatypes.json
+b7fb63ceac637527c7080aea6c01a255 apps/desktop/meta_types/qt6branchtalk_desktop_metatypes.json.gen

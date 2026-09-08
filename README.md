@@ -11,33 +11,52 @@ project/
 ├─ CMakeLists.txt
 ├─ CMakePresets.json
 ├─ vcpkg.json
-├─ app/
+├─ apps/
 │  ├─ client/
 │  │  └─ main.cpp
+│  ├─ desktop/
+│  │  ├─ CMakeLists.txt
+│  │  ├─ Main.qml
+│  │  └─ main.cpp
 │  └─ server/
+│     ├─ include/
+│     │  └─ branchtalk/server/
+│     │     └─ server_app.hpp
+│     ├─ src/
+│     │  └─ server_app.cpp
 │     └─ main.cpp
 ├─ libs/
 │  └─ core/
 │     ├─ include/
 │     │  └─ branchtalk/
 │     │     └─ core/
+│     │        ├─ application_config.hpp
 │     │        ├─ dependency_versions.hpp
 │     │        ├─ error.hpp
 │     │        ├─ logging.hpp
 │     │        ├─ result.hpp
 │     |        └─ version.hpp
 │     └─ src/
+│        ├─ application_config.cpp
 │        ├─ dependency_versions.cpp
 │        ├─ logging.cpp
 │        └─ version.cpp
 └─ tests/
    ├─ cmake/
+   │  ├─ verify_desktop_disabled.cmake
    │  ├─ verify_logging.cmake
-   │  └─ verify_presets.cmake
-   └─ core/
-      ├─ dependency_versoins_smoke.cpp
-      ├─ logging_smoke.cpp
-      └─ result_smoke.cpp
+   │  ├─ verify_presets.cmake
+   │  └─ verify_server.cmake
+   ├─ core/
+   │  ├─ application_config_smoke.cpp
+   │  ├─ dependency_versions_smoke.cpp
+   │  ├─ logging_smoke.cpp
+   │  └─ result_smoke.cpp
+   ├─ server/
+   │  └─ server_app_smoke.cpp
+   └─ fixtures/
+      └─ config/
+         └─ *.json
 ```
 
 ## 코드 경계
@@ -45,6 +64,7 @@ project/
 | 영역 | 네임스페이스 | 책임 | 허용 의존성 |
 |---|---|---|---|
 | `apps/client` | `branchtalk::client` | 데스크톱 클라이언트 진입점 | C++ 표준 라이브러리, `libs/core` |
+| `apps/desktop` | `branchtalk::desktop` | 선택적 Qt Quick 데스크톱 진입점과 QML 리소스 | `libs/core`, Qt Quick |
 | `apps/server` | `branchtalk::server` | 자체 호스팅 서버 진입점 | C++ 표준 라이브러리, `libs/core` |
 | `libs/core` | `branchtalk::core` | 클라이언트와 서버가 공유하는 제품 기본 계약 | C++ 표준 라이브러리, nlohmann-json, spdlog |
 
@@ -53,8 +73,11 @@ project/
 ```text
 apps/client ─┐
              ├─> libs/core ─┬─> C++ 표준 라이브러리
-apps/server ─┘              ├─> nlohmann-json
+apps/server ─> server_app ──┘
+                            ├─> nlohmann-json
                             └─> spdlog
+apps/desktop ─┬─> libs/core
+              └─> Qt Quick
 ```
 
 - `client`와 `server`는 서로의 헤더나 구현을 참조하지 않는다.
@@ -68,35 +91,79 @@ apps/server ─┘              ├─> nlohmann-json
 |---|---|---|---|
 | `branchtalk_core` | 정적 라이브러리 | `libs/core/src/*.cpp` | C++ 표준 라이브러리, nlohmann-json, spdlog |
 | `branchtalk_client` | 실행 파일 | `apps/client/main.cpp` | `BranchTalk::core` |
-| `branchtalk_server` | 실행 파일 | `apps/server/main.cpp` | `BranchTalk::core` |
+| `branchtalk_desktop` | 선택적 Qt Quick 실행 파일 | `apps/desktop/main.cpp`, `Main.qml` | `BranchTalk::core`, `Qt6::Quick` |
+| `branchtalk_server_app` | 정적 라이브러리 | `apps/server/src/server_app.cpp` | `BranchTalk::core` |
+| `branchtalk_server` | 실행 파일 | `apps/server/main.cpp` | `BranchTalk::server_app` |
 
 `BranchTalk::core`는 `branchtalk_core`의 별칭이다. 클라이언트와 서버는 공개 include 경로와 C++20 사용 요구사항을 이 target을 통해 전달받는다.
 
+`branchtalk_desktop`은 기본 빌드에서 비활성화한다. 이 경로에서는 Qt package를 찾지 않으므로 
+Qt가 설치되지 않은 환경에서도 core, client, server와 관련 테스트를 그대로 빌드할 수 있다.
+
+Qt 6.5 이상의 Quick 개발 패키지가 설치된 환경에서는 configure 때 target을 활성화한다.
+
+```sh
+cmake --preset debug -DBRANCHTALK_BUILD_DESKTOP=ON -DCAMKE_PREFIX_PATH=/path/to/Qt
+cmake --build --preset debug --target branchtalk_desktop
+ctest --preset debug -R branchtalk_desktop.smoke
+```
+
+`qt_add_qml_module()`은 `Main.qml`을 `BranchTalk` QML module의 리소스로 포함한다. 데스크톱 
+실행 파일은 이 module의 `Main` type을 읽어 800x600 크기의 빈 창을 연다. smoke test는 같은 
+리소스를 offscreen platform에서 읽고 root object가 만들어지는지 확인한 뒤 종료한다.
+
 ## 공통 오류 계약
 
-`#Error`는 호출자가 분기할 수 있는 `ErrorCode`와 진당용 `message`를 분리해 보관한다. 
+`#Error`는 호출자가 분기할 수 있는 `ErrorCode`와 진단용 `message`를 분리해 보관한다. 
 메시지는 화면 문구가 아니라 실패 원인을 전달하는 core 정보이며, 표시할 문구로 바꾸는 책임은 
 core 밖에 둔다.
 
-`Result<T>`는 성공값, `T` 또는 `Error` 중 하나만 저장한다. `has_value()`와 명시적 bool
-변환으로 상태를 확인하고, `value_if()`와 `error_if()`로 현재 상태에 맞는 데이터에
+`Result<T>`는 성공값 `T` 또는 `Error` 중 하나만 저장한다. `has_value()`와 명시적 bool 
+변환으로 상태를 확인하고, `value_if()`와 `error_if()`로 현재 상태에 맞는 데이터에 
 접근한다. 두 접근 함수는 반대 상태에서 예외를 던지는 대신 null pointer를 반환한다.
 
 ## 구조화 로그
 
-client와 server는 core의 `initialize_logging()`을 사용해 같은 `[level] [category] message`
-형식으로 stdout에 기록한다. `loggingSettings::level`을 바꾸면 네 범주에 적용되는 최소 로그
- 수준이 함께 변경된다
+client와 server는 core의 `initialize_logging()`을 사용해 같은 `[level] [category] message` 
+형식으로 stdout에 기록한다. `LoggingSettings::level`을 바꾸면 네 범주에 적용되는 최소 로그 
+수준이 함께 변경된다.
 
 | 범주 | 용도 |
 |---|---|
-| `client` | 데스크톱 클라이언트 수명주기와 동작|
+| `client` | 데스크톱 클라이언트 수명주기와 동작 |
 | `server` | 자체 호스팅 서버 수명주기와 동작 |
 | `database` | 데이터 저장소 접근 |
 | `network` | 연결과 데이터 송수신 |
 
-민감한 값은 일반 메시지로 넘기지 않고 `SensitiveValue`로 감싼 뒤 `wirte_sensitive()`에
-전달한다. wrapper는 원문을 보관하거나 formatter에 넘기지 않고 `<reducted>`만 노출한다.
+민감한 값은 일반 메시지로 넘기지 않고 `SensitiveValue`로 감싼 뒤 `write_sensitive()`에 
+전달한다. wrapper는 원문을 보관하거나 formatter에 넘기지 않고 `<redacted>`만 노출한다.
+
+## 애플리케이션 설정
+
+`ApplicationConfig`는 client와 server가 공유하는 서버 주소, 로그 수준, 데이터 경로를 한 
+객체로 묶는다. 기본값은 `127.0.0.1:8080`, `info`, `data`이며 설정 파일 없이 생성해도 바로 
+사용할 수 있다. 두 실행 파일은 이 기본 설정의 로그 수준으로 공통 로깅을 초기화한다.
+
+`load_application_config()`는 JSON 객체의 `server_address`, `log_level`, `data_path`을 
+기본값에 선택적으로 덮어쓴다. 로그 수준은 `trace`, `debug`, `info`, `warning`, `error`,
+`critical`, `off` 중 하나여야 한다. 필드의 형식이나 값이 잘못되거나 지원하지 않는 필드가 
+있으면 예외 대신 실패한 `Result<ApplicationConfig>`에 원인을 담아 반환한다.
+
+## 서버 수명주기
+
+`ServerApp`은 검증이 끝난 `ApplicationConfig`와 종료 여부를 확인하는 함수 pointer를 
+생성자에서 받는다. 설정의 로그 수준으로 공통 logging을 초기화하고 `server started`를 
+기록한 뒤 종료 요청이 들어올 때까지 대기한다. 요청을 확인하면 `server stopped`를 기록하고 
+정상 종료한다.
+
+서버 실행 파일은 설정 경로 하나를 선택적으로 받는다. 경로가 없으면 기본 설정을 주입하고, 
+경로가 있으면 `load_applicaton_config()`의 성공값만 `ServerApp`에 전달한다. 잘못된 설정은 
+`server startup error` 로그와 실패 종료 코드로 반환하며 수명주기를 시작하지 않는다.
+
+`SIGINT`와 `SIGTERM` handler는 logging이나 할당을 수행하지 않고 lock-free 
+`std::atomic_flag`에 종료 요청만 기록한다. `ServerApp`은 주입된 조회 함수로 이 flag를 
+확인하므로 signal 처리와 제품 수명주기 로직이 분리된다. `--smoke-test`는 짧은 대기 뒤 
+process 내부에서 `SIGTERM`을 발생시켜 같은 handler와 정상 종료 경로를 검증한다.
 
 ## vcpkg 의존성
 
@@ -110,7 +177,7 @@ client와 server는 core의 `initialize_logging()`을 사용해 같은 `[level] 
 | `spdlog` | `1.17.0` | 공통 형식과 범주를 가진 구조화 로그를 출력 |
 
 `dependency_versions_json()`은 실제로 연결된 두 라이브러리의 버전 매크로를 읽어 JSON 
-문자열을 만든다. core 의존성 smoke test는 이 문자열이 manifest에 고정한 API 버전과
+문자열을 만든다. core 의존성 smoke test는 이 문자열이 manifest에 고정한 API 버전과 
 일치하는지 확인한다.
 
 ## CMake Preset
@@ -156,5 +223,6 @@ release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한�
 경고 옵션은 `CMAKE_CXX_FLAGS` 같은 전역 변수에 추가하지 않고 각 target에만 적용한다. preset 
 계약 테스트는 debug·release configure preset이 노출되는지와 경고 설정이 target 범위에 
 머무르는지를 확인한다. core 의존성 테스트는 실제 링크된 JSON·로그 라이브러리의 API
-버전이 manifest의 고정값과 일치하는지 확인한다. 로그 테스트는 네 범주의 출력, 설정에 따른
+버전이 manifest의 고정값과 일치하는지 확인한다. 로그 테스트는 네 범주의 출력, 설정에 따른 
 로그 수준 변경, 민감값 redaction을 확인한다.
+

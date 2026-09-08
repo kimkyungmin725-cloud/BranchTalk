@@ -1,10 +1,12 @@
-#pragma
+#pragma once
 
 #include <string>
 
-namespace branchtalk::core {
+namespace branchtalk::core
+{
 
-    enum class ErrorCode {
+    enum class ErrorCode
+    {
         invalid_argument,
         not_found,
         conflict,
@@ -16,5 +18,4 @@ namespace branchtalk::core {
         ErrorCode code;
         std::string message;
     };
-
-} //namespace branchtalk::core
+} // namespace branchtalk::core

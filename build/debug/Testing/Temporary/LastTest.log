@@ -1,18 +1,20 @@
-Start testing: Aug 29 23:59 EDT
+Start testing: Sep 07 21:37 EDT
 ----------------------------------------------------------
-6/7 Testing: branchtalk_core.application_config
-6/7 Test: branchtalk_core.application_config
-Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_application_config_smoke" "/Users/kyungmin/BrankTalk/tests/fixtures/config"
+2/8 Testing: branchtalk_server.smoke
+2/8 Test: branchtalk_server.smoke
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_server"
 Directory: /Users/kyungmin/BrankTalk/build/debug
-"branchtalk_core.application_config" start time: Aug 29 23:59 EDT
+"branchtalk_server.smoke" start time: Sep 07 21:37 EDT
 Output:
 ----------------------------------------------------------
+[info] [server] application started
 <end of output>
 Test time =   0.01 sec
 ----------------------------------------------------------
-Test Failed.
-"branchtalk_core.application_config" end time: Aug 29 23:59 EDT
-"branchtalk_core.application_config" time elapsed: 00:00:00
+Test Pass Reason:
+Required regular expression found. Regex=[\[server\] application started]
+"branchtalk_server.smoke" end time: Sep 07 21:37 EDT
+"branchtalk_server.smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Aug 29 23:59 EDT
+End testing: Sep 07 21:37 EDT

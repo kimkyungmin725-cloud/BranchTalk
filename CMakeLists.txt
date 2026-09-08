@@ -56,13 +56,37 @@ set_target_properties(branchtalk_client PROPERTIES
 
 branchtalk_enable_warnings(branchtalk_client)
 
+add_library(branchtalk_server_app STATIC
+    apps/server/src/server_app.cpp
+)
+
+add_library(BranchTalk::server_app ALIAS branchtalk_server-app)
+
+target_compile_features(branchtalk_server_app PUBLIC cxx_std_20)
+
+target_include_directories(branchtalk_server_app
+    PUBLIC 
+        "${CMAKE_CURRENT_SOURCE_DIR}/apps/server/include"
+)
+
+target_linke_libraries(branchtalk_server.app
+    PUBLIC 
+        Branchtalk::core
+)
+
+set_target_properties(branchtalk_server_app PROPERTIES 
+    CXX_EXTENSIONS OFF
+)
+
+branchtalk_enable_warnings(branchtalk_server_app)
+
 add_executable(branchtalk_server
     apps/server/main.cpp
 )
 
 target_link_libraries(branchtalk_server
     PRIVATE
-        BranchTalk::core
+        BranchTalk::server_app
 )
 
 set_target_properties(branchtalk_server PROPERTIES
@@ -73,16 +97,42 @@ branchtalk_enable_warnings(branchtalk_server)
 
 include(CTest)
 
+option(BRANCHTALK_BUILD_DESKTOP "Build the Qt Quick desktop application" OFF)
+
 if(BUILD_TESTING)
     add_test(NAME branchtalk_client.smoke COMMAND branchtalk_client)
-    add_test(NAME branchtalk_server.smoke COMMAND branchtalk_server)
+    
+    add_test(
+        NAME branchtalk_server.smoke
+        COMMAND 
+            "${CMAKE_COMMAND}"
+            "-DBRANCHTALK_SERVER=$<TARGET_FILE:branchtalk_server>"
+            "-DBRANCHTALK_INVALID_CONFIG=${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures/config/invalid-log-level.json"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_server.cmake"
+    )
 
     set_tests_properties(branchtalk_client.smoke PROPERTIES
         PASS_REGULAR_EXPRESSION "\\[client\\] application started"
     )
 
-    set_tests_properties(branchtalk_server.smoke PROPERTIES
-        PASS_REGULAR_EXPRESSION "\\[server\\] application started"
+    add_executable(branchtalk_server_app_smoke
+        tests/server/server_app_smoke.cpp
+    )
+
+    target_link_libraries(branchtalk_server_app_smoke
+        PRIVATE 
+            Branchtalk::server_app
+    )
+
+    set_target_properties(branchtalk_server_app_smoke PROPERTIES 
+        CXX_EXTENSIONS OFF
+    )
+
+    branchtalk_enable_warnings(branchtalk_server_app_smoke)
+
+    add_test(
+        NAME branchtalk_server.app
+        COMMAND branchtalk_server_app_smoke
     )
 
     add_test(
@@ -176,5 +226,21 @@ if(BUILD_TESTING)
             "${CMAKE_COMMAND}"
             "-DBRANCHTALK_LOGGING_SMOKE=$<TARGET_FILE:branchtalk_core_logging_smoke>"
             -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_logging.cmake"
+    )
+endif()
+
+if(BRANCHTALK_BUILD_DESKTOP)
+    find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+    qt_standard_project_setup(REQUIRES 6.5)
+    add_subdirectory(apps/desktop)
+elseif(BUILD_TESTING)
+    add_test(
+        NAME branchtalk_desktop.disabled
+        COMMAND
+            "${CMAKE_COMMAND}"
+            "-DBRANCHTALK_CORE_TARGET=$<TARGET_EXISTS:branchtalk_core>"
+            "-DBRANCHTALK_SERVER_TARGET=$<TARGET_EXISTS:branchtalk_server>"
+            "-DBRANCHTALK_DESKTOP_TARGET=$<TARGET_EXISTS:branchtalk_desktop>"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_desktop_disabled.cmake"
     )
 endif()

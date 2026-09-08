@@ -1,9 +1,10 @@
-branchtalk_client.smoke 13 0.000588821
-branchtalk_server.smoke 13 0.000549151
-branchtalk_cmake_presets.contract 11 0.00200826
-branchtalk_core.dependencies 9 0.000433296
-branchtalk_core.result 7 0.000390315
-branchtalk_core.logging 7 0.00206582
-branchtalk_core.application_config 0 0
+branchtalk_client.smoke 19 0.000454583
+branchtalk_server.smoke 21 0.000476417
+branchtalk_cmake_presets.contract 17 0.000916206
+branchtalk_core.dependencies 15 0.000321869
+branchtalk_core.result 13 0.000236705
+branchtalk_core.logging 13 0.00115075
+branchtalk_core.application_config 5 0.00176041
+branchtalk_desktop.disabled 5 0.00672714
+branchtalk_desktop.smoke 2 0.0661937
 ---
-branchtalk_core.application_config
