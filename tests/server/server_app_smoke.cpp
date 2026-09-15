@@ -6,18 +6,21 @@
 #include <filesystem>
 #include <string>
 
-namespace {
+namespace
+{
 
     int stop_poll_cout = 0;
 
-    bool stop_after_first_wait() noexcept {
+    bool stop_after_first_wait() noexcept
+    {
         stop_poll_cout++;
         return stop_poll_cout > 1;
     }
 
 } // namespace
 
-int main() {
+int main()
+{
     branchtalk::core::ApplicationConfig config;
     config.server_address = "server.test:9000";
     config.log_level = branchtalk::core::logging::LogLevel::debug;

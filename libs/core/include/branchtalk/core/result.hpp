@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 #include <branchtalk/core/error.hpp>
 

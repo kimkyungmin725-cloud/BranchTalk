@@ -10,19 +10,13 @@ qt_add_qml_module(branchtalk_desktop
         Main.qml
 )
 
-target_compile_features(branchtalk_desktop PRIVATE cxx_std_20)
-
 target_link_libraries(branchtalk_desktop
     PRIVATE
         BranchTalk::core
         Qt6::Quick
 )
 
-set_target_properties(branchtalk_desktop PROPERTIES
-    CXX_EXTENSIONS OFF
-)
-
-branchtalk_enable_warnings(branchtalk_desktop)
+branchtalk_configure_cpp_target(branchtalk_desktop PRIVATE)
 
 if(BUILD_TESTING)
     add_test(

@@ -11,6 +11,8 @@ project/
 ├─ CMakeLists.txt
 ├─ CMakePresets.json
 ├─ vcpkg.json
+├─ cmake/
+│  └─ BranchTalkTargets.cmake
 ├─ apps/
 │  ├─ client/
 │  │  └─ main.cpp
@@ -42,7 +44,9 @@ project/
 │        ├─ logging.cpp
 │        └─ version.cpp
 └─ tests/
+   ├─ CMakeLists.txt
    ├─ cmake/
+   │  ├─ verify_boundaries.cmake
    │  ├─ verify_desktop_disabled.cmake
    │  ├─ verify_logging.cmake
    │  ├─ verify_presets.cmake
@@ -51,6 +55,7 @@ project/
    │  ├─ application_config_smoke.cpp
    │  ├─ dependency_versions_smoke.cpp
    │  ├─ logging_smoke.cpp
+   │  ├─ public_api_smoke.cpp
    │  └─ result_smoke.cpp
    ├─ server/
    │  └─ server_app_smoke.cpp
@@ -65,7 +70,7 @@ project/
 |---|---|---|---|
 | `apps/client` | `branchtalk::client` | 데스크톱 클라이언트 진입점 | C++ 표준 라이브러리, `libs/core` |
 | `apps/desktop` | `branchtalk::desktop` | 선택적 Qt Quick 데스크톱 진입점과 QML 리소스 | `libs/core`, Qt Quick |
-| `apps/server` | `branchtalk::server` | 자체 호스팅 서버 진입점 | C++ 표준 라이브러리, `libs/core` |
+| `apps/server` | `branchtalk::server` | 자체 호스팅 서버 진입점과 수명주기 | C++ 표준 라이브러리, `BranchTalk::server_app`, `libs/core` |
 | `libs/core` | `branchtalk::core` | 클라이언트와 서버가 공유하는 제품 기본 계약 | C++ 표준 라이브러리, nlohmann-json, spdlog |
 
 의존 방향은 다음 규칙을 따른다.
@@ -85,6 +90,11 @@ apps/desktop ─┬─> libs/core
 - 실행 환경에만 필요한 코드는 해당 `apps` 디렉터리에 둔다.
 - 두 실행 파일이 공유해야 하는 안정적인 계약만 `core`로 이동한다.
 
+`branchtalk_architecture.boundaries` test는 이 방향을 build graph와 source include에서 함께 
+검사한다. client는 `BranchTalk::core`에만 직접 link하고 `branchtalk/server` header를 
+include하지 않는다. server 실행 파일은 `BranchTalk::server_app`에 직접 link하고, 
+server app target이 `BranchTalk::core` 사용 요구사항을 공개한다.
+
 ## CMake target
 
 | target | 종류 | 입력 | 의존성 |
@@ -95,7 +105,15 @@ apps/desktop ─┬─> libs/core
 | `branchtalk_server_app` | 정적 라이브러리 | `apps/server/src/server_app.cpp` | `BranchTalk::core` |
 | `branchtalk_server` | 실행 파일 | `apps/server/main.cpp` | `BranchTalk::server_app` |
 
-`BranchTalk::core`는 `branchtalk_core`의 별칭이다. 클라이언트와 서버는 공개 include 경로와 C++20 사용 요구사항을 이 target을 통해 전달받는다.
+`BranchTalk::core`는 `branchtalk_core`의 별칭이다. client는 core의 공개 include 경로와 
+C++20 요구사항을 직접 전달받고, server는 같은 요구사항을 `BranchTalk::server_app`의 공개 
+의존성을 통해 전달받는다.
+
+`cmake/BranchTalkTargets.cmake`의 `branchtalk_configure_cpp_target()`은 모든 C++ target에 
+C++20, 표준 확장 비활성화, compiler별 경고를 같은 규칙으로 적용한다.
+`branchtalk_add_test_executable()`은 smoke executable의 source·link library 선언 뒤 같은 
+target 기본값을 적용해 test target 설정의 반복을 줄인다. 제품 target과 test target 모두 
+전역 compiler flag를 수정하지 않는다.
 
 `branchtalk_desktop`은 기본 빌드에서 비활성화한다. 이 경로에서는 Qt package를 찾지 않으므로 
 Qt가 설치되지 않은 환경에서도 core, client, server와 관련 테스트를 그대로 빌드할 수 있다.
@@ -216,6 +234,15 @@ cmake --build --preset debug
 ctest --preset debug
 ```
 
+기존 configure cache를 사용하지 않고 기준선을 다시 확인할 때는 configure에 `--fresh`를 
+추가한다.
+
+```sh
+cmake --preset debug --fresh
+cmake --build --preset debug
+ctest --preset debug
+```
+
 release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한다.
 
 ## 컴파일러 경고
@@ -226,3 +253,14 @@ release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한�
 버전이 manifest의 고정값과 일치하는지 확인한다. 로그 테스트는 네 범주의 출력, 설정에 따른 
 로그 수준 변경, 민감값 redaction을 확인한다.
 
+- MSVC: `/W4`, `/permissive-`
+- Apple Clang: `-Wall`, `-Wextra`, `-Wpedantic`
+
+테스트는 client 시작 출력과 server의 시작·종료 signal 수명주기, 잘못된 설정의 오류 반환을 
+확인한다. server app smoke는 설정과 종료 조건 주입을 직접 검사한다. preset 계약 테스트는 
+debug·release configure preset이 공통 target 기본값을 확인한다. architecture test는 
+client·server·server app의 link 방향과 client include 경계를 검사한다. core public API 
+smoke는 모든 공개 계약을 하나의 consumer target에서 include·link해 기반 통합 상태를 
+확인한다. core 의존성 테스트는 실제 링크된 JSON·로그 라이브러리의 API 버전이 manifest의 
+고정값와 일치하는지 확인한다. 로그 테스트는 네 범주의 출력, 설정에 따른 로그 수준 변경, 
+민감값 redaction을 확인한다.
