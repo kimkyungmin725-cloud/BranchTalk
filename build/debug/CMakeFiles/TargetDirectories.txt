@@ -1,5 +1,6 @@
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_client.dir
+/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_server_app.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_server.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/Experimental.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/Nightly.dir
@@ -29,10 +30,15 @@
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/ContinuousCoverage.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/ContinuousMemCheck.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/ContinuousSubmit.dir
-/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_dependencies_smoke.dir
-/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_result_smoke.dir
-/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_application_config_smoke.dir
-/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/branchtalk_core_logging_smoke.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/test.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/edit_cache.dir
 /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/rebuild_cache.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/branchtalk_server_app_smoke.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/branchtalk_core_dependencies_smoke.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/branchtalk_core_result_smoke.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/branchtalk_core_application_config_smoke.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/branchtalk_core_logging_smoke.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/branchtalk_core_public_api_smoke.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/test.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/edit_cache.dir
+/Users/kyungmin/BrankTalk/build/debug/tests/CMakeFiles/rebuild_cache.dir

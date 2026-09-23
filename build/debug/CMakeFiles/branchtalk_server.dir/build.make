@@ -95,6 +95,7 @@ branchtalk_server_EXTERNAL_OBJECTS =
 
 branchtalk_server: CMakeFiles/branchtalk_server.dir/apps/server/main.cpp.o
 branchtalk_server: CMakeFiles/branchtalk_server.dir/build.make
+branchtalk_server: libbranchtalk_server_app.a
 branchtalk_server: libbranchtalk_core.a
 branchtalk_server: /Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/lib/libspdlogd.a
 branchtalk_server: /Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/lib/libfmtd.a

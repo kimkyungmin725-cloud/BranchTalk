@@ -1,7 +1,8 @@
 {
 	"InstallScripts" : 
 	[
-		"/Users/kyungmin/BrankTalk/build/debug/cmake_install.cmake"
+		"/Users/kyungmin/BrankTalk/build/debug/cmake_install.cmake",
+		"/Users/kyungmin/BrankTalk/build/debug/tests/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

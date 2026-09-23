@@ -1,20 +1,127 @@
-Start testing: Sep 07 21:37 EDT
+Start testing: Sep 22 20:08 EDT
 ----------------------------------------------------------
+1/8 Testing: branchtalk_client.smoke
+1/8 Test: branchtalk_client.smoke
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_client"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_client.smoke" start time: Sep 22 20:08 EDT
+Output:
+----------------------------------------------------------
+[info] [client] application started
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found. Regex=[\[client\] application started]
+"branchtalk_client.smoke" end time: Sep 22 20:08 EDT
+"branchtalk_client.smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
 2/8 Testing: branchtalk_server.smoke
 2/8 Test: branchtalk_server.smoke
 Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_server"
 Directory: /Users/kyungmin/BrankTalk/build/debug
-"branchtalk_server.smoke" start time: Sep 07 21:37 EDT
+"branchtalk_server.smoke" start time: Sep 22 20:08 EDT
 Output:
 ----------------------------------------------------------
 [info] [server] application started
 <end of output>
-Test time =   0.01 sec
+Test time =   0.09 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Required regular expression found. Regex=[\[server\] application started]
-"branchtalk_server.smoke" end time: Sep 07 21:37 EDT
+"branchtalk_server.smoke" end time: Sep 22 20:08 EDT
 "branchtalk_server.smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Sep 07 21:37 EDT
+3/8 Testing: branchtalk_cmake_presets.contract
+3/8 Test: branchtalk_cmake_presets.contract
+Command: "/opt/homebrew/bin/cmake" "-DBRANCHTALK_SOURCE_DIR=/Users/kyungmin/BrankTalk" "-P" "/Users/kyungmin/BrankTalk/tests/cmake/verify_presets.cmake"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_cmake_presets.contract" start time: Sep 22 20:08 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_cmake_presets.contract" end time: Sep 22 20:08 EDT
+"branchtalk_cmake_presets.contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/8 Testing: branchtalk_core.dependencies
+4/8 Test: branchtalk_core.dependencies
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_dependencies_smoke"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_core.dependencies" start time: Sep 22 20:08 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_core.dependencies" end time: Sep 22 20:08 EDT
+"branchtalk_core.dependencies" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/8 Testing: branchtalk_core.result
+5/8 Test: branchtalk_core.result
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_result_smoke"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_core.result" start time: Sep 22 20:08 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_core.result" end time: Sep 22 20:08 EDT
+"branchtalk_core.result" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/8 Testing: branchtalk_core.application_config
+6/8 Test: branchtalk_core.application_config
+Command: "/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_application_config_smoke" "/Users/kyungmin/BrankTalk/tests/fixtures/config"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_core.application_config" start time: Sep 22 20:08 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_core.application_config" end time: Sep 22 20:08 EDT
+"branchtalk_core.application_config" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/8 Testing: branchtalk_core.logging
+7/8 Test: branchtalk_core.logging
+Command: "/opt/homebrew/bin/cmake" "-DBRANCHTALK_LOGGING_SMOKE=/Users/kyungmin/BrankTalk/build/debug/branchtalk_core_logging_smoke" "-P" "/Users/kyungmin/BrankTalk/tests/cmake/verify_logging.cmake"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_core.logging" start time: Sep 22 20:08 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.10 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_core.logging" end time: Sep 22 20:08 EDT
+"branchtalk_core.logging" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/8 Testing: branchtalk_desktop.disabled
+8/8 Test: branchtalk_desktop.disabled
+Command: "/opt/homebrew/bin/cmake" "-DBRANCHTALK_CORE_TARGET=1" "-DBRANCHTALK_SERVER_TARGET=1" "-DBRANCHTALK_DESKTOP_TARGET=0" "-P" "/Users/kyungmin/BrankTalk/tests/cmake/verify_desktop_disabled.cmake"
+Directory: /Users/kyungmin/BrankTalk/build/debug
+"branchtalk_desktop.disabled" start time: Sep 22 20:08 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"branchtalk_desktop.disabled" end time: Sep 22 20:08 EDT
+"branchtalk_desktop.disabled" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 22 20:08 EDT

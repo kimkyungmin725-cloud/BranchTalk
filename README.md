@@ -19,7 +19,9 @@ project/
 │  ├─ desktop/
 │  │  ├─ CMakeLists.txt
 │  │  ├─ Main.qml
-│  │  └─ main.cpp
+│  │  ├─ main.cpp
+│  │  ├─ Window_state_store.cpp
+│  │  └─ window_state_store.hpp
 │  └─ server/
 │     ├─ include/
 │     │  └─ branchtalk/server/
@@ -57,6 +59,8 @@ project/
    │  ├─ logging_smoke.cpp
    │  ├─ public_api_smoke.cpp
    │  └─ result_smoke.cpp
+   ├─ desktop/
+   │  └─ window_state_store_smoke.cpp
    ├─ server/
    │  └─ server_app_smoke.cpp
    └─ fixtures/
@@ -69,7 +73,7 @@ project/
 | 영역 | 네임스페이스 | 책임 | 허용 의존성 |
 |---|---|---|---|
 | `apps/client` | `branchtalk::client` | 데스크톱 클라이언트 진입점 | C++ 표준 라이브러리, `libs/core` |
-| `apps/desktop` | `branchtalk::desktop` | 선택적 Qt Quick 데스크톱 진입점과 QML 리소스 | `libs/core`, Qt Quick |
+| `apps/desktop` | `branchtalk::desktop` | 선택적 Qt Quick 데스크톱 진입점, 창 상태, QML 리소스 | `libs/core`, Qt Controls |
 | `apps/server` | `branchtalk::server` | 자체 호스팅 서버 진입점과 수명주기 | C++ 표준 라이브러리, `BranchTalk::server_app`, `libs/core` |
 | `libs/core` | `branchtalk::core` | 클라이언트와 서버가 공유하는 제품 기본 계약 | C++ 표준 라이브러리, nlohmann-json, spdlog |
 
@@ -82,7 +86,8 @@ apps/server ─> server_app ──┘
                             ├─> nlohmann-json
                             └─> spdlog
 apps/desktop ─┬─> libs/core
-              └─> Qt Quick
+              ├─> Qt Quick Control's
+              └─> Qt Core(QSettings) 
 ```
 
 - `client`와 `server`는 서로의 헤더나 구현을 참조하지 않는다.
@@ -101,7 +106,8 @@ server app target이 `BranchTalk::core` 사용 요구사항을 공개한다.
 |---|---|---|---|
 | `branchtalk_core` | 정적 라이브러리 | `libs/core/src/*.cpp` | C++ 표준 라이브러리, nlohmann-json, spdlog |
 | `branchtalk_client` | 실행 파일 | `apps/client/main.cpp` | `BranchTalk::core` |
-| `branchtalk_desktop` | 선택적 Qt Quick 실행 파일 | `apps/desktop/main.cpp`, `Main.qml` | `BranchTalk::core`, `Qt6::Quick` |
+| `branchtalk_desktop_windows_state` | 정적 라이브러리 | `window_state_store.cpp` | `Qt6::Quick` |
+| `branchtalk_desktop` | 선택적 Qt Quick 실행 파일 | `apps/desktop/main.cpp`, `Main.qml` | `BranchTalk::core`, 창 상태 라이브러리, `Qt6::Quick`, `Qt6::QuickControls2` |
 | `branchtalk_server_app` | 정적 라이브러리 | `apps/server/src/server_app.cpp` | `BranchTalk::core` |
 | `branchtalk_server` | 실행 파일 | `apps/server/main.cpp` | `BranchTalk::server_app` |
 
@@ -118,7 +124,8 @@ target 기본값을 적용해 test target 설정의 반복을 줄인다. 제품 
 `branchtalk_desktop`은 기본 빌드에서 비활성화한다. 이 경로에서는 Qt package를 찾지 않으므로 
 Qt가 설치되지 않은 환경에서도 core, client, server와 관련 테스트를 그대로 빌드할 수 있다.
 
-Qt 6.5 이상의 Quick 개발 패키지가 설치된 환경에서는 configure 때 target을 활성화한다.
+Qt 6.5 이상의 Quick·Quick Controls 개발 패키지가 설치된 환경에서는 configure 때 target을
+활성화한다.
 
 ```sh
 cmake --preset debug -DBRANCHTALK_BUILD_DESKTOP=ON -DCAMKE_PREFIX_PATH=/path/to/Qt
@@ -127,8 +134,21 @@ ctest --preset debug -R branchtalk_desktop.smoke
 ```
 
 `qt_add_qml_module()`은 `Main.qml`을 `BranchTalk` QML module의 리소스로 포함한다. 데스크톱 
-실행 파일은 이 module의 `Main` type을 읽어 800x600 크기의 빈 창을 연다. smoke test는 같은 
-리소스를 offscreen platform에서 읽고 root object가 만들어지는지 확인한 뒤 종료한다.
+실행 파일은 이 module의 `Main` type을 읽어 800x600, 최소 640X480인
+`ApllicationWindow`르르 연다. smoke test는 같은 리소스를 offscreen platform에서 읽고 root 
+object가 만들어지는지 확인한 뒤 종료한다.
+
+## 데스크탑 창 상태
+
+`WindowStateStore`는 `QSettings`의 `window/x`, `window/y`, `window/width`, `window/height`
+값을 창 상태로 묶어 저장한다. 앱 시작 시 네 값을 모두 정수로 읽을 수 있고 최소 크기를
+충족하며 현재 화면과 겹칠 때만 QML root onbject의 초기 속성으로 전달한다. 값이 없거나 형식이
+잘못도ㅒㅆ거나 화면 밖에 있으면 초기 속성을 전달하지 않아 `Main.qml`의 기본 크기와 플랫폼 기본
+위치를 그대로 사용한다.
+
+정상 종료는 직전에는 root object의 현재 위치와 크기를 저장한다. 창 상태 smoke test는 임시 INI
+파일에 저장한 값을 새 `QSettings` 객체에서 다시 읽어 재실행 흐름을 확인하고, 숫자가 아닌 값,
+최소 크기보다 작은 값, 화면 밖 위치가 복원되지 않는지 검사한다.
 
 ## 공통 오류 계약
 
@@ -257,7 +277,8 @@ release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한�
 - Apple Clang: `-Wall`, `-Wextra`, `-Wpedantic`
 
 테스트는 client 시작 출력과 server의 시작·종료 signal 수명주기, 잘못된 설정의 오류 반환을 
-확인한다. server app smoke는 설정과 종료 조건 주입을 직접 검사한다. preset 계약 테스트는 
+확인한다. desktop somke는 QML 창 생성과 창 상태의 저장·복원 및 잘못된 값 처리를 검사한다.
+server app smoke는 설정과 종료 조건 주입을 직접 검사한다. preset 계약 테스트는 
 debug·release configure preset이 공통 target 기본값을 확인한다. architecture test는 
 client·server·server app의 link 방향과 client include 경계를 검사한다. core public API 
 smoke는 모든 공개 계약을 하나의 consumer target에서 include·link해 기반 통합 상태를 

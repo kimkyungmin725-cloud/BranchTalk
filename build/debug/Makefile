@@ -153,6 +153,19 @@ branchtalk_client/fast:
 .PHONY : branchtalk_client/fast
 
 #=============================================================================
+# Target rules for targets named branchtalk_server_app
+
+# Build rule for target.
+branchtalk_server_app: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 branchtalk_server_app
+.PHONY : branchtalk_server_app
+
+# fast build rule for target.
+branchtalk_server_app/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server_app.dir/build.make CMakeFiles/branchtalk_server_app.dir/build
+.PHONY : branchtalk_server_app/fast
+
+#=============================================================================
 # Target rules for targets named branchtalk_server
 
 # Build rule for target.
@@ -530,6 +543,19 @@ ContinuousSubmit/fast:
 .PHONY : ContinuousSubmit/fast
 
 #=============================================================================
+# Target rules for targets named branchtalk_server_app_smoke
+
+# Build rule for target.
+branchtalk_server_app_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 branchtalk_server_app_smoke
+.PHONY : branchtalk_server_app_smoke
+
+# fast build rule for target.
+branchtalk_server_app_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/branchtalk_server_app_smoke.dir/build.make tests/CMakeFiles/branchtalk_server_app_smoke.dir/build
+.PHONY : branchtalk_server_app_smoke/fast
+
+#=============================================================================
 # Target rules for targets named branchtalk_core_dependencies_smoke
 
 # Build rule for target.
@@ -539,7 +565,7 @@ branchtalk_core_dependencies_smoke: cmake_check_build_system
 
 # fast build rule for target.
 branchtalk_core_dependencies_smoke/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/build
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make tests/CMakeFiles/branchtalk_core_dependencies_smoke.dir/build
 .PHONY : branchtalk_core_dependencies_smoke/fast
 
 #=============================================================================
@@ -552,7 +578,7 @@ branchtalk_core_result_smoke: cmake_check_build_system
 
 # fast build rule for target.
 branchtalk_core_result_smoke/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/build
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/branchtalk_core_result_smoke.dir/build.make tests/CMakeFiles/branchtalk_core_result_smoke.dir/build
 .PHONY : branchtalk_core_result_smoke/fast
 
 #=============================================================================
@@ -565,7 +591,7 @@ branchtalk_core_application_config_smoke: cmake_check_build_system
 
 # fast build rule for target.
 branchtalk_core_application_config_smoke/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_application_config_smoke.dir/build.make CMakeFiles/branchtalk_core_application_config_smoke.dir/build
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/branchtalk_core_application_config_smoke.dir/build.make tests/CMakeFiles/branchtalk_core_application_config_smoke.dir/build
 .PHONY : branchtalk_core_application_config_smoke/fast
 
 #=============================================================================
@@ -578,8 +604,21 @@ branchtalk_core_logging_smoke: cmake_check_build_system
 
 # fast build rule for target.
 branchtalk_core_logging_smoke/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/build
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/branchtalk_core_logging_smoke.dir/build.make tests/CMakeFiles/branchtalk_core_logging_smoke.dir/build
 .PHONY : branchtalk_core_logging_smoke/fast
+
+#=============================================================================
+# Target rules for targets named branchtalk_core_public_api_smoke
+
+# Build rule for target.
+branchtalk_core_public_api_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 branchtalk_core_public_api_smoke
+.PHONY : branchtalk_core_public_api_smoke
+
+# fast build rule for target.
+branchtalk_core_public_api_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/branchtalk_core_public_api_smoke.dir/build.make tests/CMakeFiles/branchtalk_core_public_api_smoke.dir/build
+.PHONY : branchtalk_core_public_api_smoke/fast
 
 apps/client/main.o: apps/client/main.cpp.o
 .PHONY : apps/client/main.o
@@ -628,6 +667,30 @@ apps/server/main.s: apps/server/main.cpp.s
 apps/server/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server.dir/build.make CMakeFiles/branchtalk_server.dir/apps/server/main.cpp.s
 .PHONY : apps/server/main.cpp.s
+
+apps/server/src/server_app.o: apps/server/src/server_app.cpp.o
+.PHONY : apps/server/src/server_app.o
+
+# target to build an object file
+apps/server/src/server_app.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server_app.dir/build.make CMakeFiles/branchtalk_server_app.dir/apps/server/src/server_app.cpp.o
+.PHONY : apps/server/src/server_app.cpp.o
+
+apps/server/src/server_app.i: apps/server/src/server_app.cpp.i
+.PHONY : apps/server/src/server_app.i
+
+# target to preprocess a source file
+apps/server/src/server_app.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server_app.dir/build.make CMakeFiles/branchtalk_server_app.dir/apps/server/src/server_app.cpp.i
+.PHONY : apps/server/src/server_app.cpp.i
+
+apps/server/src/server_app.s: apps/server/src/server_app.cpp.s
+.PHONY : apps/server/src/server_app.s
+
+# target to generate assembly for a file
+apps/server/src/server_app.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_server_app.dir/build.make CMakeFiles/branchtalk_server_app.dir/apps/server/src/server_app.cpp.s
+.PHONY : apps/server/src/server_app.cpp.s
 
 libs/core/src/application_config.o: libs/core/src/application_config.cpp.o
 .PHONY : libs/core/src/application_config.o
@@ -725,102 +788,6 @@ libs/core/src/version.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core.dir/build.make CMakeFiles/branchtalk_core.dir/libs/core/src/version.cpp.s
 .PHONY : libs/core/src/version.cpp.s
 
-tests/core/application_config_smoke.o: tests/core/application_config_smoke.cpp.o
-.PHONY : tests/core/application_config_smoke.o
-
-# target to build an object file
-tests/core/application_config_smoke.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_application_config_smoke.dir/build.make CMakeFiles/branchtalk_core_application_config_smoke.dir/tests/core/application_config_smoke.cpp.o
-.PHONY : tests/core/application_config_smoke.cpp.o
-
-tests/core/application_config_smoke.i: tests/core/application_config_smoke.cpp.i
-.PHONY : tests/core/application_config_smoke.i
-
-# target to preprocess a source file
-tests/core/application_config_smoke.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_application_config_smoke.dir/build.make CMakeFiles/branchtalk_core_application_config_smoke.dir/tests/core/application_config_smoke.cpp.i
-.PHONY : tests/core/application_config_smoke.cpp.i
-
-tests/core/application_config_smoke.s: tests/core/application_config_smoke.cpp.s
-.PHONY : tests/core/application_config_smoke.s
-
-# target to generate assembly for a file
-tests/core/application_config_smoke.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_application_config_smoke.dir/build.make CMakeFiles/branchtalk_core_application_config_smoke.dir/tests/core/application_config_smoke.cpp.s
-.PHONY : tests/core/application_config_smoke.cpp.s
-
-tests/core/dependency_versions_smoke.o: tests/core/dependency_versions_smoke.cpp.o
-.PHONY : tests/core/dependency_versions_smoke.o
-
-# target to build an object file
-tests/core/dependency_versions_smoke.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/tests/core/dependency_versions_smoke.cpp.o
-.PHONY : tests/core/dependency_versions_smoke.cpp.o
-
-tests/core/dependency_versions_smoke.i: tests/core/dependency_versions_smoke.cpp.i
-.PHONY : tests/core/dependency_versions_smoke.i
-
-# target to preprocess a source file
-tests/core/dependency_versions_smoke.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/tests/core/dependency_versions_smoke.cpp.i
-.PHONY : tests/core/dependency_versions_smoke.cpp.i
-
-tests/core/dependency_versions_smoke.s: tests/core/dependency_versions_smoke.cpp.s
-.PHONY : tests/core/dependency_versions_smoke.s
-
-# target to generate assembly for a file
-tests/core/dependency_versions_smoke.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_dependencies_smoke.dir/build.make CMakeFiles/branchtalk_core_dependencies_smoke.dir/tests/core/dependency_versions_smoke.cpp.s
-.PHONY : tests/core/dependency_versions_smoke.cpp.s
-
-tests/core/logging_smoke.o: tests/core/logging_smoke.cpp.o
-.PHONY : tests/core/logging_smoke.o
-
-# target to build an object file
-tests/core/logging_smoke.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/tests/core/logging_smoke.cpp.o
-.PHONY : tests/core/logging_smoke.cpp.o
-
-tests/core/logging_smoke.i: tests/core/logging_smoke.cpp.i
-.PHONY : tests/core/logging_smoke.i
-
-# target to preprocess a source file
-tests/core/logging_smoke.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/tests/core/logging_smoke.cpp.i
-.PHONY : tests/core/logging_smoke.cpp.i
-
-tests/core/logging_smoke.s: tests/core/logging_smoke.cpp.s
-.PHONY : tests/core/logging_smoke.s
-
-# target to generate assembly for a file
-tests/core/logging_smoke.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_logging_smoke.dir/build.make CMakeFiles/branchtalk_core_logging_smoke.dir/tests/core/logging_smoke.cpp.s
-.PHONY : tests/core/logging_smoke.cpp.s
-
-tests/core/result_smoke.o: tests/core/result_smoke.cpp.o
-.PHONY : tests/core/result_smoke.o
-
-# target to build an object file
-tests/core/result_smoke.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/tests/core/result_smoke.cpp.o
-.PHONY : tests/core/result_smoke.cpp.o
-
-tests/core/result_smoke.i: tests/core/result_smoke.cpp.i
-.PHONY : tests/core/result_smoke.i
-
-# target to preprocess a source file
-tests/core/result_smoke.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/tests/core/result_smoke.cpp.i
-.PHONY : tests/core/result_smoke.cpp.i
-
-tests/core/result_smoke.s: tests/core/result_smoke.cpp.s
-.PHONY : tests/core/result_smoke.s
-
-# target to generate assembly for a file
-tests/core/result_smoke.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/branchtalk_core_result_smoke.dir/build.make CMakeFiles/branchtalk_core_result_smoke.dir/tests/core/result_smoke.cpp.s
-.PHONY : tests/core/result_smoke.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -863,14 +830,20 @@ help:
 	@echo "... branchtalk_core_application_config_smoke"
 	@echo "... branchtalk_core_dependencies_smoke"
 	@echo "... branchtalk_core_logging_smoke"
+	@echo "... branchtalk_core_public_api_smoke"
 	@echo "... branchtalk_core_result_smoke"
 	@echo "... branchtalk_server"
+	@echo "... branchtalk_server_app"
+	@echo "... branchtalk_server_app_smoke"
 	@echo "... apps/client/main.o"
 	@echo "... apps/client/main.i"
 	@echo "... apps/client/main.s"
 	@echo "... apps/server/main.o"
 	@echo "... apps/server/main.i"
 	@echo "... apps/server/main.s"
+	@echo "... apps/server/src/server_app.o"
+	@echo "... apps/server/src/server_app.i"
+	@echo "... apps/server/src/server_app.s"
 	@echo "... libs/core/src/application_config.o"
 	@echo "... libs/core/src/application_config.i"
 	@echo "... libs/core/src/application_config.s"
@@ -883,18 +856,6 @@ help:
 	@echo "... libs/core/src/version.o"
 	@echo "... libs/core/src/version.i"
 	@echo "... libs/core/src/version.s"
-	@echo "... tests/core/application_config_smoke.o"
-	@echo "... tests/core/application_config_smoke.i"
-	@echo "... tests/core/application_config_smoke.s"
-	@echo "... tests/core/dependency_versions_smoke.o"
-	@echo "... tests/core/dependency_versions_smoke.i"
-	@echo "... tests/core/dependency_versions_smoke.s"
-	@echo "... tests/core/logging_smoke.o"
-	@echo "... tests/core/logging_smoke.i"
-	@echo "... tests/core/logging_smoke.s"
-	@echo "... tests/core/result_smoke.o"
-	@echo "... tests/core/result_smoke.i"
-	@echo "... tests/core/result_smoke.s"
 .PHONY : help
 
 
