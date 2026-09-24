@@ -18,8 +18,9 @@ project/
 │  │  └─ main.cpp
 │  ├─ desktop/
 │  │  ├─ CMakeLists.txt
-│  │  ├─ Main.qml
 │  │  ├─ main.cpp
+│  │  ├─ Main.qml
+│  │  ├─ Theme.qml
 │  │  ├─ Window_state_store.cpp
 │  │  └─ window_state_store.hpp
 │  └─ server/
