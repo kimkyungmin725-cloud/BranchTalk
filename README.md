@@ -53,7 +53,8 @@ project/
    │  ├─ verify_desktop_disabled.cmake
    │  ├─ verify_logging.cmake
    │  ├─ verify_presets.cmake
-   │  └─ verify_server.cmake
+   │  ├─ verify_server.cmake
+   │  └─ verify_theme_tokens.cmake
    ├─ core/
    │  ├─ application_config_smoke.cpp
    │  ├─ dependency_versions_smoke.cpp
@@ -108,7 +109,7 @@ server app target이 `BranchTalk::core` 사용 요구사항을 공개한다.
 | `branchtalk_core` | 정적 라이브러리 | `libs/core/src/*.cpp` | C++ 표준 라이브러리, nlohmann-json, spdlog |
 | `branchtalk_client` | 실행 파일 | `apps/client/main.cpp` | `BranchTalk::core` |
 | `branchtalk_desktop_windows_state` | 정적 라이브러리 | `window_state_store.cpp` | `Qt6::Quick` |
-| `branchtalk_desktop` | 선택적 Qt Quick 실행 파일 | `apps/desktop/main.cpp`, `Main.qml` | `BranchTalk::core`, 창 상태 라이브러리, `Qt6::Quick`, `Qt6::QuickControls2` |
+| `branchtalk_desktop` | 선택적 Qt Quick 실행 파일 | `apps/desktop/main.cpp`, QML module | `BranchTalk::core`, 창 상태 라이브러리, `Qt6::Quick`, `Qt6::QuickControls2` |
 | `branchtalk_server_app` | 정적 라이브러리 | `apps/server/src/server_app.cpp` | `BranchTalk::core` |
 | `branchtalk_server` | 실행 파일 | `apps/server/main.cpp` | `BranchTalk::server_app` |
 
@@ -131,13 +132,47 @@ Qt 6.5 이상의 Quick·Quick Controls 개발 패키지가 설치된 환경에�
 ```sh
 cmake --preset debug -DBRANCHTALK_BUILD_DESKTOP=ON -DCAMKE_PREFIX_PATH=/path/to/Qt
 cmake --build --preset debug --target branchtalk_desktop
-ctest --preset debug -R branchtalk_desktop.smoke
+ctest --preset debug -R branchtalk_desktop
 ```
 
-`qt_add_qml_module()`은 `Main.qml`을 `BranchTalk` QML module의 리소스로 포함한다. 데스크톱 
-실행 파일은 이 module의 `Main` type을 읽어 800x600, 최소 640X480인
-`ApllicationWindow`르르 연다. smoke test는 같은 리소스를 offscreen platform에서 읽고 root 
-object가 만들어지는지 확인한 뒤 종료한다.
+`qt_add_qml_module()`은 `Main.qml`, `Theme.qml`, `AppButton.qml`, `AppPanel` 을
+`BranchTalk` QML module의 리소스로 포함한다. 데스크톱 실행 파일은 이 module의 `Main` type을
+읽어 800x600, 최소 640X480인 `ApllicationWindow`르르 연다. smoke test는 같은 리소스를
+offscreen platform에서 읽고 root object가 만들어지는지 확인한 뒤 종료한다.
+
+## 테마와 디자인 토큰 
+
+`Theme` QML singleton은 밝은어두운 모드의 창·패널·텍스트·강조 색과 공통 간격,
+타이포그래픽 크기·굵기, radius·control 크기를 한 곳에서 제공한다. `darkMode`가 바뀌면
+`Main`, `AppPanel`, `AppButton`의 property binding이 같은 singleton의 새 값으로 다시
+평가되므로 참을 다시 만들지 않고 화면이 갱신된다.
+
+`AppPanel`은 배경·테두리·radius와 조정 가능한 content padding을 Theme token에서 읽고, 
+default property alias로 받은 content를 내부 content item에 배치한다. `AppButton`은
+padding·높이·글꼴과 noraml·hovered·pressed·disabled 색을 같은 token에서 읽으며, 좁은 열에는
+최조 너비와 좌우 padding을 줄이는 compact 표현을 제공한다. 매인 창은 두 공통 component을
+사용하며 직접 색상 literal이나 spacing 값을 소유하지 않는다.
+
+`branchtalk_desktop.theme` test는 QML의 theme 전환 함수를 호출한 직후 창·채널 색과 버튼
+문구가 함깨 달라지는지 검사한다. `branchtalk_desktop.theme_tokens` test는 Theme singleton의
+필수 token과 공통 component 사용을 확인하고, Theme 밖 QML에 색상 literal이나 주요 spacing
+literal이 들어오면 실패한다.
+
+## 3단 매인 레이아웃
+
+`Main.qml` 의 가로 `SplitView`는 워크스페이스 열, 채널 열, 대화 영역을 순서대로 배치한다.
+각 영역은 `AppPanel`을 사용하며 워크스페이스 96, 채널 200, 대화 320의 최소 너비와 분할 핸들
+너비를 `Theme` token에서 읽는다. 기본 너비에서는 새 영역이 모두 보이고 사용자가 분할 핸들로
+영역 크기를 조정할 수 있다.
+
+창 너비가 760보다 작아지면 대화 영역을 접고 채널 열이 남은 너비를 채운다. 워크스페이스와
+채널 동작은 계속 표시되어 최소 창 너비에서도 핵심 탐색을 사용할 수 있다. 다시 넓어지면 대화
+영역과 기존 분할 크기가 복원된다. 현재 표시 내용은 QML 배열로 만든 워크스페이스·채널·메시지
+임시 모델에서 가져온다.
+
+`branchtalk_desktop.layout` test는 창 너비를 1000→700→1000으로 바꾸며 새 영역의 최소 너비,
+좁은 창에서의 대화 영역 접힘, 핵십 동작의 표시·활성 상태, 다시 넓혔을 때 분할 크기 복원을 
+offscreen platform에서 검사한다.
 
 ## 데스크탑 창 상태
 
@@ -278,7 +313,8 @@ release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한�
 - Apple Clang: `-Wall`, `-Wextra`, `-Wpedantic`
 
 테스트는 client 시작 출력과 server의 시작·종료 signal 수명주기, 잘못된 설정의 오류 반환을 
-확인한다. desktop somke는 QML 창 생성과 창 상태의 저장·복원 및 잘못된 값 처리를 검사한다.
+확인한다. desktop test는 QML창 생성, theme binding의 즉시 갱신, token 중앙화와 창 상태의 
+저장·복원 및 잘못된 값 자리를 검사한다.
 server app smoke는 설정과 종료 조건 주입을 직접 검사한다. preset 계약 테스트는 
 debug·release configure preset이 공통 target 기본값을 확인한다. architecture test는 
 client·server·server app의 link 방향과 client include 경계를 검사한다. core public API 

@@ -5,9 +5,10 @@ Rectangle {
 
     default property alias contentData: panelContent.data
     readonly property alias contentItem: panelContent
+    property int contentPadding: Theme.spacingLarge
 
-    implicitWidth: panelContent.implicitWidth + Theme.spacingLarge * 2
-    implicitHeight: panelContent.implicitHeight + Theme.spacingLarge * 2
+    implicitWidth: panelContent.implicitWidth + contentPadding * 2
+    implicitHeight: panelContent.implicitHeight + contentPadding * 2
     color: Theme.panelBackground
     border.color: Theme.panelBorder
     border.width: Theme.borderWidth
@@ -17,7 +18,7 @@ Rectangle {
         id: panelContent
 
         anchors.fill: parent
-        anchors.margins: Theme.spacingLarge
+        anchors.margins: panel.contentPadding
         implicitWidth: childrenRect.width
         implicitHeight: childrenRect.height
     }

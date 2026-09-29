@@ -23,7 +23,14 @@ foreach(required_text IN ITEMS
         "spacingLarge"
         "titleFontSize"
         "bodyFontSize"
-        "buttonFontSize")
+        "buttonFontSize"
+        "splitHandleWidth"
+        "workspaceMinimumWidth"
+        "workspacePreferredWidth"
+        "channelMinimumWidth"
+        "channelPreferredWidth"
+        "conversationMinimumWidth"
+        "rightPanelBreakpoint")
     string(FIND "${theme_contents}" "${required_text}" required_index)
     if(required_index EQUAL -1)
         message(FATAL_ERROR "Theme.qml is missing token contract: ${required_text}")

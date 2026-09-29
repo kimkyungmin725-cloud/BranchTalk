@@ -67,6 +67,11 @@ if(BUILD_TESTING)
     )
 
     add_test(
+        NAME branchtalk_desktop.layout
+        COMMAND branchtalk_desktop --layout-test
+    )
+
+    add_test(
         NAME branchtalk_desktop.theme_tokens
         COMMAND
             "${CMAKE_COMMAND}"
@@ -77,6 +82,7 @@ if(BUILD_TESTING)
     set_tests_properties(
         branchtalk_desktop.smoke
         branchtalk_desktop.theme
+        branchtalk_desktop.layout
         PROPERTIES
         ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QUICK_BACKEND=software"
     )
@@ -86,6 +92,7 @@ if(BUILD_TESTING)
             TEST
                 branchtalk_desktop.smoke
                 branchtalk_desktop.theme
+                branchtalk_desktop.layout
                 branchtalk_desktop.window_state
             APPEND PROPERTY ENVIRONMENT_MODIFICATION
             "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>"
