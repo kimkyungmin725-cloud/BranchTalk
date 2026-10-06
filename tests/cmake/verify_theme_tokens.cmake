@@ -14,6 +14,7 @@ foreach(required_text IN ITEMS
         "property bool darkMode"
         "windowBackground"
         "panelBackground"
+        "panelBorder"
         "textPrimary"
         "textSecondary"
         "accentHovered"

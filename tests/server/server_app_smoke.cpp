@@ -9,12 +9,12 @@
 namespace
 {
 
-    int stop_poll_cout = 0;
+    int stop_poll_count = 0;
 
     bool stop_after_first_wait() noexcept
     {
-        stop_poll_cout++;
-        return stop_poll_cout > 1;
+        ++stop_poll_count;
+        return stop_poll_count > 1;
     }
 
 } // namespace

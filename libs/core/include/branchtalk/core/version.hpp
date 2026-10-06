@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <string_view>
+
 namespace branchtalk::core
 {
 
@@ -16,4 +17,5 @@ namespace branchtalk::core
     inline constexpr std::string_view kVersionString{"0.1.0"};
 
     [[nodiscard]] std::string_view version_string() noexcept;
+
 } // namespace branchtalk::core

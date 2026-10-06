@@ -8,7 +8,6 @@ include(BranchTalkTargets)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 
-
 add_library(branchtalk_core STATIC
     libs/core/src/application_config.cpp
     libs/core/src/dependency_versions.cpp

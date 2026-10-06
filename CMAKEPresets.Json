@@ -1,67 +1,68 @@
 {
-    "version": 6,
-    "cmakeMinimumRequired": {
-        "major": 3,
-        "minor": 25,
-        "patch": 0
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "vcpkg",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_INSTALLED_DIR": "${sourceDir}/build/vcpkg_installed"
+      }
     },
-    "configurePresets": [
-        {
-            "name": "vcpkg",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                "VCPKG_INSTALLED_DIR": "${sourceDir}/build/vcpkg_installed"
-            }
-        },
-        {
-            "name": "debug",
-            "inherits": "vcpkg",
-            "displayName": "Debug",
-            "description": "Configure a Debug build in build/debug.",
-            "binaryDir": "${sourceDir}/build/debug",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        },
-        {
-            "name": "release",
-            "inherits": "vcpkg",
-            "displayName": "Release",
-            "description": "Configure a Release build in build/release.",
-            "binaryDir": "${sourceDir}/build/release",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            }
-        }
-    ],
-    "buildPresets": [
-        {
-            "name": "debug",
-            "configurePreset": "debug",
-            "configuration": "Debug"
-        },
-        {
-            "name": "release",
-            "configurePreset": "release",
-            "configuration": "Release"
-        }
-    ],
-    "testPresets": [
-        {
-            "name": "debug",
-            "configurePreset": "debug",
-            "configuration": "Debug",
-            "output": {
-                "outputOnFailure": true
-            }
-        }, {
-            "name": "release",
-            "configurePreset": "release",
-            "configuration": "Release",
-            "output": {
-                "outputOnFailure": true
-            }
-        }
-    ]
+    {
+      "name": "debug",
+      "inherits": "vcpkg",
+      "displayName": "Debug",
+      "description": "Configure a Debug build in build/debug.",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "vcpkg",
+      "displayName": "Release",
+      "description": "Configure a Release build in build/release.",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "configuration": "Release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
 }

@@ -33,7 +33,7 @@ namespace branchtalk::server
         core::logging::write_log(core::logging::LogCategory::server,
                                  core::logging::LogLevel::info,
                                  "server stopped");
-
         return EXIT_SUCCESS;
     }
+
 } // namespace branchtalk::server

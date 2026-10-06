@@ -42,7 +42,7 @@ namespace branchtalk::core
             return std::get_if<0>(&data_);
         }
 
-        [[nodiscard]] const T *value_if() const
+        [[nodiscard]] const T *value_if() const noexcept
         {
             return std::get_if<0>(&data_);
         }
@@ -52,7 +52,7 @@ namespace branchtalk::core
             return std::get_if<1>(&data_);
         }
 
-        [[nodiscard]] const Error *error_if() const
+        [[nodiscard]] const Error *error_if() const noexcept
         {
             return std::get_if<1>(&data_);
         }
@@ -60,10 +60,9 @@ namespace branchtalk::core
     private:
         template <std::size_t Index, typename Value>
         explicit Result(std::in_place_index_t<Index> index, Value &&value)
-            : data_(index, std::forward<Value>(value))
-        {
-        }
+            : data_(index, std::forward<Value>(value)) {}
 
         std::variant<T, Error> data_;
     };
+
 } // namespace branchtalk::core

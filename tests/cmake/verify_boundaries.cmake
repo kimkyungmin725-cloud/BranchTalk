@@ -6,7 +6,7 @@ foreach(required_variable IN ITEMS
         BRANCHTALK_SERVER_USES_SERVER_APP
         BRANCHTALK_SERVER_APP_EXPOSES_CORE)
     if(NOT DEFINED ${required_variable})
-        message(FATAL_ERROR "${reqeuired_variable} is required")
+        message(FATAL_ERROR "${required_variable} is required")
     endif()
 endforeach()
 
@@ -47,7 +47,7 @@ if(NOT client_sources)
 endif()
 
 foreach(client_source IN LISTS client_sources)
-    file(READ "${client_source}" client_sources)
+    file(READ "${client_source}" client_contents)
     string(REGEX MATCHALL "#[ \t]*include[^\r\n]*" client_includes "${client_contents}")
 
     foreach(client_include IN LISTS client_includes)

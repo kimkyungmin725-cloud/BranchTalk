@@ -19,4 +19,5 @@ namespace branchtalk::server
         core::ApplicationConfig config_;
         StopRequested stop_requested_;
     };
+
 } // namespace branchtalk::server

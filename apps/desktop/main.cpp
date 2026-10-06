@@ -1,3 +1,4 @@
+#include "app_view_model.hpp"
 #include "window_state_store.hpp"
 
 #include <QColor>
@@ -19,8 +20,11 @@ namespace branchtalk::desktop
     namespace
     {
 
-        bool theme_updates_immediately(QObject *root_object)
+        bool theme_updates_immediately(QObject *root_object, AppViewModel &view_model)
         {
+            view_model.showMain();
+            QCoreApplication::processEvents();
+
             auto *panel = root_object->findChild<QObject *>(QStringLiteral("conversationPanel"));
             auto *toggle = root_object->findChild<QObject *>(QStringLiteral("themeToggle"));
             if (panel == nullptr || toggle == nullptr || root_object->property("darkMode").toBool())
@@ -47,8 +51,11 @@ namespace branchtalk::desktop
                    initial_button_text != updated_button_text;
         }
 
-        bool layout_updates_stably(QObject *root_object)
+        bool layout_updates_stably(QObject *root_object, AppViewModel &view_model)
         {
+            view_model.showMain();
+            QCoreApplication::processEvents();
+
             auto *workspace_panel =
                 root_object->findChild<QObject *>(QStringLiteral("workspacePanel"));
             auto *channel_panel = root_object->findChild<QObject *>(QStringLiteral("channelPanel"));
@@ -128,6 +135,80 @@ namespace branchtalk::desktop
 
             return layout_valid;
         }
+
+        bool navigation_follows_view_model(QObject *root_object, AppViewModel &view_model)
+        {
+            auto *login_view = root_object->findChild<QObject *>(QStringLiteral("loginView"));
+            auto *main_view = root_object->findChild<QObject *>(QStringLiteral("mainView"));
+            auto *settings_view = root_object->findChild<QObject *>(QStringLiteral("settingsView"));
+            auto *enter_main_action =
+                root_object->findChild<QObject *>(QStringLiteral("enterMainAction"));
+            auto *open_settings_action =
+                root_object->findChild<QObject *>(QStringLiteral("openSettingsAction"));
+            auto *settings_back_action =
+                root_object->findChild<QObject *>(QStringLiteral("settingsBackAction"));
+            auto *return_to_login_action =
+                root_object->findChild<QObject *>(QStringLiteral("returnToLoginAction"));
+
+            if (login_view == nullptr || main_view == nullptr || settings_view == nullptr ||
+                enter_main_action == nullptr || open_settings_action == nullptr ||
+                settings_back_action == nullptr || return_to_login_action == nullptr ||
+                root_object->property("appViewModel").value<QObject *>() != &view_model)
+            {
+                return false;
+            }
+
+            const auto visible = [](const QObject *view)
+            {
+                return view->property("visible").toBool();
+            };
+            const auto only_view_is_visible =
+                [&visible, login_view, main_view, settings_view](const QObject *expected)
+            {
+                return visible(login_view) == (expected == login_view) &&
+                       visible(main_view) == (expected == main_view) &&
+                       visible(settings_view) == (expected == settings_view);
+            };
+            const auto click = [](QObject *action)
+            {
+                const bool invoked =
+                    QMetaObject::invokeMethod(action, "clicked", Qt::DirectConnection);
+                QCoreApplication::processEvents();
+                return invoked;
+            };
+
+            if (view_model.currentScreen() != AppViewModel::LoginScreen ||
+                !only_view_is_visible(login_view))
+            {
+                return false;
+            }
+
+            if (!click(enter_main_action) || view_model.currentScreen() != AppViewModel::MainScreen ||
+                !only_view_is_visible(main_view))
+            {
+                return false;
+            }
+
+            if (!click(open_settings_action) ||
+                view_model.currentScreen() != AppViewModel::SettingsScreen ||
+                !only_view_is_visible(settings_view))
+            {
+                return false;
+            }
+
+            if (!click(settings_back_action) ||
+                view_model.currentScreen() != AppViewModel::MainScreen ||
+                !only_view_is_visible(main_view) || !click(open_settings_action) ||
+                !only_view_is_visible(settings_view))
+            {
+                return false;
+            }
+
+            return click(return_to_login_action) &&
+                   view_model.currentScreen() == AppViewModel::LoginScreen &&
+                   only_view_is_visible(login_view);
+        }
+
     } // namespace
 
     int run(int argc, char *argv[])
@@ -139,7 +220,9 @@ namespace branchtalk::desktop
         const bool smoke_test = application.arguments().contains(QStringLiteral("--smoke-test"));
         const bool theme_test = application.arguments().contains(QStringLiteral("--theme-test"));
         const bool layout_test = application.arguments().contains(QStringLiteral("--layout-test"));
-        const bool test_mode = smoke_test || theme_test || layout_test;
+        const bool navigation_test =
+            application.arguments().contains(QStringLiteral("--navigation-test"));
+        const bool test_mode = smoke_test || theme_test || layout_test || navigation_test;
         QSettings settings;
         WindowStateStore window_state_store{settings};
 
@@ -149,20 +232,22 @@ namespace branchtalk::desktop
             available_screens.append(screen->availableGeometry());
         }
 
+        AppViewModel view_model;
         QQmlApplicationEngine engine;
+        QVariantMap initial_properties;
+        initial_properties.insert(QStringLiteral("appViewModel"), QVariant::fromValue(&view_model));
 
         if (!test_mode)
         {
             if (const auto restored_state = window_state_store.restore(available_screens))
             {
-                QVariantMap initial_properties;
                 initial_properties.insert(QStringLiteral("x"), restored_state->x);
                 initial_properties.insert(QStringLiteral("y"), restored_state->y);
                 initial_properties.insert(QStringLiteral("width"), restored_state->width);
                 initial_properties.insert(QStringLiteral("height"), restored_state->height);
-                engine.setInitialProperties(initial_properties);
             }
         }
+        engine.setInitialProperties(initial_properties);
 
         QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &application, []
                          { QCoreApplication::exit(EXIT_FAILURE); }, Qt::QueuedConnection);
@@ -195,15 +280,24 @@ namespace branchtalk::desktop
                              });
         }
 
-        if (layout_test)
+        if (navigation_test)
         {
-            const bool updated = layout_updates_stably(engine.rootObjects().constFirst());
+            const bool updated =
+                navigation_follows_view_model(engine.rootObjects().constFirst(), view_model);
+            QTimer::singleShot(0, &application, [updated]
+                               { QCoreApplication::exit(updated ? EXIT_SUCCESS : EXIT_FAILURE); });
+        }
+        else if (layout_test)
+        {
+            const bool updated =
+                layout_updates_stably(engine.rootObjects().constFirst(), view_model);
             QTimer::singleShot(0, &application, [updated]
                                { QCoreApplication::exit(updated ? EXIT_SUCCESS : EXIT_FAILURE); });
         }
         else if (theme_test)
         {
-            const bool updated = theme_updates_immediately(engine.rootObjects().constFirst());
+            const bool updated =
+                theme_updates_immediately(engine.rootObjects().constFirst(), view_model);
             QTimer::singleShot(0, &application, [updated]
                                { QCoreApplication::exit(updated ? EXIT_SUCCESS : EXIT_FAILURE); });
         }
@@ -214,7 +308,8 @@ namespace branchtalk::desktop
 
         return application.exec();
     }
-} // namespace branchtalk::exec();
+
+} // namespace branchtalk::desktop
 
 int main(int argc, char *argv[])
 {

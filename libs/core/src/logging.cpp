@@ -12,6 +12,7 @@ namespace branchtalk::core::logging
 {
     namespace
     {
+
         constexpr std::string_view kLogPattern{"[%l] [%n] %v"};
         constexpr std::string_view kRedacted{"<redacted>"};
         constexpr std::array kCategories{
@@ -67,6 +68,7 @@ namespace branchtalk::core::logging
             const std::scoped_lock lock{logging_mutex};
             return logger_for_unlocked(category);
         }
+
     } // namespace
 
     SensitiveValue::SensitiveValue(std::string_view) noexcept {}
@@ -123,4 +125,5 @@ namespace branchtalk::core::logging
     {
         logger_for(category)->log(to_spdlog_level(level), "{}={}", field_name, value.redacted());
     }
+
 } // namespace branchtalk::core::logging

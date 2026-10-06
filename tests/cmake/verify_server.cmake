@@ -33,15 +33,12 @@ execute_process(
 
 if(NOT invalid_config_result EQUAL 1)
     message(FATAL_ERROR
-        "Invalid configuration returned ${invalid_config_result}, expeceted 1:\n"
+        "Invalid configuration returned ${invalid_config_result}, expected 1:\n"
         "${invalid_config_stdout}\n${invalid_config_stderr}")
 endif()
 
 set(invalid_config_output "${invalid_config_stdout}\n${invalid_config_stderr}")
-foreach(expected_message IN ITEMS
-    "[error] [server] server startup error"
-    "log_level"
-)
+foreach(expected_message IN ITEMS "[error] [server] server startup error" "log_level")
     string(FIND "${invalid_config_output}" "${expected_message}" message_index)
     if(message_index EQUAL -1)
         message(FATAL_ERROR "Missing invalid configuration output: ${expected_message}")

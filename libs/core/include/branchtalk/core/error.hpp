@@ -18,4 +18,5 @@ namespace branchtalk::core
         ErrorCode code;
         std::string message;
     };
+
 } // namespace branchtalk::core

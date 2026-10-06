@@ -41,7 +41,7 @@ QtObject {
     readonly property int conversationMinimumWidth: 320
     readonly property int rightPanelBreakpoint: 760
 
-     function toggleMode() {
+    function toggleMode() {
         darkMode = !darkMode;
     }
 }

@@ -72,7 +72,6 @@ namespace
                 return false;
             }
         }
-
         return true;
     }
 
@@ -82,6 +81,7 @@ namespace
                                 ErrorCode::not_found,
                                 "not found");
     }
+
 } // namespace
 
 int main(int argc, char *argv[])

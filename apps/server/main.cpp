@@ -17,6 +17,7 @@ namespace branchtalk::server
 {
     namespace
     {
+
         struct ServerOptions
         {
             core::ApplicationConfig config;
@@ -120,6 +121,7 @@ namespace branchtalk::server
                                      core::logging::LogLevel::error,
                                      log_message);
         }
+
     } // namespace
 
     int run(int argc, char *argv[])
@@ -147,10 +149,10 @@ namespace branchtalk::server
         {
             smoke_shutdown = std::jthread([]
                                           {
-                std::this_thread::sleep_for(std::chrono::milliseconds{25});
-                if (std::raise(SIGTERM) != 0) {
-                    shutdown_requested.test_and_set(std::memory_order_relaxed);
-                } });
+            std::this_thread::sleep_for(std::chrono::milliseconds{25});
+            if (std::raise(SIGTERM) != 0) {
+                shutdown_requested.test_and_set(std::memory_order_relaxed);
+            } });
         }
 
         return application.run();

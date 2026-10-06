@@ -40,11 +40,12 @@ namespace branchtalk::core::logging
     void initialize_logging(LoggingSettings settings);
 
     [[nodiscard]] std::string_view category_name(LogCategory category) noexcept;
-    [[nodiscard]] bool is_log_enabled(LogCategory cateogry, LogLevel level);
+    [[nodiscard]] bool is_log_enabled(LogCategory category, LogLevel level);
 
     void write_log(LogCategory category, LogLevel level, std::string_view message);
     void write_sensitive(LogCategory category,
                          LogLevel level,
                          std::string_view field_name,
                          const SensitiveValue &value);
+
 } // namespace branchtalk::core::logging

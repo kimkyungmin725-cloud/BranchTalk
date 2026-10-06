@@ -4,6 +4,7 @@
 
 namespace
 {
+
     bool categories_have_stable_names()
     {
         using branchtalk::core::logging::category_name;
@@ -29,6 +30,7 @@ namespace
 
         return info_setting_applied && debug_setting_applied;
     }
+
 } // namespace
 
 int main()
