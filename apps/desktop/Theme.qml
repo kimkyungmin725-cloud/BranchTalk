@@ -42,6 +42,6 @@ QtObject {
     readonly property int rightPanelBreakpoint: 760
 
     function toggleMode() {
-        darkMode = !darkMode;
+        darkMode = !darkMode
     }
 }

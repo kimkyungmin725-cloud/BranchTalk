@@ -5,6 +5,7 @@ ApplicationWindow {
     id: window
 
     required property AppViewModel appViewModel
+    required property WorkspaceListModel workspaceModel
 
     objectName: "mainWindow"
     readonly property bool darkMode: Theme.darkMode
@@ -12,7 +13,6 @@ ApplicationWindow {
     readonly property real workspaceMinimumWidth: Theme.workspaceMinimumWidth
     readonly property real channelMinimumWidth: Theme.channelMinimumWidth
     readonly property real conversationMinimumWidth: Theme.conversationMinimumWidth
-    readonly property var workspaces: ["BT", "DEV", "OPS"]
     readonly property var channels: ["general", "product", "support"]
     readonly property var messages: [qsTr("Mina: The three-pane shell is ready."), qsTr("Alex: Resize the window to check the compact layout.")]
 
@@ -96,35 +96,75 @@ ApplicationWindow {
                 SplitView.minimumWidth: Theme.workspaceMinimumWidth
                 SplitView.preferredWidth: Theme.workspacePreferredWidth
 
-                Column {
+                Text {
+                    id: workspaceTitle
+
+                    anchors.top: parent.top
                     width: parent.width
-                    spacing: Theme.spacingSmall
+                    text: qsTr("Workspaces")
+                    color: Theme.textSecondary
+                    font.pixelSize: Theme.bodyFontSize
+                    horizontalAlignment: Text.AlignHCenter
+                    elide: Text.ElideRight
+                }
+
+                Item {
+                    anchors.top: workspaceTitle.bottom
+                    anchors.topMargin: Theme.spacingSmall
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
 
                     Text {
+                        id: workspaceLoadingState
+
+                        objectName: "workspaceLoadingState"
+                        anchors.centerIn: parent
                         width: parent.width
-                        text: qsTr("Workspaces")
+                        visible: window.workspaceModel.loading
+                        text: qsTr("Loading workspaces…")
                         color: Theme.textSecondary
                         font.pixelSize: Theme.bodyFontSize
                         horizontalAlignment: Text.AlignHCenter
-                        elide: Text.ElideRight
+                        wrapMode: Text.WordWrap
                     }
 
-                    AppButton {
-                        objectName: "workspaceAction"
+                    Text {
+                        id: workspaceEmptyState
+
+                        objectName: "workspaceEmptyState"
+                        anchors.centerIn: parent
                         width: parent.width
-                        compact: true
-                        text: window.workspaces[0]
+                        visible: !window.workspaceModel.loading && window.workspaceModel.empty
+                        text: qsTr("No workspaces")
+                        color: Theme.textSecondary
+                        font.pixelSize: Theme.bodyFontSize
+                        horizontalAlignment: Text.AlignHCenter
+                        wrapMode: Text.WordWrap
                     }
 
-                    Repeater {
-                        model: window.workspaces.slice(1)
+                    ListView {
+                        id: workspaceList
 
-                        AppButton {
-                            required property string modelData
+                        objectName: "workspaceList"
+                        anchors.fill: parent
+                        visible: !window.workspaceModel.loading && !window.workspaceModel.empty
+                        clip: true
+                        spacing: Theme.spacingSmall
+                        model: window.workspaceModel
 
-                            width: parent.width
+                        delegate: AppButton {
+                            required property string stableId
+                            required property string name
+                            required property bool selected
+                            required property int unreadCount
+
+                            objectName: "workspaceAction-" + stableId
+                            width: ListView.view.width
                             compact: true
-                            text: modelData
+                            active: selected
+                            text: unreadCount > 0 ? name + " · " + unreadCount : name
+                            onClicked: window.workspaceModel.selectWorkspace(stableId)
                         }
                     }
                 }

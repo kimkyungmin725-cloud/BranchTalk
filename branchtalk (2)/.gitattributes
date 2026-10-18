@@ -1,0 +1,15 @@
+# Windows와 macOS에서 회차별 diff가 줄바꿈 차이로 오염되지 않게 한다.
+* text=auto eol=lf
+
+# Windows 전용 명령 스크립트만 CRLF를 유지한다.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 바이너리 파일은 텍스트 변환 대상에서 제외한다.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.pdf binary

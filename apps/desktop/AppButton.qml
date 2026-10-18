@@ -5,8 +5,10 @@ Button {
     id: control
 
     property bool compact: false
+    property bool active: false
 
-    implicitWidth: Math.max(compact ? Theme.controlHeight : Theme.buttonMinimumWidth, contentItem.implicitWidth + leftPadding + rightPadding)
+    implicitWidth: Math.max(compact ? Theme.controlHeight : Theme.buttonMinimumWidth,
+                            contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Theme.controlHeight
     leftPadding: compact ? Theme.spacingSmall : Theme.spacingLarge
     rightPadding: compact ? Theme.spacingSmall : Theme.spacingLarge
@@ -25,7 +27,10 @@ Button {
     }
 
     background: Rectangle {
-        color: !control.enabled ? Theme.disabledBackground : control.down ? Theme.accentPressed : control.hovered ? Theme.accentHovered : Theme.accent
+        color: !control.enabled ? Theme.disabledBackground
+                                : control.down || control.active ? Theme.accentPressed
+                                                                 : control.hovered ? Theme.accentHovered
+                                                                                   : Theme.accent
         radius: Theme.buttonRadius
     }
 }

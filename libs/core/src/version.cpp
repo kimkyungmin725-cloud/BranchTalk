@@ -1,9 +1,11 @@
 #include <branchtalk/core/version.hpp>
 
-namespace branchtalk::core {
+namespace branchtalk::core
+{
 
-std::string_view version_string() noexcept {
-    return kVersionString;
-}
+    std::string_view version_string() noexcept
+    {
+        return kVersionString;
+    }
 
-}  // namespace branchtalk::core
+} // namespace branchtalk::core

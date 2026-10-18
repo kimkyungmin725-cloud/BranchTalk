@@ -2,39 +2,35 @@
 
 #include <string_view>
 
-namespace
-{
+namespace {
 
-    bool categories_have_stable_names()
-    {
-        using branchtalk::core::logging::category_name;
-        using branchtalk::core::logging::LogCategory;
+bool categories_have_stable_names() {
+    using branchtalk::core::logging::LogCategory;
+    using branchtalk::core::logging::category_name;
 
-        return category_name(LogCategory::client) == "client" &&
-               category_name(LogCategory::server) == "server" &&
-               category_name(LogCategory::database) == "database" &&
-               category_name(LogCategory::network) == "network";
-    }
+    return category_name(LogCategory::client) == "client" &&
+           category_name(LogCategory::server) == "server" &&
+           category_name(LogCategory::database) == "database" &&
+           category_name(LogCategory::network) == "network";
+}
 
-    bool level_setting_can_be_changed()
-    {
-        using namespace branchtalk::core::logging;
+bool level_setting_can_be_changed() {
+    using namespace branchtalk::core::logging;
 
-        initialize_logging(LoggingSettings{LogLevel::info});
-        const bool info_setting_applied =
-            !is_log_enabled(LogCategory::client, LogLevel::debug) &&
-            is_log_enabled(LogCategory::client, LogLevel::info);
+    initialize_logging(LoggingSettings{LogLevel::info});
+    const bool info_setting_applied =
+        !is_log_enabled(LogCategory::client, LogLevel::debug) &&
+        is_log_enabled(LogCategory::client, LogLevel::info);
 
-        initialize_logging(LoggingSettings{LogLevel::debug});
-        const bool debug_setting_applied = is_log_enabled(LogCategory::client, LogLevel::debug);
+    initialize_logging(LoggingSettings{LogLevel::debug});
+    const bool debug_setting_applied = is_log_enabled(LogCategory::client, LogLevel::debug);
 
-        return info_setting_applied && debug_setting_applied;
-    }
+    return info_setting_applied && debug_setting_applied;
+}
 
-} // namespace
+}  // namespace
 
-int main()
-{
+int main() {
     using namespace branchtalk::core::logging;
 
     initialize_logging(LoggingSettings{LogLevel::debug});

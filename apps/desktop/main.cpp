@@ -1,5 +1,6 @@
 #include "app_view_model.hpp"
 #include "window_state_store.hpp"
+#include "workspace_list_model.hpp"
 
 #include <QColor>
 #include <QCoreApplication>
@@ -7,6 +8,7 @@
 #include <QGuiApplication>
 #include <QPointer>
 #include <QQmlApplicationEngine>
+#include <QQuickItem>
 #include <QScreen>
 #include <QSettings>
 #include <QTimer>
@@ -61,12 +63,12 @@ namespace branchtalk::desktop
             auto *channel_panel = root_object->findChild<QObject *>(QStringLiteral("channelPanel"));
             auto *conversation_panel =
                 root_object->findChild<QObject *>(QStringLiteral("conversationPanel"));
-            auto *workspace_action =
-                root_object->findChild<QObject *>(QStringLiteral("workspaceAction"));
+            auto *workspace_list =
+                root_object->findChild<QObject *>(QStringLiteral("workspaceList"));
             auto *channel_action = root_object->findChild<QObject *>(QStringLiteral("channelAction"));
 
             if (workspace_panel == nullptr || channel_panel == nullptr ||
-                conversation_panel == nullptr || workspace_action == nullptr ||
+                conversation_panel == nullptr || workspace_list == nullptr ||
                 channel_action == nullptr)
             {
                 return false;
@@ -106,8 +108,9 @@ namespace branchtalk::desktop
                 channel_panel->property("visible").toBool() &&
                 width_of(workspace_panel) >= workspace_minimum &&
                 width_of(channel_panel) >= channel_minimum &&
-                workspace_action->property("visible").toBool() &&
-                workspace_action->property("enabled").toBool() &&
+                workspace_list->property("visible").toBool() &&
+                workspace_list->property("enabled").toBool() &&
+                workspace_list->property("count").toInt() > 0 &&
                 channel_action->property("visible").toBool() &&
                 channel_action->property("enabled").toBool();
 
@@ -209,6 +212,177 @@ namespace branchtalk::desktop
                    only_view_is_visible(login_view);
         }
 
+        bool workspace_sidebar_updates(QObject *root_object,
+                                       WorkspaceListModel &workspace_model)
+        {
+            const auto failed = [](const char *stage)
+            {
+                qWarning() << "workspace sidebar verification failed" << stage;
+                return false;
+            };
+
+            QCoreApplication::processEvents();
+
+            auto *workspace_list =
+                root_object->findChild<QObject *>(QStringLiteral("workspaceList"));
+            auto *loading_state =
+                root_object->findChild<QObject *>(QStringLiteral("workspaceLoadingState"));
+            auto *empty_state =
+                root_object->findChild<QObject *>(QStringLiteral("workspaceEmptyState"));
+            if (workspace_list == nullptr || loading_state == nullptr || empty_state == nullptr ||
+                root_object->property("workspaceModel").value<QObject *>() != &workspace_model ||
+                workspace_model.selectedWorkspaceId() != QStringLiteral("workspace-bt") ||
+                workspace_list->property("count").toInt() != 3 ||
+                !workspace_list->property("visible").toBool() ||
+                loading_state->property("visible").toBool() ||
+                empty_state->property("visible").toBool())
+            {
+                qWarning() << "workspace sidebar initial state"
+                           << "list" << workspace_list
+                           << "loading" << loading_state
+                           << "empty" << empty_state
+                           << "selected" << workspace_model.selectedWorkspaceId()
+                           << "count"
+                           << (workspace_list == nullptr ? -1
+                                                         : workspace_list->property("count").toInt());
+                return failed("initial state");
+            }
+
+            if (!QMetaObject::invokeMethod(workspace_list, "forceLayout", Qt::DirectConnection))
+            {
+                return failed("force initial list layout");
+            }
+            QCoreApplication::processEvents();
+
+            const auto item_at = [workspace_list](int row) -> QObject *
+            {
+                QQuickItem *item = nullptr;
+                const bool invoked =
+                    QMetaObject::invokeMethod(workspace_list,
+                                              "itemAtIndex",
+                                              Qt::DirectConnection,
+                                              Q_RETURN_ARG(QQuickItem *, item),
+                                              Q_ARG(int, row));
+                return invoked ? item : nullptr;
+            };
+            const auto click = [](QObject *action)
+            {
+                if (action == nullptr ||
+                    !QMetaObject::invokeMethod(action, "clicked", Qt::DirectConnection))
+                {
+                    return false;
+                }
+                QCoreApplication::processEvents();
+                return true;
+            };
+
+            auto *bt_action = item_at(0);
+            auto *dev_action = item_at(1);
+            if (bt_action == nullptr || dev_action == nullptr ||
+                !bt_action->property("active").toBool() ||
+                dev_action->property("active").toBool() ||
+                dev_action->property("text").toString() != QStringLiteral("DEV · 4"))
+            {
+                qWarning() << "workspace delegates"
+                           << "bt" << bt_action
+                           << "dev" << dev_action
+                           << "bt active"
+                           << (bt_action == nullptr ? false : bt_action->property("active").toBool())
+                           << "dev active"
+                           << (dev_action == nullptr ? false
+                                                     : dev_action->property("active").toBool())
+                           << "dev text"
+                           << (dev_action == nullptr ? QString{}
+                                                     : dev_action->property("text").toString());
+                return failed("initial delegates");
+            }
+            if (!click(dev_action) ||
+                workspace_model.selectedWorkspaceId() != QStringLiteral("workspace-dev") ||
+                !dev_action->property("active").toBool())
+            {
+                qWarning() << "workspace selection"
+                           << "selected" << workspace_model.selectedWorkspaceId()
+                           << "dev active" << dev_action->property("active").toBool();
+                return failed("selection");
+            }
+
+            if (!workspace_model.addWorkspace(QStringLiteral("workspace-qa"),
+                                              QStringLiteral("QA"),
+                                              7))
+            {
+                return failed("add workspace");
+            }
+            QCoreApplication::processEvents();
+            QMetaObject::invokeMethod(workspace_list, "forceLayout", Qt::DirectConnection);
+            QCoreApplication::processEvents();
+            auto *qa_action = item_at(3);
+            if (workspace_list->property("count").toInt() != 4 || qa_action == nullptr ||
+                qa_action->property("text").toString() != QStringLiteral("QA · 7") ||
+                !workspace_model.setUnreadCount(QStringLiteral("workspace-qa"), 2))
+            {
+                return failed("inserted delegate");
+            }
+            QCoreApplication::processEvents();
+            if (qa_action->property("text").toString() != QStringLiteral("QA · 2") ||
+                !workspace_model.removeWorkspace(QStringLiteral("workspace-bt")))
+            {
+                return failed("unread update or removal");
+            }
+            QCoreApplication::processEvents();
+            QMetaObject::invokeMethod(workspace_list, "forceLayout", Qt::DirectConnection);
+            QCoreApplication::processEvents();
+            dev_action = item_at(0);
+            if (workspace_list->property("count").toInt() != 3 || dev_action == nullptr ||
+                dev_action->property("stableId").toString() != QStringLiteral("workspace-dev") ||
+                workspace_model.selectedWorkspaceId() != QStringLiteral("workspace-dev") ||
+                !dev_action->property("active").toBool())
+            {
+                qWarning() << "workspace shifted selection"
+                           << "count" << workspace_list->property("count")
+                           << "item" << dev_action
+                           << "item id"
+                           << (dev_action == nullptr ? QString{}
+                                                     : dev_action->property("stableId").toString())
+                           << "selected" << workspace_model.selectedWorkspaceId()
+                           << "active"
+                           << (dev_action == nullptr ? false
+                                                     : dev_action->property("active").toBool());
+                return failed("stable selection after row shift");
+            }
+
+            workspace_model.setLoading(true);
+            QCoreApplication::processEvents();
+            if (!loading_state->property("visible").toBool() ||
+                workspace_list->property("visible").toBool() ||
+                empty_state->property("visible").toBool())
+            {
+                return failed("loading state");
+            }
+
+            workspace_model.setLoading(false);
+            QCoreApplication::processEvents();
+            if (!workspace_list->property("visible").toBool() ||
+                loading_state->property("visible").toBool())
+            {
+                return failed("loaded state");
+            }
+
+            if (!workspace_model.removeWorkspace(QStringLiteral("workspace-ops")) ||
+                !workspace_model.removeWorkspace(QStringLiteral("workspace-qa")) ||
+                !workspace_model.removeWorkspace(QStringLiteral("workspace-dev")))
+            {
+                return failed("remove all workspaces");
+            }
+            QCoreApplication::processEvents();
+            const bool empty_state_valid =
+                workspace_model.empty() && workspace_model.selectedWorkspaceId().isEmpty() &&
+                workspace_list->property("count").toInt() == 0 &&
+                !workspace_list->property("visible").toBool() &&
+                !loading_state->property("visible").toBool() &&
+                empty_state->property("visible").toBool();
+            return empty_state_valid ? true : failed("empty state");
+        }
+
     } // namespace
 
     int run(int argc, char *argv[])
@@ -222,7 +396,10 @@ namespace branchtalk::desktop
         const bool layout_test = application.arguments().contains(QStringLiteral("--layout-test"));
         const bool navigation_test =
             application.arguments().contains(QStringLiteral("--navigation-test"));
-        const bool test_mode = smoke_test || theme_test || layout_test || navigation_test;
+        const bool workspace_model_test =
+            application.arguments().contains(QStringLiteral("--workspace-model-test"));
+        const bool test_mode =
+            smoke_test || theme_test || layout_test || navigation_test || workspace_model_test;
         QSettings settings;
         WindowStateStore window_state_store{settings};
 
@@ -233,9 +410,23 @@ namespace branchtalk::desktop
         }
 
         AppViewModel view_model;
+        WorkspaceListModel workspace_model;
+        if (!workspace_model.addWorkspace(
+                QStringLiteral("workspace-bt"), QStringLiteral("BT"), 0) ||
+            !workspace_model.addWorkspace(
+                QStringLiteral("workspace-dev"), QStringLiteral("DEV"), 4) ||
+            !workspace_model.addWorkspace(
+                QStringLiteral("workspace-ops"), QStringLiteral("OPS"), 1) ||
+            !workspace_model.selectWorkspace(QStringLiteral("workspace-bt")))
+        {
+            return EXIT_FAILURE;
+        }
+
         QQmlApplicationEngine engine;
         QVariantMap initial_properties;
         initial_properties.insert(QStringLiteral("appViewModel"), QVariant::fromValue(&view_model));
+        initial_properties.insert(QStringLiteral("workspaceModel"),
+                                  QVariant::fromValue(static_cast<QObject *>(&workspace_model)));
 
         if (!test_mode)
         {
@@ -280,7 +471,16 @@ namespace branchtalk::desktop
                              });
         }
 
-        if (navigation_test)
+        if (workspace_model_test)
+        {
+            QObject *root_object = engine.rootObjects().constFirst();
+            view_model.showMain();
+            QTimer::singleShot(0, &application, [&application, root_object, &workspace_model]
+                               {
+            const bool updated = workspace_sidebar_updates(root_object, workspace_model);
+            QCoreApplication::exit(updated ? EXIT_SUCCESS : EXIT_FAILURE); });
+        }
+        else if (navigation_test)
         {
             const bool updated =
                 navigation_follows_view_model(engine.rootObjects().constFirst(), view_model);
