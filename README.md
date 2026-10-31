@@ -22,6 +22,8 @@ project/
 │  │  ├─ CMakeLists.txt
 │  │  ├─ app_view_model.cpp
 │  │  ├─ app_view_model.hpp
+│  │  ├─ channel_list_model.cpp
+│  │  ├─ channel_list_model.hpp
 │  │  ├─ main.cpp
 │  │  ├─ Main.qml
 │  │  ├─ Theme.qml
@@ -62,7 +64,8 @@ project/
    │  ├─ verify_server.cmake
    │  ├─ verify_theme_tokens.cmake
    │  ├─ verify_view_model_boundary.cmake
-   │  └─ verify_workspace_sidebar.cmake
+   │  ├─ verify_workspace_sidebar.cmake
+   │  └─ verify_channel_sidebar.cmake
    ├─ core/
    │  ├─ application_config_smoke.cpp
    │  ├─ dependency_versions_smoke.cpp
@@ -71,6 +74,7 @@ project/
    │  └─ result_smoke.cpp
    ├─ desktop/
    │  ├─ app_view_model_smoke.cpp
+   │  ├─ channel_list_model_smoke.cpp
    │  ├─ window_state_store_smoke.cpp
    │  └─ workspace_list_model_smoke.cpp
    ├─ server/
@@ -85,7 +89,7 @@ project/
 | 영역 | 네임스페이스 | 책임 | 허용 의존성 |
 |---|---|---|---|
 | `apps/client` | `branchtalk::client` | 데스크톱 클라이언트 진입점 | C++ 표준 라이브러리, `libs/core` |
-| `apps/desktop` | `branchtalk::desktop` | 선택적 Qt Quick 데스크톱 진입점, 화면·워크스페이스 목록·창 상태, QML 리소스 | `libs/core`, Qt Quick Controls |
+| `apps/desktop` | `branchtalk::desktop` | 선택적 Qt Quick 데스크톱 진입점, 화면·워크스페이스·채널 탐색·창 상태, QML 리소스 | `libs/core`, Qt Quick Controls |
 | `apps/server` | `branchtalk::server` | 자체 호스팅 서버 진입점과 수명주기 | C++ 표준 라이브러리, `BranchTalk::server_app`, `libs/core` |
 | `libs/core` | `branchtalk::core` | 클라이언트와 서버가 공유하는 제품 기본 계약 | C++ 표준 라이브러리, nlohmann-json, spdlog |
 
@@ -120,7 +124,7 @@ server app target이 `BranchTalk::core` 사용 요구사항을 공개한다.
 | `branchtalk_core` | 정적 라이브러리 | `libs/core/src/*.cpp` | C++ 표준 라이브러리, nlohmann-json, spdlog |
 | `branchtalk_client` | 실행 파일 | `apps/client/main.cpp` | `BranchTalk::core` |
 | `branchtalk_desktop_window_state` | 정적 라이브러리 | `window_state_store.cpp` | `Qt6::Core` |
-| `branchtalk_desktop` | 선택적 Qt Quick 실행 파일 | `apps/desktop/main.cpp`, `AppViewModel`, `WorkspaceListModel`, QML module | `BranchTalk::core`, 창 상태 라이브러리, `Qt6::Quick`, `Qt6::QuickControls2` |
+| `branchtalk_desktop` | 선택적 Qt Quick 실행 파일 | `apps/desktop/main.cpp`, `AppViewModel`, `WorkspaceListModel`, `ChannelListModel`, QML module | `BranchTalk::core`, 창 상태 라이브러리, `Qt6::Quick`, `Qt6::QuickControls2` |
 | `branchtalk_server_app` | 정적 라이브러리 | `apps/server/src/server_app.cpp` | `BranchTalk::core` |
 | `branchtalk_server` | 실행 파일 | `apps/server/main.cpp` | `BranchTalk::server_app` |
 
@@ -147,7 +151,7 @@ ctest --preset debug -R branchtalk_desktop
 ```
 
 `qt_add_qml_module()`은 `Main.qml`, `Theme.qml`, `AppButton.qml`, `AppPanel.qml`과 C++
-`AppViewModel`, `WorkspaceListModel` type을 `BranchTalk` QML module에 포함한다. 데스크톱 실행 파일은 이 module의
+`AppViewModel`, `WorkspaceListModel`, `ChannelListModel` type을 `BranchTalk` QML module에 포함한다. 데스크톱 실행 파일은 이 module의
 `Main` type을 읽어 기본 800×600, 최소 640×480인 `ApplicationWindow`를 연다. smoke test는
 같은 리소스를 offscreen platform에서 읽고 root object가 만들어지는지 확인한 뒤 종료한다.
 
@@ -178,8 +182,8 @@ literal이 들어오면 실패한다.
 
 창 너비가 760보다 작아지면 대화 영역을 접고 채널 열이 남은 너비를 채운다. 워크스페이스와
 채널 동작은 계속 표시되어 최소 창 너비에서도 핵심 탐색을 사용할 수 있다. 다시 넓어지면 대화
-영역과 기존 분할 크기가 복원된다. 워크스페이스 열은 주입된 C++ list model을 사용하고,
-채널·메시지 표시 내용은 QML 임시 배열에서 가져온다.
+영역과 기존 분할 크기가 복원된다. 워크스페이스와 채널 열은 주입된 C++ list model을 사용하고, 
+메시지 표시 내용은 QML 임시 배열에서 가져온다.
 
 `branchtalk_desktop.layout` test는 창 너비를 1000→700→1000으로 바꾸며 세 영역의 최소 너비,
 좁은 창에서의 대화 영역 접힘, 핵심 동작의 표시·활성 상태, 다시 넓혔을 때 분할 크기 복원을
@@ -236,6 +240,36 @@ WorkspaceListModel rows·roles
 test는 실제 QML delegate의 추가·삭제·선택·읽지 않음 표시와 loading·empty 전환을 offscreen에서
 검사한다. `branchtalk_desktop.workspace_sidebar_contract` test는 임시 QML 워크스페이스 배열이
 다시 생기지 않고 주입된 모델의 role과 명령을 사용하는지 확인한다.
+
+## 채널 사이드바 모델
+
+`ChannelListModel`은 채널의 stable ID, 이름, text·voice 종류, 선택 여부, 읽지 않음 수, 
+음소거 여부와 검색 일치 여부를 QML role로 제공한다. desktop 진입점이 네 임시 채널을 넣은 
+model instance를 소유하고, `Main`의 required property로 주입한다. QML은 별도 채널 배열을 
+소유하지 않는다.
+
+채널 검색어가 바뀌면 model은 reset하지 않고 기존 모든 행의 `matchesSearch` role만 
+`dataChanged`로 갱신한다. 읽지 않음과 음소거 변경은 해당 행의 해당 role만 알리고, 선택 
+변경은 이전·새 행의 `selected` role만 알린다. 같은 값은 notification을 반복하지 않는다.
+
+```text
+채널 delegate 클릭
+  → selectChannel(stableId)
+  → 이전·새 selected role 갱신
+  → 선택 표시와 대화 제목 binding 갱신
+```
+
+채널 panel은 이름 검색 input, 검색 결과 `ListView`, 결과 없음 문구와 전체 목록 접기 동작을 
+제공한다. delegate는 종류에 따라 text·voice prefix를 표시하고 읽지 않음 수와 음소거 상태를 
+이름 옆에 붙인다. 대화 영역 제목은 `selectedChannelName`과 `selectedChannelKind`를 읽으므로 
+채널 선택과 같은 notification 흐름에서 바뀐다.
+
+`branchtalk_desktop.channel_list_model` test는 role과 검색·선택·읽지 않음·음소거 변경이 
+`modelReset` 없이 필요한 `dataChanged`만 보내는지 검사한다.
+`branchtalk_desktop.channel_sidebar` test는 실제 QML에서 검색, 결과 없음, 접기·펼치기, 
+delegate 선택과 대화 제목 변경을 offscreen에서 검사한다.
+`branchtalk_desktop.channel_sidebar_contract` test는 QML 임시 채널 배열과 model reset의 
+재도입을 막고 주입된 model의 role·명령 binding을 확인한다.
 
 ## 데스크톱 창 상태
 
@@ -373,7 +407,8 @@ release 구성은 세 명령의 preset 이름을 `release`로 바꿔 실행한�
 
 테스트는 client 시작 출력과 server의 시작·종료 signal 수명주기, 잘못된 설정의 오류 반환을
 확인한다. desktop test는 QML 창 생성, theme binding의 즉시 갱신, token 중앙화와 창 상태의
-저장·복원 및 잘못된 값 처리, 워크스페이스 목록·선택·상태 표시를 검사한다.
+저장·복원 및 잘못된 값 처리, 워크스페이스 목록·선택·상태 표시와 채널 검색·접기·선택에 따른
+대화 제목 갱신을 검사한다.
 server app smoke는 설정과 종료 조건 주입을 직접 검사한다. preset 계약 테스트는
 debug·release configure preset과 공통 target 기본값을 확인한다. architecture test는
 client·server·server app의 link 방향과 client include 경계를 검사한다. core public API

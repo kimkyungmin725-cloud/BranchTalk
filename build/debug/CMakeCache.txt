@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//No help, variable specified on the command line.
+BRANCHTALKPBUILD_DESKTOP:UNINITIALIZED=ON
+
 //Build the Qt Quick desktop application
 BRANCHTALK_BUILD_DESKTOP:BOOL=OFF
 
@@ -135,6 +138,12 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 //The product will be built against the headers and libraries located
 // inside the indicated SDK.
 CMAKE_OSX_SYSROOT:STRING=
+
+//Semicolon-separated list of installation prefixes searched by
+// find_package(), find_program(), find_library(), find_file(),
+// and find_path(). Empty by default; intended to be set by the
+// project or the user.
+CMAKE_PREFIX_PATH:UNINITIALIZED=/Users/kyungmin/Qt/6.11.1/macos
 
 //Value Computed by CMake
 CMAKE_PROJECT_COMPAT_VERSION:STATIC=

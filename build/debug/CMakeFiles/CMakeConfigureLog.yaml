@@ -20,6 +20,9 @@ events:
     names:
       - "uname"
     candidate_directories:
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
       - "/Users/kyungmin/Developer/tools/vcpkg/"
@@ -37,6 +40,9 @@ events:
       - "/pkg/env/global/bin/"
       - "/Library/Apple/usr/bin/"
     searched_directories:
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/uname"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/uname"
+      - "/Users/kyungmin/Qt/6.11.1/macos/uname"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/uname"
       - "/Users/kyungmin/vcpkg/uname"
       - "/Users/kyungmin/Developer/tools/vcpkg/uname"
@@ -46,6 +52,8 @@ events:
       - "/System/Cryptexes/App/usr/bin/uname"
     found: "/usr/bin/uname"
     search_context:
+      CMAKE_PREFIX_PATH:
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -87,6 +95,9 @@ events:
     names:
       - "cl"
     candidate_directories:
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
       - "/Users/kyungmin/Developer/tools/vcpkg/"
@@ -104,6 +115,9 @@ events:
       - "/pkg/env/global/bin/"
       - "/Library/Apple/usr/bin/"
     searched_directories:
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/cl"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/cl"
+      - "/Users/kyungmin/Qt/6.11.1/macos/cl"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/cl"
       - "/Users/kyungmin/vcpkg/cl"
       - "/Users/kyungmin/Developer/tools/vcpkg/cl"
@@ -122,6 +136,8 @@ events:
       - "/Library/Apple/usr/bin/cl"
     found: false
     search_context:
+      CMAKE_PREFIX_PATH:
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -177,6 +193,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/"
@@ -200,6 +219,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/"
@@ -223,6 +245,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
@@ -247,6 +272,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/gmake"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/gmake"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/gmake"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/gmake"
@@ -270,6 +298,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/gmake"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/gmake"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/gmake"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/gmake"
@@ -293,6 +324,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/gmake"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/gmake"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/gmake"
+      - "/Users/kyungmin/Qt/6.11.1/macos/gmake"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/gmake"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/gmake"
       - "/Users/kyungmin/vcpkg/gmake"
@@ -316,6 +350,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/make"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/make"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/make"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/make"
@@ -339,6 +376,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/make"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/make"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/make"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/make"
@@ -362,6 +402,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/make"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/make"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/make"
+      - "/Users/kyungmin/Qt/6.11.1/macos/make"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/make"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/make"
       - "/Users/kyungmin/vcpkg/make"
@@ -377,6 +420,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -431,6 +475,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/"
@@ -454,6 +501,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/"
@@ -477,6 +527,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
@@ -501,6 +554,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/c++"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/c++"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/c++"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/c++"
@@ -524,6 +580,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/c++"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/c++"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/c++"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/c++"
@@ -547,6 +606,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/c++"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/c++"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/c++"
+      - "/Users/kyungmin/Qt/6.11.1/macos/c++"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/c++"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/c++"
       - "/Users/kyungmin/vcpkg/c++"
@@ -562,6 +624,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -613,6 +676,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -806,6 +870,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -936,6 +1001,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -1066,6 +1132,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -1196,6 +1263,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -1326,6 +1394,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -1456,6 +1525,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -1602,6 +1672,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -1748,6 +1819,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -1894,6 +1966,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -2040,6 +2113,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -2186,6 +2260,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -2234,6 +2309,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/"
@@ -2257,6 +2335,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/"
@@ -2280,6 +2361,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
@@ -2304,6 +2388,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/install_name_tool"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/install_name_tool"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/install_name_tool"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/install_name_tool"
@@ -2327,6 +2414,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/install_name_tool"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/install_name_tool"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/install_name_tool"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/install_name_tool"
@@ -2350,6 +2440,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/install_name_tool"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/install_name_tool"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/install_name_tool"
+      - "/Users/kyungmin/Qt/6.11.1/macos/install_name_tool"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/install_name_tool"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/install_name_tool"
       - "/Users/kyungmin/vcpkg/install_name_tool"
@@ -2365,6 +2458,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -2397,8 +2491,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg"
-      binary: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg"
+      source: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo"
+      binary: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -2416,19 +2510,19 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: false
       stdout: |
-        Change Dir: '/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg'
+        Change Dir: '/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_cf25f/fast
-        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_cf25f.dir/build.make CMakeFiles/cmTC_cf25f.dir/build
-        Building CXX object CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a4c77/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_a4c77.dir/build.make CMakeFiles/cmTC_a4c77.dir/build
+        Building CXX object CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Apple clang version 21.0.0 (clang-2100.1.1.101)
         Target: arm64-apple-darwin27.0.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
         clang++: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.5.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.5 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg -target-linker-version 1267 -v -fcoverage-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.5.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.5 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo -target-linker-version 1267 -v -fcoverage-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 21.0.0 (clang-2100.1.1.101) default target arm64-apple-darwin27.0.0
         ignoring nonexistent directory "/usr/local/include"
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"
@@ -2442,13 +2536,13 @@ events:
          /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
          /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)
         End of search list.
-        Linking CXX executable cmTC_cf25f
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cf25f.dir/link.txt --verbose=1
+        Linking CXX executable cmTC_a4c77
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4c77.dir/link.txt --verbose=1
         Apple clang version 21.0.0 (clang-2100.1.1.101)
         Target: arm64-apple-darwin27.0.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.5.0 26.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_cf25f -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.5.0 26.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_a4c77 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld PROJECT:ld-1267
         BUILD 16:38:58 Jun  8 2026
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
@@ -2460,7 +2554,7 @@ events:
         	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift
         Framework search paths:
         	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
-        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_cf25f
+        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a4c77
         
       exitCode: 0
   -
@@ -2504,19 +2598,19 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg']
+        ignore line: [Change Dir: '/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo']
         ignore line: []
-        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_cf25f/fast]
-        ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_cf25f.dir/build.make CMakeFiles/cmTC_cf25f.dir/build]
-        ignore line: [Building CXX object CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a4c77/fast]
+        ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_a4c77.dir/build.make CMakeFiles/cmTC_a4c77.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Apple clang version 21.0.0 (clang-2100.1.1.101)]
         ignore line: [Target: arm64-apple-darwin27.0.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
         ignore line: [clang++: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"]
-        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.5.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.5 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg -target-linker-version 1267 -v -fcoverage-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-PqH7Mg -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.5.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -fno-sized-deallocation -target-sdk-version=26.5 -fvisibility-inlines-hidden-static-local-var -fno-modulemap-allow-subdirectory-search -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -enable-tlsdesc -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo -target-linker-version 1267 -v -fcoverage-compilation-dir=/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-JPJVzo -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -Wno-error=allocator-wrappers -fdwarf2-cfi-asm -o CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 21.0.0 (clang-2100.1.1.101) default target arm64-apple-darwin27.0.0]
         ignore line: [ignoring nonexistent directory "/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"]
@@ -2530,14 +2624,14 @@ events:
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [Linking CXX executable cmTC_cf25f]
-        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cf25f.dir/link.txt --verbose=1]
+        ignore line: [Linking CXX executable cmTC_a4c77]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4c77.dir/link.txt --verbose=1]
         ignore line: [Apple clang version 21.0.0 (clang-2100.1.1.101)]
         ignore line: [Target: arm64-apple-darwin27.0.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.5.0 26.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_cf25f -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a] ==> linker [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld]
-        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.5.0 26.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_cf25f -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.5.0 26.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_a4c77 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a] ==> linker [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.5.0 26.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_a4c77 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -2554,12 +2648,12 @@ events:
           arg [-mllvm] ==> ignore
           arg [-enable-linkonceodr-outlining] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_cf25f] ==> ignore
+          arg [cmTC_a4c77] ==> ignore
           arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
           arg [-search_paths_first] ==> ignore
           arg [-headerpad_max_install_names] ==> ignore
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_cf25f.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_a4c77.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lc++] ==> lib [c++]
           arg [-lSystem] ==> lib [System]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.osx.a]
@@ -2720,6 +2814,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -2780,8 +2875,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-NBBXUs"
-      binary: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-NBBXUs"
+      source: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-uDR7by"
+      binary: "/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-uDR7by"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -2799,15 +2894,15 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-NBBXUs'
+        Change Dir: '/Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-uDR7by'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_aabd3/fast
-        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_aabd3.dir/build.make CMakeFiles/cmTC_aabd3.dir/build
-        Building CXX object CMakeFiles/cmTC_aabd3.dir/src.cxx.o
-        /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -arch arm64 -MD -MT CMakeFiles/cmTC_aabd3.dir/src.cxx.o -MF CMakeFiles/cmTC_aabd3.dir/src.cxx.o.d -o CMakeFiles/cmTC_aabd3.dir/src.cxx.o -c /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-NBBXUs/src.cxx
-        Linking CXX executable cmTC_aabd3
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aabd3.dir/link.txt --verbose=1
-        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_aabd3.dir/src.cxx.o -o cmTC_aabd3
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_8017d/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_8017d.dir/build.make CMakeFiles/cmTC_8017d.dir/build
+        Building CXX object CMakeFiles/cmTC_8017d.dir/src.cxx.o
+        /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -arch arm64 -MD -MT CMakeFiles/cmTC_8017d.dir/src.cxx.o -MF CMakeFiles/cmTC_8017d.dir/src.cxx.o.d -o CMakeFiles/cmTC_8017d.dir/src.cxx.o -c /Users/kyungmin/BrankTalk/build/debug/CMakeFiles/CMakeScratch/TryCompile-uDR7by/src.cxx
+        Linking CXX executable cmTC_8017d
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8017d.dir/link.txt --verbose=1
+        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_8017d.dir/src.cxx.o -o cmTC_8017d
         
       exitCode: 0
   -
@@ -2945,6 +3040,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -3118,6 +3214,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -3189,6 +3286,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/"
@@ -3245,6 +3345,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/"
@@ -3301,6 +3404,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
@@ -3358,6 +3464,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/git"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/git"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/git"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/git"
@@ -3414,6 +3523,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/git"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/git"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/git"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/git"
@@ -3470,6 +3582,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/git"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/git"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/git"
+      - "/Users/kyungmin/Qt/6.11.1/macos/git"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/git"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/git"
       - "/Users/kyungmin/vcpkg/git"
@@ -3481,6 +3596,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -3552,6 +3668,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/"
@@ -3608,6 +3727,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/"
@@ -3664,6 +3786,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
@@ -3721,6 +3846,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/purify"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/purify"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/purify"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/purify"
@@ -3777,6 +3905,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/purify"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/purify"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/purify"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/purify"
@@ -3833,6 +3964,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/purify"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/purify"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/purify"
+      - "/Users/kyungmin/Qt/6.11.1/macos/purify"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/purify"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/purify"
       - "/Users/kyungmin/vcpkg/purify"
@@ -3889,6 +4023,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/valgrind"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/valgrind"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/valgrind"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/valgrind"
@@ -3945,6 +4082,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/valgrind"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/valgrind"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/valgrind"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/valgrind"
@@ -4001,6 +4141,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/valgrind"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/valgrind"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/valgrind"
+      - "/Users/kyungmin/Qt/6.11.1/macos/valgrind"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/valgrind"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/valgrind"
       - "/Users/kyungmin/vcpkg/valgrind"
@@ -4057,6 +4200,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/boundscheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/boundscheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/boundscheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/boundscheck"
@@ -4113,6 +4259,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/boundscheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/boundscheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/boundscheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/boundscheck"
@@ -4169,6 +4318,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/boundscheck"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/boundscheck"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/boundscheck"
+      - "/Users/kyungmin/Qt/6.11.1/macos/boundscheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/boundscheck"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/boundscheck"
       - "/Users/kyungmin/vcpkg/boundscheck"
@@ -4225,6 +4377,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/drmemory"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/drmemory"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/drmemory"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/drmemory"
@@ -4281,6 +4436,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/drmemory"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/drmemory"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/drmemory"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/drmemory"
@@ -4337,6 +4495,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/drmemory"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/drmemory"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/drmemory"
+      - "/Users/kyungmin/Qt/6.11.1/macos/drmemory"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/drmemory"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/drmemory"
       - "/Users/kyungmin/vcpkg/drmemory"
@@ -4393,6 +4554,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/cuda-memcheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/cuda-memcheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/cuda-memcheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/cuda-memcheck"
@@ -4449,6 +4613,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/cuda-memcheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/cuda-memcheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/cuda-memcheck"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/cuda-memcheck"
@@ -4505,6 +4672,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/cuda-memcheck"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/cuda-memcheck"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/cuda-memcheck"
+      - "/Users/kyungmin/Qt/6.11.1/macos/cuda-memcheck"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/cuda-memcheck"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/cuda-memcheck"
       - "/Users/kyungmin/vcpkg/cuda-memcheck"
@@ -4561,6 +4731,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/compute-sanitizer"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/compute-sanitizer"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/compute-sanitizer"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/compute-sanitizer"
@@ -4617,6 +4790,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/compute-sanitizer"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/compute-sanitizer"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/compute-sanitizer"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/compute-sanitizer"
@@ -4673,6 +4849,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/compute-sanitizer"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/compute-sanitizer"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/compute-sanitizer"
+      - "/Users/kyungmin/Qt/6.11.1/macos/compute-sanitizer"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/compute-sanitizer"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/compute-sanitizer"
       - "/Users/kyungmin/vcpkg/compute-sanitizer"
@@ -4730,6 +4909,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"
@@ -4796,6 +4976,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/"
@@ -4852,6 +5035,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/"
@@ -4908,6 +5094,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/"
+      - "/Users/kyungmin/Qt/6.11.1/macos/"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/"
       - "/Users/kyungmin/vcpkg/"
@@ -4965,6 +5154,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/gcov"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/bin/gcov"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/sbin/gcov"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.1/macos/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/Qt/6.11.2/macos/bin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug/Users/kyungmin/vcpkg/gcov"
@@ -5021,6 +5213,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/gcov"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/bin/gcov"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/sbin/gcov"
+      - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.1/macos/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/Qt/6.11.2/macos/bin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/Users/kyungmin/vcpkg/gcov"
@@ -5077,6 +5272,9 @@ events:
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/bin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/sbin/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/gcov"
+      - "/Users/kyungmin/Qt/6.11.1/macos/bin/gcov"
+      - "/Users/kyungmin/Qt/6.11.1/macos/sbin/gcov"
+      - "/Users/kyungmin/Qt/6.11.1/macos/gcov"
       - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/tools/gcov"
       - "/Users/kyungmin/Qt/6.11.2/macos/bin/gcov"
       - "/Users/kyungmin/vcpkg/gcov"
@@ -5092,6 +5290,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx/debug"
         - "/Users/kyungmin/BrankTalk/build/vcpkg_installed/arm64-osx"
+        - "/Users/kyungmin/Qt/6.11.1/macos"
       ENV{PATH}:
         - "/Users/kyungmin/Qt/6.11.2/macos/bin"
         - "/Users/kyungmin/vcpkg"

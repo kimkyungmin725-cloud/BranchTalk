@@ -6,6 +6,7 @@ ApplicationWindow {
 
     required property AppViewModel appViewModel
     required property WorkspaceListModel workspaceModel
+    required property ChannelListModel channelModel
 
     objectName: "mainWindow"
     readonly property bool darkMode: Theme.darkMode
@@ -13,7 +14,6 @@ ApplicationWindow {
     readonly property real workspaceMinimumWidth: Theme.workspaceMinimumWidth
     readonly property real channelMinimumWidth: Theme.channelMinimumWidth
     readonly property real conversationMinimumWidth: Theme.conversationMinimumWidth
-    readonly property var channels: ["general", "product", "support"]
     readonly property var messages: [qsTr("Mina: The three-pane shell is ready."), qsTr("Alex: Resize the window to check the compact layout.")]
 
     minimumWidth: 640
@@ -174,54 +174,131 @@ ApplicationWindow {
                 id: channelPanel
 
                 objectName: "channelPanel"
+                property bool channelsCollapsed: false
                 contentPadding: Theme.spacingMedium
                 SplitView.minimumWidth: Theme.channelMinimumWidth
                 SplitView.preferredWidth: Theme.channelPreferredWidth
                 SplitView.fillWidth: window.compactLayout
 
-                Column {
-                    width: parent.width
-                    spacing: Theme.spacingSmall
+                AppButton {
+                    id: channelCollapseAction
+
+                    objectName: "channelCollapseAction"
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    compact: true
+                    text: channelPanel.channelsCollapsed ? qsTr("Channels ▸") : qsTr("Channels ▾")
+                    onClicked: channelPanel.channelsCollapsed = !channelPanel.channelsCollapsed
+                }
+
+                TextField {
+                    id: channelSearch
+
+                    objectName: "channelSearch"
+                    anchors.top: channelCollapseAction.bottom
+                    anchors.topMargin: Theme.spacingSmall
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    visible: !channelPanel.channelsCollapsed
+                    height: Theme.controlHeight
+                    leftPadding: Theme.spacingSmall
+                    rightPadding: Theme.spacingSmall
+                    text: window.channelModel.searchQuery
+                    placeholderText: qsTr("Search channels")
+                    color: Theme.textPrimary
+                    placeholderTextColor: Theme.textSecondary
+                    selectionColor: Theme.accent
+                    selectedTextColor: Theme.buttonText
+                    font.pixelSize: Theme.bodyFontSize
+                    onTextChanged: window.channelModel.setSearchQuery(text)
+
+                    background: Rectangle {
+                        color: Theme.panelBackground
+                        border.color: Theme.panelBorder
+                        border.width: Theme.borderWidth
+                        radius: Theme.buttonRadius
+                    }
+                }
+
+                Item {
+                    id: channelContent
+
+                    objectName: "channelContent"
+                    anchors.top: channelSearch.bottom
+                    anchors.topMargin: Theme.spacingSmall
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: openSettingsAction.top
+                    anchors.bottomMargin: Theme.spacingSmall
+                    visible: !channelPanel.channelsCollapsed
 
                     Text {
+                        id: channelNoMatchesState
+
+                        objectName: "channelNoMatchesState"
+                        anchors.centerIn: parent
                         width: parent.width
-                        text: qsTr("Channels")
-                        color: Theme.textPrimary
-                        font.pixelSize: Theme.titleFontSize
-                        font.weight: Theme.titleFontWeight
-                        elide: Text.ElideRight
+                        visible: window.channelModel.matchingChannelCount === 0
+                        text: qsTr("No channels found")
+                        color: Theme.textSecondary
+                        font.pixelSize: Theme.bodyFontSize
+                        horizontalAlignment: Text.AlignHCenter
+                        wrapMode: Text.WordWrap
                     }
 
-                    AppButton {
-                        objectName: "channelAction"
-                        width: parent.width
-                        text: "# " + window.channels[0]
-                    }
+                    ListView {
+                        id: channelList
 
-                    Repeater {
-                        model: window.channels.slice(1)
+                        objectName: "channelList"
+                        anchors.fill: parent
+                        visible: window.channelModel.matchingChannelCount > 0
+                        clip: true
+                        spacing: Theme.spacingSmall
+                        model: window.channelModel
 
-                        AppButton {
-                            required property string modelData
+                        delegate: AppButton {
+                            required property string stableId
+                            required property string name
+                            required property int kind
+                            required property bool selected
+                            required property int unreadCount
+                            required property bool muted
+                            required property bool matchesSearch
 
-                            width: parent.width
-                            text: "# " + modelData
+                            objectName: "channelAction-" + stableId
+                            width: ListView.view.width
+                            height: visible ? implicitHeight : 0
+                            visible: matchesSearch
+                            compact: true
+                            active: selected
+                            text: (kind === ChannelListModel.TextChannel ? "# " : "◉ ") + name + (unreadCount > 0 ? " · " + unreadCount : "") + (muted ? qsTr(" · muted") : "")
+                            onClicked: window.channelModel.selectChannel(stableId)
                         }
                     }
+                }
 
-                    AppButton {
-                        objectName: "openSettingsAction"
-                        width: parent.width
-                        text: qsTr("Settings")
-                        onClicked: window.appViewModel.showSettings()
-                    }
+                AppButton {
+                    id: openSettingsAction
 
-                    AppButton {
-                        objectName: "themeToggle"
-                        width: parent.width
-                        text: Theme.darkMode ? qsTr("Use light theme") : qsTr("Use dark theme")
-                        onClicked: window.toggleTheme()
-                    }
+                    objectName: "openSettingsAction"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: themeToggle.top
+                    anchors.bottomMargin: Theme.spacingSmall
+                    text: qsTr("Settings")
+                    onClicked: window.appViewModel.showSettings()
+                }
+
+                AppButton {
+                    id: themeToggle
+
+                    objectName: "themeToggle"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    text: Theme.darkMode ? qsTr("Use light theme") : qsTr("Use dark theme")
+                    onClicked: window.toggleTheme()
                 }
             }
 
@@ -238,8 +315,11 @@ ApplicationWindow {
                     spacing: Theme.spacingMedium
 
                     Text {
+                        id: conversationTitle
+
+                        objectName: "conversationTitle"
                         width: parent.width
-                        text: qsTr("# general")
+                        text: window.channelModel.selectedChannelName.length > 0 ? (window.channelModel.selectedChannelKind === ChannelListModel.TextChannel ? "# " : "◉ ") + window.channelModel.selectedChannelName : qsTr("No channel selected")
                         color: Theme.textPrimary
                         font.pixelSize: Theme.titleFontSize
                         font.weight: Theme.titleFontWeight

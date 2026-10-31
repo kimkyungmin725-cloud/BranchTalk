@@ -29,6 +29,8 @@ qt_add_qml_module(branchtalk_desktop
     SOURCES
         app_view_model.cpp
         app_view_model.hpp
+        channel_list_model.cpp
+        channel_list_model.hpp
         workspace_list_model.cpp
         workspace_list_model.hpp
     QML_FILES
@@ -77,6 +79,20 @@ if(BUILD_TESTING)
             "${CMAKE_CURRENT_SOURCE_DIR}"
     )
 
+    branchtalk_add_test_executable(branchtalk_desktop_channel_list_model_smoke
+        SOURCES
+            channel_list_model.cpp
+            "${PROJECT_SOURCE_DIR}/tests/desktop/channel_list_model_smoke.cpp"
+        LIBRARIES
+            Qt6::Core
+            Qt6::Qml
+    )
+
+    target_include_directories(branchtalk_desktop_channel_list_model_smoke
+        PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+
     branchtalk_add_test_executable(branchtalk_desktop_window_state_smoke
         SOURCES
             "${PROJECT_SOURCE_DIR}/tests/desktop/window_state_store_smoke.cpp"
@@ -95,8 +111,18 @@ if(BUILD_TESTING)
     )
 
     add_test(
+        NAME branchtalk_desktop.channel_list_model
+        COMMAND branchtalk_desktop_channel_list_model_smoke
+    )
+
+    add_test(
         NAME branchtalk_desktop.window_state
         COMMAND branchtalk_desktop_window_state_smoke
+    )
+
+    add_test(
+        NAME branchtalk_desktop.channel_sidebar
+        COMMAND branchtalk_desktop --channel-model-test
     )
 
     add_test(
@@ -148,12 +174,21 @@ if(BUILD_TESTING)
             -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_workspace_sidebar.cmake"
     )
 
+    add_test(
+        NAME branchtalk_desktop.channel_sidebar_contract
+        COMMAND
+            "${CMAKE_COMMAND}"
+            "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+            -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_channel_sidebar.cmake"
+    )
+
     set_tests_properties(
         branchtalk_desktop.smoke
         branchtalk_desktop.theme
         branchtalk_desktop.layout
         branchtalk_desktop.navigation
         branchtalk_desktop.workspace_sidebar
+        branchtalk_desktop.channel_sidebar
         PROPERTIES
         ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QUICK_BACKEND=software"
     )
@@ -166,8 +201,10 @@ if(BUILD_TESTING)
                 branchtalk_desktop.layout
                 branchtalk_desktop.navigation
                 branchtalk_desktop.workspace_sidebar
+                branchtalk_desktop.channel_sidebar
                 branchtalk_desktop.app_view_model
                 branchtalk_desktop.workspace_list_model
+                branchtalk_desktop.channel_list_model
                 branchtalk_desktop.window_state
             APPEND PROPERTY ENVIRONMENT_MODIFICATION
             "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>"

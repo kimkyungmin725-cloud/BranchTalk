@@ -1,4 +1,5 @@
 #include "app_view_model.hpp"
+#include "channel_list_model.hpp"
 #include "window_state_store.hpp"
 #include "workspace_list_model.hpp"
 
@@ -65,11 +66,13 @@ namespace branchtalk::desktop
                 root_object->findChild<QObject *>(QStringLiteral("conversationPanel"));
             auto *workspace_list =
                 root_object->findChild<QObject *>(QStringLiteral("workspaceList"));
-            auto *channel_action = root_object->findChild<QObject *>(QStringLiteral("channelAction"));
+            auto *channel_list = root_object->findChild<QObject *>(QStringLiteral("channelList"));
+            auto *channel_collapse_action =
+                root_object->findChild<QObject *>(QStringLiteral("channelCollapseAction"));
 
             if (workspace_panel == nullptr || channel_panel == nullptr ||
                 conversation_panel == nullptr || workspace_list == nullptr ||
-                channel_action == nullptr)
+                channel_list == nullptr || channel_collapse_action == nullptr)
             {
                 return false;
             }
@@ -111,8 +114,11 @@ namespace branchtalk::desktop
                 workspace_list->property("visible").toBool() &&
                 workspace_list->property("enabled").toBool() &&
                 workspace_list->property("count").toInt() > 0 &&
-                channel_action->property("visible").toBool() &&
-                channel_action->property("enabled").toBool();
+                channel_list->property("visible").toBool() &&
+                channel_list->property("enabled").toBool() &&
+                channel_list->property("count").toInt() > 0 &&
+                channel_collapse_action->property("visible").toBool() &&
+                channel_collapse_action->property("enabled").toBool();
 
             resize_window(1000);
             constexpr double resize_tolerance = 1.0;
@@ -383,6 +389,173 @@ namespace branchtalk::desktop
             return empty_state_valid ? true : failed("empty state");
         }
 
+        bool channel_sidebar_updates(QObject *root_object, ChannelListModel &channel_model)
+        {
+            const auto failed = [](const char *stage)
+            {
+                qWarning() << "channel sidebar verification failed" << stage;
+                return false;
+            };
+
+            QCoreApplication::processEvents();
+
+            auto *channel_panel =
+                root_object->findChild<QObject *>(QStringLiteral("channelPanel"));
+            auto *channel_list =
+                root_object->findChild<QObject *>(QStringLiteral("channelList"));
+            auto *channel_search =
+                root_object->findChild<QObject *>(QStringLiteral("channelSearch"));
+            auto *channel_content =
+                root_object->findChild<QObject *>(QStringLiteral("channelContent"));
+            auto *collapse_action =
+                root_object->findChild<QObject *>(QStringLiteral("channelCollapseAction"));
+            auto *no_matches_state =
+                root_object->findChild<QObject *>(QStringLiteral("channelNoMatchesState"));
+            auto *conversation_title =
+                root_object->findChild<QObject *>(QStringLiteral("conversationTitle"));
+
+            if (channel_panel == nullptr || channel_list == nullptr || channel_search == nullptr ||
+                channel_content == nullptr || collapse_action == nullptr ||
+                no_matches_state == nullptr || conversation_title == nullptr ||
+                root_object->property("channelModel").value<QObject *>() != &channel_model ||
+                channel_model.selectedChannelId() != QStringLiteral("channel-general") ||
+                channel_list->property("count").toInt() != 4 ||
+                !channel_list->property("visible").toBool() ||
+                !channel_content->property("visible").toBool() ||
+                no_matches_state->property("visible").toBool() ||
+                conversation_title->property("text").toString() != QStringLiteral("# general"))
+            {
+                return failed("initial state");
+            }
+
+            const auto force_layout = [channel_list]
+            {
+                const bool invoked =
+                    QMetaObject::invokeMethod(channel_list, "forceLayout", Qt::DirectConnection);
+                QCoreApplication::processEvents();
+                return invoked;
+            };
+            if (!force_layout())
+            {
+                return failed("force initial list layout");
+            }
+
+            const auto item_at = [channel_list](int row) -> QObject *
+            {
+                QQuickItem *item = nullptr;
+                const bool invoked =
+                    QMetaObject::invokeMethod(channel_list,
+                                              "itemAtIndex",
+                                              Qt::DirectConnection,
+                                              Q_RETURN_ARG(QQuickItem *, item),
+                                              Q_ARG(int, row));
+                return invoked ? item : nullptr;
+            };
+            const auto click = [](QObject *action)
+            {
+                if (action == nullptr ||
+                    !QMetaObject::invokeMethod(action, "clicked", Qt::DirectConnection))
+                {
+                    return false;
+                }
+                QCoreApplication::processEvents();
+                return true;
+            };
+
+            auto *general_action = item_at(0);
+            auto *product_action = item_at(1);
+            auto *daily_action = item_at(3);
+            if (general_action == nullptr || product_action == nullptr || daily_action == nullptr ||
+                general_action->property("text").toString() !=
+                    QStringLiteral("# general · 3") ||
+                !general_action->property("active").toBool() ||
+                product_action->property("active").toBool() ||
+                daily_action->property("kind").toInt() != ChannelListModel::VoiceChannel ||
+                daily_action->property("text").toString() !=
+                    QStringLiteral("◉ daily-standup · 1"))
+            {
+                return failed("initial delegates");
+            }
+
+            if (!click(product_action) ||
+                channel_model.selectedChannelId() != QStringLiteral("channel-product") ||
+                !product_action->property("active").toBool() ||
+                conversation_title->property("text").toString() != QStringLiteral("# product"))
+            {
+                return failed("selection updates conversation");
+            }
+
+            if (!channel_model.setUnreadCount(QStringLiteral("channel-product"), 4) ||
+                !channel_model.setMuted(QStringLiteral("channel-product"), true))
+            {
+                return failed("small model updates");
+            }
+            QCoreApplication::processEvents();
+            if (product_action->property("text").toString() !=
+                QStringLiteral("# product · 4 · muted"))
+            {
+                return failed("role updates");
+            }
+
+            channel_search->setProperty("text", QStringLiteral("daily"));
+            QCoreApplication::processEvents();
+            if (!force_layout())
+            {
+                return failed("filtered layout");
+            }
+            general_action = item_at(0);
+            daily_action = item_at(3);
+            if (channel_model.searchQuery() != QStringLiteral("daily") ||
+                channel_model.matchingChannelCount() != 1 || general_action == nullptr ||
+                daily_action == nullptr || general_action->property("matchesSearch").toBool() ||
+                !daily_action->property("matchesSearch").toBool() ||
+                !channel_list->property("visible").toBool() ||
+                no_matches_state->property("visible").toBool())
+            {
+                return failed("search result");
+            }
+
+            channel_search->setProperty("text", QStringLiteral("missing"));
+            QCoreApplication::processEvents();
+            if (channel_model.matchingChannelCount() != 0 ||
+                channel_list->property("visible").toBool() ||
+                !no_matches_state->property("visible").toBool())
+            {
+                return failed("empty search result");
+            }
+
+            channel_search->setProperty("text", QString{});
+            QCoreApplication::processEvents();
+            if (!force_layout() || channel_model.matchingChannelCount() != 4 ||
+                !channel_list->property("visible").toBool() ||
+                no_matches_state->property("visible").toBool())
+            {
+                return failed("clear search");
+            }
+
+            if (!click(collapse_action) ||
+                !channel_panel->property("channelsCollapsed").toBool() ||
+                channel_content->property("visible").toBool() || !click(collapse_action) ||
+                channel_panel->property("channelsCollapsed").toBool() ||
+                !channel_content->property("visible").toBool())
+            {
+                return failed("collapse toggle");
+            }
+
+            if (!force_layout())
+            {
+                return failed("restored list layout");
+            }
+            daily_action = item_at(3);
+            const bool voice_channel_selected =
+                click(daily_action) &&
+                channel_model.selectedChannelId() == QStringLiteral("channel-daily") &&
+                channel_model.selectedChannelKind() == ChannelListModel::VoiceChannel &&
+                conversation_title->property("text").toString() ==
+                    QStringLiteral("◉ daily-standup");
+            return voice_channel_selected ? true : failed("voice channel conversation");
+        }
+
     } // namespace
 
     int run(int argc, char *argv[])
@@ -398,8 +571,11 @@ namespace branchtalk::desktop
             application.arguments().contains(QStringLiteral("--navigation-test"));
         const bool workspace_model_test =
             application.arguments().contains(QStringLiteral("--workspace-model-test"));
+        const bool channel_model_test =
+            application.arguments().contains(QStringLiteral("--channel-model-test"));
         const bool test_mode =
-            smoke_test || theme_test || layout_test || navigation_test || workspace_model_test;
+            smoke_test || theme_test || layout_test || navigation_test ||
+            workspace_model_test || channel_model_test;
         QSettings settings;
         WindowStateStore window_state_store{settings};
 
@@ -411,13 +587,36 @@ namespace branchtalk::desktop
 
         AppViewModel view_model;
         WorkspaceListModel workspace_model;
+        ChannelListModel channel_model{QVector<ChannelListModel::Channel>{
+            {QStringLiteral("channel-general"),
+             QStringLiteral("general"),
+             ChannelListModel::TextChannel,
+             3,
+             false},
+            {QStringLiteral("channel-product"),
+             QStringLiteral("product"),
+             ChannelListModel::TextChannel,
+             0,
+             false},
+            {QStringLiteral("channel-support"),
+             QStringLiteral("support"),
+             ChannelListModel::TextChannel,
+             7,
+             true},
+            {QStringLiteral("channel-daily"),
+             QStringLiteral("daily-standup"),
+             ChannelListModel::VoiceChannel,
+             1,
+             false},
+        }};
         if (!workspace_model.addWorkspace(
                 QStringLiteral("workspace-bt"), QStringLiteral("BT"), 0) ||
             !workspace_model.addWorkspace(
                 QStringLiteral("workspace-dev"), QStringLiteral("DEV"), 4) ||
             !workspace_model.addWorkspace(
                 QStringLiteral("workspace-ops"), QStringLiteral("OPS"), 1) ||
-            !workspace_model.selectWorkspace(QStringLiteral("workspace-bt")))
+            !workspace_model.selectWorkspace(QStringLiteral("workspace-bt")) ||
+            !channel_model.selectChannel(QStringLiteral("channel-general")))
         {
             return EXIT_FAILURE;
         }
@@ -427,6 +626,8 @@ namespace branchtalk::desktop
         initial_properties.insert(QStringLiteral("appViewModel"), QVariant::fromValue(&view_model));
         initial_properties.insert(QStringLiteral("workspaceModel"),
                                   QVariant::fromValue(static_cast<QObject *>(&workspace_model)));
+        initial_properties.insert(QStringLiteral("channelModel"),
+                                  QVariant::fromValue(static_cast<QObject *>(&channel_model)));
 
         if (!test_mode)
         {
@@ -471,7 +672,16 @@ namespace branchtalk::desktop
                              });
         }
 
-        if (workspace_model_test)
+        if (channel_model_test)
+        {
+            QObject *root_object = engine.rootObjects().constFirst();
+            view_model.showMain();
+            QTimer::singleShot(0, &application, [&application, root_object, &channel_model]
+                               {
+            const bool updated = channel_sidebar_updates(root_object, channel_model);
+            QCoreApplication::exit(updated ? EXIT_SUCCESS : EXIT_FAILURE); });
+        }
+        else if (workspace_model_test)
         {
             QObject *root_object = engine.rootObjects().constFirst();
             view_model.showMain();
