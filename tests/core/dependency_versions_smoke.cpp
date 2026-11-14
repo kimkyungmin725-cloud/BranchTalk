@@ -2,8 +2,7 @@
 
 #include <string_view>
 
-int main()
-{
+int main() {
     constexpr std::string_view kExpectedVersions =
         R"({"nlohmann-json":{"major":3,"minor":12,"patch":0},"spdlog":{"major":1,"minor":17,"patch":0}})";
 

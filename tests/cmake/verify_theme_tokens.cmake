@@ -8,6 +8,38 @@ if(NOT EXISTS "${theme_file}")
 endif()
 
 file(READ "${theme_file}" theme_contents)
+file(READ "${BRANCHTALK_DESKTOP_SOURCE_DIR}/main.cpp" main_cpp_contents)
+file(READ "${BRANCHTALK_DESKTOP_SOURCE_DIR}/AppPanel.qml" panel_contents)
+
+foreach(required_text IN ITEMS
+        "#include <QQuickStyle>"
+        "QQuickStyle::setStyle(QStringLiteral(\"Basic\"))")
+    string(FIND "${main_cpp_contents}" "${required_text}" required_index)
+    if(required_index EQUAL -1)
+        message(FATAL_ERROR
+            "The desktop app must select the cross-platform Basic style: ${required_text}")
+    endif()
+endforeach()
+
+foreach(required_text IN ITEMS
+        "property real contentImplicitWidth"
+        "property real contentImplicitHeight"
+        "implicitWidth: contentImplicitWidth + contentPadding * 2"
+        "implicitHeight: contentImplicitHeight + contentPadding * 2")
+    string(FIND "${panel_contents}" "${required_text}" required_index)
+    if(required_index EQUAL -1)
+        message(FATAL_ERROR "AppPanel.qml is missing explicit content sizing: ${required_text}")
+    endif()
+endforeach()
+
+foreach(forbidden_text IN ITEMS
+        "implicitWidth: childrenRect.width"
+        "implicitHeight: childrenRect.height")
+    string(FIND "${panel_contents}" "${forbidden_text}" forbidden_index)
+    if(NOT forbidden_index EQUAL -1)
+        message(FATAL_ERROR "AppPanel.qml contains a recursive size binding: ${forbidden_text}")
+    endif()
+endforeach()
 
 foreach(required_text IN ITEMS
         "pragma Singleton"
@@ -38,7 +70,7 @@ foreach(required_text IN ITEMS
     endif()
 endforeach()
 
-foreach(qml_file IN ITEMS Main.qml AppButton.qml AppPanel.qml)
+foreach(qml_file IN ITEMS Main.qml AppButton.qml AppPanel.qml MessageDelegate.qml)
     set(qml_path "${BRANCHTALK_DESKTOP_SOURCE_DIR}/${qml_file}")
     if(NOT EXISTS "${qml_path}")
         message(FATAL_ERROR "${qml_file} was not found")

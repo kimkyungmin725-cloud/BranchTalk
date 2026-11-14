@@ -2,21 +2,18 @@
 
 #include <string>
 
-namespace branchtalk::core
-{
+namespace branchtalk::core {
 
-    enum class ErrorCode
-    {
-        invalid_argument,
-        not_found,
-        conflict,
-        operation_failed,
-    };
+enum class ErrorCode {
+    invalid_argument,
+    not_found,
+    conflict,
+    operation_failed,
+};
 
-    struct Error
-    {
-        ErrorCode code;
-        std::string message;
-    };
+struct Error {
+    ErrorCode code;
+    std::string message;
+};
 
-} // namespace branchtalk::core
+}  // namespace branchtalk::core

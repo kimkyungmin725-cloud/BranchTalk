@@ -4,43 +4,36 @@
 
 #include <cstdlib>
 
-int main()
-{
+int main() {
     using branchtalk::desktop::AppViewModel;
 
     AppViewModel view_model;
     int change_count = 0;
     QObject::connect(&view_model,
                      &AppViewModel::currentScreenChanged,
-                     [&change_count]
-                     { ++change_count; });
+                     [&change_count] { ++change_count; });
 
-    if (view_model.currentScreen() != AppViewModel::LoginScreen)
-    {
+    if (view_model.currentScreen() != AppViewModel::LoginScreen) {
         return EXIT_FAILURE;
     }
 
     view_model.showLogin();
-    if (change_count != 0)
-    {
+    if (change_count != 0) {
         return EXIT_FAILURE;
     }
 
     view_model.showMain();
-    if (view_model.currentScreen() != AppViewModel::MainScreen || change_count != 1)
-    {
+    if (view_model.currentScreen() != AppViewModel::MainScreen || change_count != 1) {
         return EXIT_FAILURE;
     }
 
     view_model.showMain();
-    if (change_count != 1)
-    {
+    if (change_count != 1) {
         return EXIT_FAILURE;
     }
 
     view_model.showSettings();
-    if (view_model.currentScreen() != AppViewModel::SettingsScreen || change_count != 2)
-    {
+    if (view_model.currentScreen() != AppViewModel::SettingsScreen || change_count != 2) {
         return EXIT_FAILURE;
     }
 

@@ -2,9 +2,8 @@
 
 #include <string>
 
-namespace branchtalk::core
-{
+namespace branchtalk::core {
 
-    [[nodiscard]] std::string dependency_versions_json();
+[[nodiscard]] std::string dependency_versions_json();
 
-} // namespace branchtalk::core
+}  // namespace branchtalk::core

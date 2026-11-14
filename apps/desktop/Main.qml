@@ -7,6 +7,7 @@ ApplicationWindow {
     required property AppViewModel appViewModel
     required property WorkspaceListModel workspaceModel
     required property ChannelListModel channelModel
+    required property MessageListModel messageModel
 
     objectName: "mainWindow"
     readonly property bool darkMode: Theme.darkMode
@@ -14,7 +15,6 @@ ApplicationWindow {
     readonly property real workspaceMinimumWidth: Theme.workspaceMinimumWidth
     readonly property real channelMinimumWidth: Theme.channelMinimumWidth
     readonly property real conversationMinimumWidth: Theme.conversationMinimumWidth
-    readonly property var messages: [qsTr("Mina: The three-pane shell is ready."), qsTr("Alex: Resize the window to check the compact layout.")]
 
     minimumWidth: 640
     minimumHeight: 480
@@ -25,7 +25,7 @@ ApplicationWindow {
     color: Theme.windowBackground
 
     function toggleTheme() {
-        Theme.toggleMode();
+        Theme.toggleMode()
     }
 
     Item {
@@ -38,8 +38,12 @@ ApplicationWindow {
         AppPanel {
             anchors.centerIn: parent
             width: Math.min(implicitWidth, parent.width - Theme.spacingLarge * 2)
+            contentImplicitWidth: loginContent.width
+            contentImplicitHeight: loginContent.implicitHeight
 
             Column {
+                id: loginContent
+
                 width: Theme.channelPreferredWidth
                 spacing: Theme.spacingMedium
 
@@ -122,7 +126,7 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         width: parent.width
                         visible: window.workspaceModel.loading
-                        text: qsTr("Loading workspaces…")
+                        text: qsTr("Loading workspaces...")
                         color: Theme.textSecondary
                         font.pixelSize: Theme.bodyFontSize
                         horizontalAlignment: Text.AlignHCenter
@@ -163,7 +167,7 @@ ApplicationWindow {
                             width: ListView.view.width
                             compact: true
                             active: selected
-                            text: unreadCount > 0 ? name + " · " + unreadCount : name
+                            text: unreadCount > 0 ? name + " (" + unreadCount + ")" : name
                             onClicked: window.workspaceModel.selectWorkspace(stableId)
                         }
                     }
@@ -188,7 +192,8 @@ ApplicationWindow {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     compact: true
-                    text: channelPanel.channelsCollapsed ? qsTr("Channels ▸") : qsTr("Channels ▾")
+                    text: channelPanel.channelsCollapsed ? qsTr("Expand channels")
+                                                         : qsTr("Collapse channels")
                     onClicked: channelPanel.channelsCollapsed = !channelPanel.channelsCollapsed
                 }
 
@@ -272,7 +277,10 @@ ApplicationWindow {
                             visible: matchesSearch
                             compact: true
                             active: selected
-                            text: (kind === ChannelListModel.TextChannel ? "# " : "◉ ") + name + (unreadCount > 0 ? " · " + unreadCount : "") + (muted ? qsTr(" · muted") : "")
+                            text: (kind === ChannelListModel.TextChannel ? "# " : "[voice] ")
+                                  + name
+                                  + (unreadCount > 0 ? " (" + unreadCount + ")" : "")
+                                  + (muted ? qsTr(" - muted") : "")
                             onClicked: window.channelModel.selectChannel(stableId)
                         }
                     }
@@ -310,34 +318,41 @@ ApplicationWindow {
                 SplitView.minimumWidth: Theme.conversationMinimumWidth
                 SplitView.fillWidth: !window.compactLayout
 
-                Column {
-                    width: parent.width
-                    spacing: Theme.spacingMedium
+                Text {
+                    id: conversationTitle
 
-                    Text {
-                        id: conversationTitle
+                    objectName: "conversationTitle"
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    text: window.channelModel.selectedChannelName.length > 0
+                          ? (window.channelModel.selectedChannelKind
+                             === ChannelListModel.TextChannel ? "# " : "[voice] ")
+                            + window.channelModel.selectedChannelName
+                          : qsTr("No channel selected")
+                    color: Theme.textPrimary
+                    font.pixelSize: Theme.titleFontSize
+                    font.weight: Theme.titleFontWeight
+                }
 
-                        objectName: "conversationTitle"
-                        width: parent.width
-                        text: window.channelModel.selectedChannelName.length > 0 ? (window.channelModel.selectedChannelKind === ChannelListModel.TextChannel ? "# " : "◉ ") + window.channelModel.selectedChannelName : qsTr("No channel selected")
-                        color: Theme.textPrimary
-                        font.pixelSize: Theme.titleFontSize
-                        font.weight: Theme.titleFontWeight
+                ListView {
+                    id: messageList
+
+                    objectName: "messageList"
+                    anchors.top: conversationTitle.bottom
+                    anchors.topMargin: Theme.spacingSmall
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    clip: true
+                    reuseItems: true
+                    model: window.messageModel
+
+                    delegate: MessageDelegate {
+                        width: ListView.view.width
                     }
 
-                    Repeater {
-                        model: window.messages
-
-                        Text {
-                            required property string modelData
-
-                            width: parent.width
-                            text: modelData
-                            color: Theme.textSecondary
-                            font.pixelSize: Theme.bodyFontSize
-                            wrapMode: Text.WordWrap
-                        }
-                    }
+                    ScrollBar.vertical: ScrollBar {}
                 }
             }
         }

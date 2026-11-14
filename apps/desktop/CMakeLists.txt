@@ -31,12 +31,15 @@ qt_add_qml_module(branchtalk_desktop
         app_view_model.hpp
         channel_list_model.cpp
         channel_list_model.hpp
+        message_list_model.cpp
+        message_list_model.hpp
         workspace_list_model.cpp
         workspace_list_model.hpp
     QML_FILES
         AppButton.qml
         AppPanel.qml
         Main.qml
+        MessageDelegate.qml
         Theme.qml
 )
 
@@ -93,6 +96,20 @@ if(BUILD_TESTING)
             "${CMAKE_CURRENT_SOURCE_DIR}"
     )
 
+    branchtalk_add_test_executable(branchtalk_desktop_message_list_model_smoke
+        SOURCES
+            message_list_model.cpp
+            "${PROJECT_SOURCE_DIR}/tests/desktop/message_list_model_smoke.cpp"
+        LIBRARIES
+            Qt6::Core
+            Qt6::Qml
+    )
+
+    target_include_directories(branchtalk_desktop_message_list_model_smoke
+        PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+
     branchtalk_add_test_executable(branchtalk_desktop_window_state_smoke
         SOURCES
             "${PROJECT_SOURCE_DIR}/tests/desktop/window_state_store_smoke.cpp"
@@ -116,95 +133,99 @@ if(BUILD_TESTING)
     )
 
     add_test(
+        NAME branchtalk_desktop.message_list_model
+        COMMAND branchtalk_desktop_message_list_model_smoke
+    )
+
+    add_test(
         NAME branchtalk_desktop.window_state
         COMMAND branchtalk_desktop_window_state_smoke
     )
 
     add_test(
-        NAME branchtalk_desktop.channel_sidebar
-        COMMAND branchtalk_desktop --channel-model-test
+        NAME branchtalk_desktop.ui_flow
+        COMMAND branchtalk_desktop --ui-regression-test
     )
 
-    add_test(
-        NAME branchtalk_desktop.smoke
-        COMMAND branchtalk_desktop --smoke-test
-    )
+    if(BRANCHTALK_ENABLE_CONTRACT_TESTS)
+        add_test(
+            NAME branchtalk_desktop.theme_tokens
+            COMMAND
+                "${CMAKE_COMMAND}"
+                "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+                -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_theme_tokens.cmake"
+        )
 
-    add_test(
-        NAME branchtalk_desktop.theme
-        COMMAND branchtalk_desktop --theme-test
-    )
+        add_test(
+            NAME branchtalk_desktop.view_model_boundary
+            COMMAND
+                "${CMAKE_COMMAND}"
+                "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+                -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_view_model_boundary.cmake"
+        )
 
-    add_test(
-        NAME branchtalk_desktop.layout
-        COMMAND branchtalk_desktop --layout-test
-    )
+        add_test(
+            NAME branchtalk_desktop.workspace_sidebar_contract
+            COMMAND
+                "${CMAKE_COMMAND}"
+                "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+                -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_workspace_sidebar.cmake"
+        )
 
-    add_test(
-        NAME branchtalk_desktop.navigation
-        COMMAND branchtalk_desktop --navigation-test
-    )
+        add_test(
+            NAME branchtalk_desktop.channel_sidebar_contract
+            COMMAND
+                "${CMAKE_COMMAND}"
+                "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+                -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_channel_sidebar.cmake"
+        )
 
-    add_test(
-        NAME branchtalk_desktop.workspace_sidebar
-        COMMAND branchtalk_desktop --workspace-model-test
-    )
+        add_test(
+            NAME branchtalk_desktop.message_list_contract
+            COMMAND
+                "${CMAKE_COMMAND}"
+                "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+                -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_message_list.cmake"
+        )
 
-    add_test(
-        NAME branchtalk_desktop.theme_tokens
-        COMMAND
-            "${CMAKE_COMMAND}"
-            "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
-            -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_theme_tokens.cmake"
-    )
+        set_tests_properties(
+            branchtalk_desktop.theme_tokens
+            branchtalk_desktop.view_model_boundary
+            branchtalk_desktop.workspace_sidebar_contract
+            branchtalk_desktop.channel_sidebar_contract
+            branchtalk_desktop.message_list_contract
+            PROPERTIES LABELS "contract"
+        )
+    endif()
 
-    add_test(
-        NAME branchtalk_desktop.view_model_boundary
-        COMMAND
-            "${CMAKE_COMMAND}"
-            "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
-            -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_view_model_boundary.cmake"
-    )
-
-    add_test(
-        NAME branchtalk_desktop.workspace_sidebar_contract
-        COMMAND
-            "${CMAKE_COMMAND}"
-            "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
-            -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_workspace_sidebar.cmake"
-    )
-
-    add_test(
-        NAME branchtalk_desktop.channel_sidebar_contract
-        COMMAND
-            "${CMAKE_COMMAND}"
-            "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
-            -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_channel_sidebar.cmake"
+    set_tests_properties(
+        branchtalk_desktop.ui_flow
+        PROPERTIES
+        ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QUICK_BACKEND=software"
     )
 
     set_tests_properties(
-        branchtalk_desktop.smoke
-        branchtalk_desktop.theme
-        branchtalk_desktop.layout
-        branchtalk_desktop.navigation
-        branchtalk_desktop.workspace_sidebar
-        branchtalk_desktop.channel_sidebar
-        PROPERTIES
-        ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QUICK_BACKEND=software"
+        branchtalk_desktop.app_view_model
+        branchtalk_desktop.workspace_list_model
+        branchtalk_desktop.channel_list_model
+        branchtalk_desktop.message_list_model
+        branchtalk_desktop.window_state
+        PROPERTIES LABELS "fast"
+    )
+
+    set_tests_properties(
+        branchtalk_desktop.ui_flow
+        PROPERTIES LABELS "integration"
     )
 
     if(WIN32)
         set_property(
             TEST
-                branchtalk_desktop.smoke
-                branchtalk_desktop.theme
-                branchtalk_desktop.layout
-                branchtalk_desktop.navigation
-                branchtalk_desktop.workspace_sidebar
-                branchtalk_desktop.channel_sidebar
+                branchtalk_desktop.ui_flow
                 branchtalk_desktop.app_view_model
                 branchtalk_desktop.workspace_list_model
                 branchtalk_desktop.channel_list_model
+                branchtalk_desktop.message_list_model
                 branchtalk_desktop.window_state
             APPEND PROPERTY ENVIRONMENT_MODIFICATION
             "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>"

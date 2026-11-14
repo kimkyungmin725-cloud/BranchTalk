@@ -8,18 +8,17 @@
 #include <cstdlib>
 #include <utility>
 
-namespace
-{
-    struct DataChange
-    {
-        int first_row;
-        int last_row;
-        QList<int> roles;
-    };
-} // namespace
+namespace {
 
-int main()
-{
+struct DataChange {
+    int first_row;
+    int last_row;
+    QList<int> roles;
+};
+
+}  // namespace
+
+int main() {
     using branchtalk::desktop::ChannelListModel;
 
     QVector<ChannelListModel::Channel> channels{
@@ -38,28 +37,24 @@ int main()
 
     QObject::connect(&model,
                      &QAbstractItemModel::modelReset,
-                     [&model_resets]
-                     { ++model_resets; });
+                     [&model_resets] { ++model_resets; });
     QObject::connect(&model,
                      &ChannelListModel::selectedChannelChanged,
-                     [&selection_changes]
-                     { ++selection_changes; });
+                     [&selection_changes] { ++selection_changes; });
     QObject::connect(&model,
                      &ChannelListModel::searchQueryChanged,
-                     [&search_changes]
-                     { ++search_changes; });
+                     [&search_changes] { ++search_changes; });
     QObject::connect(&model,
                      &ChannelListModel::matchingChannelCountChanged,
-                     [&match_count_changes]
-                     { ++match_count_changes; });
-    QObject::connect(&model,
-                     &QAbstractItemModel::dataChanged,
-                     [&data_changes](const QModelIndex &first,
-                                     const QModelIndex &last,
-                                     const QList<int> &roles)
-                     {
-                         data_changes.append({first.row(), last.row(), roles});
-                     });
+                     [&match_count_changes] { ++match_count_changes; });
+    QObject::connect(
+        &model,
+        &QAbstractItemModel::dataChanged,
+        [&data_changes](const QModelIndex& first,
+                        const QModelIndex& last,
+                        const QList<int>& roles) {
+            data_changes.append({first.row(), last.row(), roles});
+        });
 
     const auto roles = model.roleNames();
     const QModelIndex general = model.index(0, 0);
@@ -78,8 +73,7 @@ int main()
         model.data(general, ChannelListModel::UnreadCountRole).toInt() != 3 ||
         model.data(support, ChannelListModel::MutedRole).toBool() != true ||
         model.data(daily, ChannelListModel::KindRole).toInt() !=
-            ChannelListModel::VoiceChannel)
-    {
+            ChannelListModel::VoiceChannel) {
         return EXIT_FAILURE;
     }
 
@@ -92,8 +86,7 @@ int main()
         data_changes.constFirst().first_row != 0 ||
         data_changes.constFirst().roles != QList<int>{ChannelListModel::SelectedRole} ||
         !model.selectChannel("channel-general") || selection_changes != 1 ||
-        model.selectChannel("channel-missing"))
-    {
+        model.selectChannel("channel-missing")) {
         return EXIT_FAILURE;
     }
 
@@ -107,8 +100,7 @@ int main()
         data_changes.at(0).first_row != 1 || data_changes.at(0).last_row != 1 ||
         data_changes.at(0).roles != QList<int>{ChannelListModel::UnreadCountRole} ||
         data_changes.at(1).first_row != 1 ||
-        data_changes.at(1).roles != QList<int>{ChannelListModel::MutedRole})
-    {
+        data_changes.at(1).roles != QList<int>{ChannelListModel::MutedRole}) {
         return EXIT_FAILURE;
     }
 
@@ -118,16 +110,14 @@ int main()
         data_changes.at(2).first_row != 0 || data_changes.at(2).last_row != 3 ||
         data_changes.at(2).roles != QList<int>{ChannelListModel::MatchesSearchRole} ||
         model.data(general, ChannelListModel::MatchesSearchRole).toBool() ||
-        !model.data(daily, ChannelListModel::MatchesSearchRole).toBool())
-    {
+        !model.data(daily, ChannelListModel::MatchesSearchRole).toBool()) {
         return EXIT_FAILURE;
     }
 
     model.setSearchQuery("DAILY");
     model.setSearchQuery({});
     if (model.matchingChannelCount() != 4 || search_changes != 2 ||
-        match_count_changes != 2 || data_changes.size() != 4)
-    {
+        match_count_changes != 2 || data_changes.size() != 4) {
         return EXIT_FAILURE;
     }
 
@@ -143,8 +133,7 @@ int main()
         data_changes.at(0).roles != QList<int>{ChannelListModel::SelectedRole} ||
         data_changes.at(1).first_row != 3 ||
         data_changes.at(1).roles != QList<int>{ChannelListModel::SelectedRole} ||
-        model_resets != 0)
-    {
+        model_resets != 0) {
         return EXIT_FAILURE;
     }
 

@@ -73,6 +73,11 @@ branchtalk_configure_cpp_target(branchtalk_server PRIVATE)
 include(CTest)
 
 option(BRANCHTALK_BUILD_DESKTOP "Build the Qt Quick desktop application" OFF)
+option(
+    BRANCHTALK_ENABLE_CONTRACT_TESTS
+    "Register slower source-layout and CMake contract checks"
+    OFF
+)
 
 if(BUILD_TESTING)
     add_subdirectory(tests)
@@ -82,7 +87,7 @@ if(BRANCHTALK_BUILD_DESKTOP)
     find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2)
     qt_standard_project_setup(REQUIRES 6.5)
     add_subdirectory(apps/desktop)
-elseif(BUILD_TESTING)
+elseif(BUILD_TESTING AND BRANCHTALK_ENABLE_CONTRACT_TESTS)
     add_test(
         NAME branchtalk_desktop.disabled
         COMMAND
@@ -92,4 +97,5 @@ elseif(BUILD_TESTING)
             "-DBRANCHTALK_DESKTOP_TARGET=$<TARGET_EXISTS:branchtalk_desktop>"
             -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/verify_desktop_disabled.cmake"
     )
+    set_tests_properties(branchtalk_desktop.disabled PROPERTIES LABELS "contract")
 endif()

@@ -8,8 +8,7 @@
 #include <filesystem>
 #include <utility>
 
-int main()
-{
+int main() {
     using branchtalk::core::ApplicationConfig;
     using branchtalk::core::Error;
     using branchtalk::core::ErrorCode;
@@ -21,7 +20,7 @@ int main()
     config.data_path = std::filesystem::path{"foundation-smoke-data"};
 
     auto result = Result<ApplicationConfig>::success(std::move(config));
-    const auto *value = result.value_if();
+    const auto* value = result.value_if();
     const Error sample_error{ErrorCode::operation_failed, "foundation smoke failure"};
 
     branchtalk::core::logging::initialize_logging({LogLevel::info});

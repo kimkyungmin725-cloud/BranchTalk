@@ -2,22 +2,20 @@
 
 #include <branchtalk/core/application_config.hpp>
 
-namespace branchtalk::server
-{
+namespace branchtalk::server {
 
-    class ServerApp
-    {
-    public:
-        using StopRequested = bool (*)() noexcept;
+class ServerApp {
+public:
+    using StopRequested = bool (*)() noexcept;
 
-        ServerApp(core::ApplicationConfig config, StopRequested stop_requested);
+    ServerApp(core::ApplicationConfig config, StopRequested stop_requested);
 
-        [[nodiscard]] const core::ApplicationConfig &config() const noexcept;
-        int run();
+    [[nodiscard]] const core::ApplicationConfig& config() const noexcept;
+    int run();
 
-    private:
-        core::ApplicationConfig config_;
-        StopRequested stop_requested_;
-    };
+private:
+    core::ApplicationConfig config_;
+    StopRequested stop_requested_;
+};
 
-} // namespace branchtalk::server
+}  // namespace branchtalk::server

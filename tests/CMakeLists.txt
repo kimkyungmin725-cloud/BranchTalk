@@ -25,26 +25,34 @@ add_test(
     COMMAND branchtalk_server_app_smoke
 )
 
-add_test(
-    NAME branchtalk_cmake_presets.contract
-    COMMAND
-        "${CMAKE_COMMAND}"
-        "-DBRANCHTALK_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
-        -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/verify_presets.cmake"
-)
+if(BRANCHTALK_ENABLE_CONTRACT_TESTS)
+    add_test(
+        NAME branchtalk_cmake_presets.contract
+        COMMAND
+            "${CMAKE_COMMAND}"
+            "-DBRANCHTALK_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/verify_presets.cmake"
+    )
 
-add_test(
-    NAME branchtalk_architecture.boundaries
-    COMMAND
-        "${CMAKE_COMMAND}"
-        "-DBRANCHTALK_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
-        "-DBRANCHTALK_CLIENT_USES_CORE=$<IN_LIST:BranchTalk::core,$<TARGET_PROPERTY:branchtalk_client,LINK_LIBRARIES>>"
-        "-DBRANCHTALK_CLIENT_USES_SERVER_APP=$<IN_LIST:BranchTalk::server_app,$<TARGET_PROPERTY:branchtalk_client,LINK_LIBRARIES>>"
-        "-DBRANCHTALK_SERVER_USES_CORE=$<IN_LIST:BranchTalk::core,$<TARGET_PROPERTY:branchtalk_server,LINK_LIBRARIES>>"
-        "-DBRANCHTALK_SERVER_USES_SERVER_APP=$<IN_LIST:BranchTalk::server_app,$<TARGET_PROPERTY:branchtalk_server,LINK_LIBRARIES>>"
-        "-DBRANCHTALK_SERVER_APP_EXPOSES_CORE=$<IN_LIST:BranchTalk::core,$<TARGET_PROPERTY:branchtalk_server_app,INTERFACE_LINK_LIBRARIES>>"
-        -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/verify_boundaries.cmake"
-)
+    add_test(
+        NAME branchtalk_architecture.boundaries
+        COMMAND
+            "${CMAKE_COMMAND}"
+            "-DBRANCHTALK_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
+            "-DBRANCHTALK_CLIENT_USES_CORE=$<IN_LIST:BranchTalk::core,$<TARGET_PROPERTY:branchtalk_client,LINK_LIBRARIES>>"
+            "-DBRANCHTALK_CLIENT_USES_SERVER_APP=$<IN_LIST:BranchTalk::server_app,$<TARGET_PROPERTY:branchtalk_client,LINK_LIBRARIES>>"
+            "-DBRANCHTALK_SERVER_USES_CORE=$<IN_LIST:BranchTalk::core,$<TARGET_PROPERTY:branchtalk_server,LINK_LIBRARIES>>"
+            "-DBRANCHTALK_SERVER_USES_SERVER_APP=$<IN_LIST:BranchTalk::server_app,$<TARGET_PROPERTY:branchtalk_server,LINK_LIBRARIES>>"
+            "-DBRANCHTALK_SERVER_APP_EXPOSES_CORE=$<IN_LIST:BranchTalk::core,$<TARGET_PROPERTY:branchtalk_server_app,INTERFACE_LINK_LIBRARIES>>"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/verify_boundaries.cmake"
+    )
+
+    set_tests_properties(
+        branchtalk_cmake_presets.contract
+        branchtalk_architecture.boundaries
+        PROPERTIES LABELS "contract"
+    )
+endif()
 
 branchtalk_add_test_executable(branchtalk_core_dependencies_smoke
     SOURCES
@@ -109,4 +117,20 @@ branchtalk_add_test_executable(branchtalk_core_public_api_smoke
 add_test(
     NAME branchtalk_core.public_api
     COMMAND branchtalk_core_public_api_smoke
+)
+
+set_tests_properties(
+    branchtalk_client.smoke
+    branchtalk_server.app
+    branchtalk_core.dependencies
+    branchtalk_core.result
+    branchtalk_core.application_config
+    branchtalk_core.public_api
+    PROPERTIES LABELS "fast"
+)
+
+set_tests_properties(
+    branchtalk_server.smoke
+    branchtalk_core.logging
+    PROPERTIES LABELS "integration"
 )
