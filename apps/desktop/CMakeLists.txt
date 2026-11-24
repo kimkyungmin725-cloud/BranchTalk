@@ -31,6 +31,8 @@ qt_add_qml_module(branchtalk_desktop
         app_view_model.hpp
         channel_list_model.cpp
         channel_list_model.hpp
+        message_composer_state.cpp
+        message_composer_state.hpp
         message_list_model.cpp
         message_list_model.hpp
         workspace_list_model.cpp
@@ -39,6 +41,7 @@ qt_add_qml_module(branchtalk_desktop
         AppButton.qml
         AppPanel.qml
         Main.qml
+        MessageComposer.qml
         MessageDelegate.qml
         Theme.qml
 )
@@ -110,6 +113,20 @@ if(BUILD_TESTING)
             "${CMAKE_CURRENT_SOURCE_DIR}"
     )
 
+    branchtalk_add_test_executable(branchtalk_desktop_message_composer_state_smoke
+        SOURCES
+            message_composer_state.cpp
+            "${PROJECT_SOURCE_DIR}/tests/desktop/message_composer_state_smoke.cpp"
+        LIBRARIES
+            Qt6::Core
+            Qt6::Qml
+    )
+
+    target_include_directories(branchtalk_desktop_message_composer_state_smoke
+        PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+
     branchtalk_add_test_executable(branchtalk_desktop_window_state_smoke
         SOURCES
             "${PROJECT_SOURCE_DIR}/tests/desktop/window_state_store_smoke.cpp"
@@ -135,6 +152,11 @@ if(BUILD_TESTING)
     add_test(
         NAME branchtalk_desktop.message_list_model
         COMMAND branchtalk_desktop_message_list_model_smoke
+    )
+
+    add_test(
+        NAME branchtalk_desktop.message_composer_state
+        COMMAND branchtalk_desktop_message_composer_state_smoke
     )
 
     add_test(
@@ -188,12 +210,21 @@ if(BUILD_TESTING)
                 -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_message_list.cmake"
         )
 
+        add_test(
+            NAME branchtalk_desktop.message_composer_contract
+            COMMAND
+                "${CMAKE_COMMAND}"
+                "-DBRANCHTALK_DESKTOP_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+                -P "${PROJECT_SOURCE_DIR}/tests/cmake/verify_message_composer.cmake"
+        )
+
         set_tests_properties(
             branchtalk_desktop.theme_tokens
             branchtalk_desktop.view_model_boundary
             branchtalk_desktop.workspace_sidebar_contract
             branchtalk_desktop.channel_sidebar_contract
             branchtalk_desktop.message_list_contract
+            branchtalk_desktop.message_composer_contract
             PROPERTIES LABELS "contract"
         )
     endif()
@@ -209,6 +240,7 @@ if(BUILD_TESTING)
         branchtalk_desktop.workspace_list_model
         branchtalk_desktop.channel_list_model
         branchtalk_desktop.message_list_model
+        branchtalk_desktop.message_composer_state
         branchtalk_desktop.window_state
         PROPERTIES LABELS "fast"
     )
@@ -226,6 +258,7 @@ if(BUILD_TESTING)
                 branchtalk_desktop.workspace_list_model
                 branchtalk_desktop.channel_list_model
                 branchtalk_desktop.message_list_model
+                branchtalk_desktop.message_composer_state
                 branchtalk_desktop.window_state
             APPEND PROPERTY ENVIRONMENT_MODIFICATION
             "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>"

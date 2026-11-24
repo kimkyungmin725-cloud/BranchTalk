@@ -4,12 +4,14 @@ endif()
 
 set(model_header "${BRANCHTALK_DESKTOP_SOURCE_DIR}/message_list_model.hpp")
 set(model_source "${BRANCHTALK_DESKTOP_SOURCE_DIR}/message_list_model.cpp")
+set(desktop_main "${BRANCHTALK_DESKTOP_SOURCE_DIR}/main.cpp")
 set(main_qml "${BRANCHTALK_DESKTOP_SOURCE_DIR}/Main.qml")
 set(delegate_qml "${BRANCHTALK_DESKTOP_SOURCE_DIR}/MessageDelegate.qml")
 
 foreach(required_file IN ITEMS
         "${model_header}"
         "${model_source}"
+        "${desktop_main}"
         "${main_qml}"
         "${delegate_qml}")
     if(NOT EXISTS "${required_file}")
@@ -19,6 +21,7 @@ endforeach()
 
 file(READ "${model_header}" header_contents)
 file(READ "${model_source}" source_contents)
+file(READ "${desktop_main}" main_cpp_contents)
 file(READ "${main_qml}" main_contents)
 file(READ "${delegate_qml}" delegate_contents)
 
@@ -75,6 +78,12 @@ foreach(required_text IN ITEMS
         message(FATAL_ERROR "Main.qml is missing a virtualized message binding: ${required_text}")
     endif()
 endforeach()
+
+string(FIND "${main_cpp_contents}" "positionViewAtIndex" position_view_index)
+if(position_view_index EQUAL -1)
+    message(FATAL_ERROR
+        "The UI flow must position virtualized rows before reading their delegates")
+endif()
 
 string(FIND "${main_contents}" "readonly property var messages" local_messages)
 if(NOT local_messages EQUAL -1)

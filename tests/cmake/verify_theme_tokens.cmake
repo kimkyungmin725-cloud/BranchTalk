@@ -57,6 +57,7 @@ foreach(required_text IN ITEMS
         "titleFontSize"
         "bodyFontSize"
         "buttonFontSize"
+        "composerInputHeight"
         "splitHandleWidth"
         "workspaceMinimumWidth"
         "workspacePreferredWidth"
@@ -70,7 +71,12 @@ foreach(required_text IN ITEMS
     endif()
 endforeach()
 
-foreach(qml_file IN ITEMS Main.qml AppButton.qml AppPanel.qml MessageDelegate.qml)
+foreach(qml_file IN ITEMS
+        Main.qml
+        AppButton.qml
+        AppPanel.qml
+        MessageComposer.qml
+        MessageDelegate.qml)
     set(qml_path "${BRANCHTALK_DESKTOP_SOURCE_DIR}/${qml_file}")
     if(NOT EXISTS "${qml_path}")
         message(FATAL_ERROR "${qml_file} was not found")

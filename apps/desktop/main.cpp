@@ -1,5 +1,6 @@
 #include "app_view_model.hpp"
 #include "channel_list_model.hpp"
+#include "message_composer_state.hpp"
 #include "message_list_model.hpp"
 #include "window_state_store.hpp"
 #include "workspace_list_model.hpp"
@@ -8,6 +9,8 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QGuiApplication>
+#include <QInputMethodEvent>
+#include <QKeyEvent>
 #include <QPointer>
 #include <QQmlApplicationEngine>
 #include <QQuickItem>
@@ -608,6 +611,132 @@ bool message_list_updates(QObject* root_object, MessageListModel& message_model)
     return update_is_stable ? true : failed("stable delegate update");
 }
 
+bool message_composer_handles_input(QObject* root_object,
+                                    MessageComposerState& composer_state) {
+    const auto failed = [](const char* stage) {
+        qWarning() << "message composer verification failed" << stage;
+        return false;
+    };
+
+    QCoreApplication::processEvents();
+    auto* composer = root_object->findChild<QObject*>(QStringLiteral("messageComposer"));
+    auto* input =
+        root_object->findChild<QQuickItem*>(QStringLiteral("messageComposerInput"));
+    auto* status =
+        root_object->findChild<QObject*>(QStringLiteral("messageComposerStatus"));
+    auto* character_count = root_object->findChild<QObject*>(
+        QStringLiteral("messageComposerCharacterCount"));
+    auto* send_action = root_object->findChild<QObject*>(
+        QStringLiteral("messageComposerSendAction"));
+    if (composer == nullptr || input == nullptr || status == nullptr ||
+        character_count == nullptr || send_action == nullptr ||
+        root_object->property("messageComposerState").value<QObject*>() !=
+            &composer_state ||
+        composer->property("characterCount").toInt() != 0 ||
+        composer->property("canSend").toBool() ||
+        send_action->property("enabled").toBool() ||
+        status->property("text").toString() != QStringLiteral("Enter a message") ||
+        character_count->property("text").toString() !=
+            QStringLiteral("0 characters")) {
+        return failed("initial state");
+    }
+
+    QObject submission_receiver;
+    int submission_count = 0;
+    QString submitted_text;
+    QObject::connect(&composer_state,
+                     &MessageComposerState::messageSubmitted,
+                     &submission_receiver,
+                     [&submission_count, &submitted_text](const QString& text) {
+                         ++submission_count;
+                         submitted_text = text;
+                     });
+
+    const auto update_text = [&composer_state, input](const QString& text) {
+        composer_state.setText(text);
+        QCoreApplication::processEvents();
+        input->setProperty("cursorPosition", text.size());
+        QCoreApplication::processEvents();
+    };
+    const auto send_key = [input](int key, Qt::KeyboardModifiers modifiers) {
+        QKeyEvent press_event{QEvent::KeyPress, key, modifiers};
+        QCoreApplication::sendEvent(input, &press_event);
+        QKeyEvent release_event{QEvent::KeyRelease, key, modifiers};
+        QCoreApplication::sendEvent(input, &release_event);
+        QCoreApplication::processEvents();
+    };
+
+    input->forceActiveFocus(Qt::OtherFocusReason);
+    update_text(QString::fromUtf8(
+        "\xEC\x95\x88\xEB\x85\x95\xED\x95\x98\xEC\x84\xB8\xEC\x9A\x94"));
+    if (composer_state.characterCount() != 5 || !composer_state.canSend() ||
+        composer->property("characterCount").toInt() != 5 ||
+        !composer->property("canSend").toBool() ||
+        !send_action->property("enabled").toBool() ||
+        status->property("text").toString() != QStringLiteral("Ready to send") ||
+        character_count->property("text").toString() !=
+            QStringLiteral("5 characters")) {
+        return failed("ready and character count");
+    }
+
+    update_text(QString::fromUtf8("\xEC\xB4\x88\xEC\x95\x88"));
+    QInputMethodEvent preedit_event{QString::fromUtf8("\xED\x95\x9C"), {}};
+    QCoreApplication::sendEvent(input, &preedit_event);
+    QCoreApplication::processEvents();
+    if (!input->property("inputMethodComposing").toBool() ||
+        !composer->property("inputMethodComposing").toBool() ||
+        composer->property("canSend").toBool() ||
+        send_action->property("enabled").toBool() ||
+        status->property("text").toString() != QStringLiteral("Composing...")) {
+        return failed("Korean preedit state");
+    }
+
+    send_key(Qt::Key_Return, Qt::NoModifier);
+    if (submission_count != 0 || composer_state.text().isEmpty()) {
+        return failed("Enter during Korean composition");
+    }
+
+    QInputMethodEvent commit_event;
+    commit_event.setCommitString(QString::fromUtf8("\xED\x95\x9C"));
+    QCoreApplication::sendEvent(input, &commit_event);
+    QCoreApplication::processEvents();
+    if (input->property("inputMethodComposing").toBool() ||
+        composer->property("inputMethodComposing").toBool()) {
+        return failed("composition commit");
+    }
+
+    update_text(QString::fromUtf8("\xEC\xB2\xAB \xEC\xA4\x84"));
+    send_key(Qt::Key_Return, Qt::ShiftModifier);
+    if (submission_count != 0 ||
+        !composer_state.text().contains(QLatin1Char{'\n'})) {
+        return failed("Shift+Enter newline");
+    }
+
+    const auto message = QString::fromUtf8(
+        "\xEB\xB3\xB4\xEB\x82\xBC \xEB\xA9\x94\xEC\x8B\x9C\xEC\xA7\x80");
+    update_text(message);
+    send_key(Qt::Key_Return, Qt::NoModifier);
+    if (submission_count != 1 || submitted_text != message ||
+        !composer_state.text().isEmpty() || composer_state.characterCount() != 0 ||
+        composer_state.canSend() || !input->property("text").toString().isEmpty() ||
+        composer->property("canSend").toBool() ||
+        send_action->property("enabled").toBool() ||
+        status->property("text").toString() != QStringLiteral("Enter a message") ||
+        character_count->property("text").toString() !=
+            QStringLiteral("0 characters")) {
+        return failed("Enter submission");
+    }
+
+    const auto keypad_message = QString::fromUtf8(
+        "\xED\x82\xA4\xED\x8C\xA8\xEB\x93\x9C Enter");
+    update_text(keypad_message);
+    send_key(Qt::Key_Enter, Qt::KeypadModifier);
+    return submission_count == 2 && submitted_text == keypad_message &&
+                   composer_state.text().isEmpty()
+               ? true
+               : failed("keypad Enter submission");
+}
+
 QVector<ChannelListModel::Channel> default_channels() {
     return {
         {QStringLiteral("channel-general"),
@@ -651,6 +780,7 @@ enum class UiRegressionScenario {
     WorkspaceSidebar,
     ChannelSidebar,
     MessageList,
+    MessageComposer,
 };
 
 const char* scenario_name(UiRegressionScenario scenario) {
@@ -667,6 +797,8 @@ const char* scenario_name(UiRegressionScenario scenario) {
         return "channel-sidebar";
     case UiRegressionScenario::MessageList:
         return "message-list";
+    case UiRegressionScenario::MessageComposer:
+        return "message-composer";
     }
     return "unknown";
 }
@@ -676,6 +808,7 @@ bool run_ui_regression_scenario(UiRegressionScenario scenario) {
     WorkspaceListModel workspace_model;
     ChannelListModel channel_model{default_channels()};
     MessageListModel message_model{make_demo_messages()};
+    MessageComposerState message_composer_state;
     if (!prepare_models(workspace_model, channel_model)) {
         return false;
     }
@@ -689,6 +822,8 @@ bool run_ui_regression_scenario(UiRegressionScenario scenario) {
                               QVariant::fromValue(&channel_model));
     initial_properties.insert(QStringLiteral("messageModel"),
                               QVariant::fromValue(&message_model));
+    initial_properties.insert(QStringLiteral("messageComposerState"),
+                              QVariant::fromValue(&message_composer_state));
     engine.setInitialProperties(initial_properties);
     engine.loadFromModule("BranchTalk", "Main");
     QCoreApplication::processEvents();
@@ -713,6 +848,9 @@ bool run_ui_regression_scenario(UiRegressionScenario scenario) {
     case UiRegressionScenario::MessageList:
         view_model.showMain();
         return message_list_updates(root_object, message_model);
+    case UiRegressionScenario::MessageComposer:
+        view_model.showMain();
+        return message_composer_handles_input(root_object, message_composer_state);
     }
     return false;
 }
@@ -725,6 +863,7 @@ bool run_ui_regression_suite() {
         UiRegressionScenario::WorkspaceSidebar,
         UiRegressionScenario::ChannelSidebar,
         UiRegressionScenario::MessageList,
+        UiRegressionScenario::MessageComposer,
     };
 
     bool all_passed = true;
@@ -779,6 +918,7 @@ int run(int argc, char* argv[]) {
     WorkspaceListModel workspace_model;
     ChannelListModel channel_model{default_channels()};
     MessageListModel message_model{make_demo_messages()};
+    MessageComposerState message_composer_state;
     if (!prepare_models(workspace_model, channel_model)) {
         return EXIT_FAILURE;
     }
@@ -792,6 +932,8 @@ int run(int argc, char* argv[]) {
                               QVariant::fromValue(&channel_model));
     initial_properties.insert(QStringLiteral("messageModel"),
                               QVariant::fromValue(&message_model));
+    initial_properties.insert(QStringLiteral("messageComposerState"),
+                              QVariant::fromValue(&message_composer_state));
 
     if (!test_mode) {
         if (const auto restored_state = window_state_store.restore(available_screens)) {

@@ -55,10 +55,13 @@ BranchTalk/
 |   |   |-- CMakeLists.txt
 |   |   |-- main.cpp
 |   |   |-- Main.qml
-|   |   |-- Theme.qml
+|   |   |-- MessageComposer.qml
 |   |   |-- MessageDelegate.qml
+|   |   |-- message_composer_state.cpp
+|   |   |-- message_composer_state.hpp
 |   |   |-- message_list_model.cpp
 |   |   |-- message_list_model.hpp
+|   |   |-- Theme.qml
 |   |   |-- AppButton.qml
 |   |   |-- AppPanel.qml
 |   |   |-- app_view_model.cpp
@@ -140,10 +143,9 @@ ctest --preset debug -R branchtalk_desktop
 ## Desktop application
 
 `qt_add_qml_module()` packages `Main.qml`, `Theme.qml`, `AppButton.qml`,
-`AppPanel.qml`, and `MessageDelegate.qml`, plust the registered desktop model
-types, in the `BranchTalk` QML module. The application opens an 800 by
-600 window with a minimum size of 640 by 400.
-
+`AppPanel.qml`, `MessageComposer.qml`, and `MessageDelegate.qml`, plus the
+registered desktop state and model types, in the `BranchTalk` QML module. The
+application opens an 800 by
 600 window with a minimum size of 640 by 480.
 
 ### Theme and layout
@@ -151,6 +153,13 @@ types, in the `BranchTalk` QML module. The application opens an 800 by
 `Theme.qml` owns the light and dark colors, spacing, typography, radii, and
 control sizes used by the other QML files. `AppPanel` and `AppButton` read those
 values instead of keeping their own color and spacing constants.
+
+The desktop selects the Basic control style before loading QML so the custom
+control content and backgrounds render consistently on Windows and macOS.
+
+`AppPanel` accepts an explicit content size for standalone cards. Split-view
+panels use their assigned size instead of deriving it from anchored children,
+which avoids recursive implicit-size bindings.
 
 The main view uses a horizontal `SplitView` with workspace, channel, and
 conversation columns. The conversation column is hidden below the 760 pixel
@@ -196,26 +205,47 @@ replacing the injected models.
 
 ### Message list
 
-`MessageListModel` exposes stable messge IDs, author identity, display time, 
-body text, delivery status, and grouping state as QML roles, The desktop entry
-point owns the model and injects it into `Main`; QML does not keep a second 
+`MessageListModel` exposes stable message IDs, author identity, display time,
+body text, delivery status, and grouping state as QML roles. The desktop entry
+point owns the model and injects it into `Main`; QML does not keep a second
 message array.
 
 The conversation panel uses a `ListView` with item reuse instead of a
 `Repeater`. Only delegates near the visible area stay instantiated, so a long
-conversation does not create one QML object for every messge.
+conversation does not create one QML object for every message.
+
+The UI flow moves each target row into the viewport before inspecting its
+delegate. A null `itemAtIndex()` result for an offscreen row does not mean the
+model row is missing; it means `ListView` has not instantiated that delegate.
 
 Updating a message with the same stable ID emits `dataChanged` only for roles
-whose values changed. An author change also updates the next row's grouping 
-role when necessary. The model does not reset, which preserves the row count, 
-scroll position, and visible delegate instances. 
+whose values changed. An author change also updates the next row's grouping
+role when necessary. The model does not reset, which preserves the row count,
+scroll position, and visible delegate instances.
 
 `MessageDelegate` shows the author and timestamp on the first message in a
 group, then renders the body and the `Pending`, `Sent`, or `Failed` state. The
 model test covers validation, role values, grouping, and targeted updates. The
 UI flow scrolls 240 rows and verifies that an in-place update keeps the same
-visible item. The contract test prevent a temporary QML array or model reset
-from replacing this behavior. 
+visible item. The contract test prevents a temporary QML array or model reset
+from replacing this behavior.
+
+### Message composer and IME handling
+
+`MessageComposerState` owns the draft text, UTF-16 character count, and whether
+the draft can be sent. Submission is ignored while an input method is
+composing or when the draft contains only whitespace. A successful submission
+emits the message once and clears the draft.
+
+`MessageComposer` binds a multiline `TextArea` to that state. Return and keypad
+Enter submit a completed draft, while Shift+Enter inserts a newline. During
+Korean IME composition, Enter remains with the input method and does not send a
+partial message. The behavior is the same on Windows and macOS.
+
+The state test covers whitespace, Unicode character counts, duplicate change
+notifications, composition, and reset after submission. The consolidated QML
+flow sends key and preedit events through the text area on the offscreen
+platform.
 
 ### Window state
 

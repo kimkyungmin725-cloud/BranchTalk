@@ -32,6 +32,7 @@ QtObject {
     readonly property int buttonRadius: 8
     readonly property int borderWidth: 1
     readonly property int controlHeight: 40
+    readonly property int composerInputHeight: 72
     readonly property int buttonMinimumWidth: 144
     readonly property int splitHandleWidth: 4
     readonly property int workspaceMinimumWidth: 96

@@ -8,6 +8,7 @@ ApplicationWindow {
     required property WorkspaceListModel workspaceModel
     required property ChannelListModel channelModel
     required property MessageListModel messageModel
+    required property MessageComposerState messageComposerState
 
     objectName: "mainWindow"
     readonly property bool darkMode: Theme.darkMode
@@ -343,7 +344,8 @@ ApplicationWindow {
                     anchors.topMargin: Theme.spacingSmall
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.bottom: parent.bottom
+                    anchors.bottom: messageComposer.top
+                    anchors.bottomMargin: Theme.spacingSmall
                     clip: true
                     reuseItems: true
                     model: window.messageModel
@@ -353,6 +355,16 @@ ApplicationWindow {
                     }
 
                     ScrollBar.vertical: ScrollBar {}
+                }
+
+                MessageComposer {
+                    id: messageComposer
+
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    height: implicitHeight
+                    composerState: window.messageComposerState
                 }
             }
         }
